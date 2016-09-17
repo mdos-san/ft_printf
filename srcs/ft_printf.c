@@ -6,14 +6,17 @@ int	ft_printf(char *str, ...)
 	va_list ap;	
 	int		i;
 	char	in;
+	int		nb;
 
 	i = 0;
 	in = 0;
+	nb = 0;
 	va_start(ap, str);
 	ftpf = ftpf_init(str);
 	while (str[i])
 	{
 		(in == 0 && str[i] != '%') ? ft_putchar(str[i]) : 0;
+		(in == 1 && ftpf->param[nb] == 's') ? ft_putstr(va_arg(ap, char *)) : 0;
 		(str[i] == '%') ? (in = 1) : 0;
 		(in == 1 && str[i] == ' ') ? (in = 0) : 0;
 		++i;

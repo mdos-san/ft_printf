@@ -29,9 +29,9 @@ static void init_params(char *s, char *tab)
 	{
 		if (s[i] == '%' && find == 0)
 			++find;
-		else if (find == 1 && s[i] == 's')
+		else if (find == 1 && ft_isalpha(s[i]) && (s[i + 1] == ' ' || s[i + 1] == '\0'))
 		{
-			tab[j] = 's';
+			tab[j] = s[i];
 			++j;
 		}
 		else if (find == 1 && (s[i] == ' ' || s[i] == '%'))
