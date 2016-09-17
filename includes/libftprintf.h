@@ -8,6 +8,8 @@
 typedef struct	s_ftpf
 {
 	char		*input;
+	int			nbr_param;
+	char		*param;
 }				t_ftpf;	
 
 int		ft_printf(char *str, ...);

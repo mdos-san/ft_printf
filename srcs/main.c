@@ -28,5 +28,6 @@ int		main()
 	test("", NULL, 0);
 	test("Basic output", NULL, 0);
 	test("s test: %s", (void*)"coucou", 1);
+	test("s test: %%", NULL, 0);
 	return (0);
 }
