@@ -2,24 +2,31 @@
 #include "stdio.h"
 #include "unistd.h"
 
-static	test(char *s)
+static void	test(char *s, void *param, char type)
 {
 	ft_putendl("#######################");
 	ft_putstr("TEST with '");
-	ft_putstr(s);
+	if (type == 0)
+		ft_putstr(s);
+	if (type == 1)
+		ft_printf(s, (char*)param);
 	ft_putendl("'");
 	ft_putendl("=====FT_PRINTF=====");
 	ft_printf(s);
 	ft_putendl("\n=======PRINTF======");
-	printf(s);
+	if (type == 0)
+		printf(s);
+	if (type == 1)
+		printf(s, (char*)param);
 	fflush(stdout);
 	ft_putendl("\n===================\n\n");
 }
 
 
-int		main(int ac, char **av)
+int		main()
 {
-	test("toto");
-	test("tata");
+	test("", NULL, 0);
+	test("Basic output", NULL, 0);
+	test("s test: %s", (void*)"coucou", 1);
 	return (0);
 }

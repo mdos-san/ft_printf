@@ -1,14 +1,18 @@
 NAME		=	libftprintf.a
 
 TMP_C		=\
-				ft_printf.c
+				ft_printf.c\
+				ftpf_init.c\
+				ftpf_del.c
 SRC_C		=	$(TMP_C:%=srcs/%)
 SRC_O		=	$(TMP_C:.c=.o)
+
+FLAG		=	-Wall -Wextra -Werror
 
 all: libftprintf.a 
 
 libftprintf.a: includes/libft.h libft.a
-	gcc -c $(SRC_C) -I./includes
+	gcc -c $(SRC_C) -I./includes $(FLAG)
 	ar -rc $(NAME) $(SRC_O)
 
 includes/libft.h:
@@ -28,4 +32,6 @@ fclean: clean
 re: fclean all
 
 test: all
-	gcc -I./includes -o test srcs/main.c libftprintf.a libft.a
+	gcc -I./includes -o test srcs/main.c libftprintf.a libft.a $(FLAG)
+
+retest: fclean all test
