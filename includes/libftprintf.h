@@ -2,6 +2,7 @@
 # define LIBFTPRINTF_H
 
 # include <stdlib.h>
+# include <stdarg.h>
 # include "libft.h"
 
 typedef struct	s_ftpf

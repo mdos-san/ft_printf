@@ -6,13 +6,13 @@ static void	test(char *s, void *param, char type)
 {
 	ft_putendl("#######################");
 	ft_putstr("TEST with '");
-	if (type == 0)
-		ft_putstr(s);
-	if (type == 1)
-		ft_printf(s, (char*)param);
+	ft_putstr(s);
 	ft_putendl("'");
 	ft_putendl("=====FT_PRINTF=====");
-	ft_printf(s);
+	if (type == 0)
+		ft_printf(s);
+	if (type == 1)
+		ft_printf(s, (char*)param);
 	ft_putendl("\n=======PRINTF======");
 	if (type == 0)
 		printf(s);
