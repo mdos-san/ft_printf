@@ -48,7 +48,7 @@ t_ftpf	*ftpf_init(char *input)
 		return (NULL);
 	new->input = ft_strdup(input);
 	new->nbr_param = count_params(input);
-	new->param = (char *)malloc(new->nbr_param);
+	new->param = (char *)malloc(new->nbr_param * sizeof(char *));
 	init_params(input, new->param);
 	return (new);
 }

@@ -67,8 +67,5 @@ int		main()
 	printf("%S\n", L"我是一只猫。");
 	fflush(stdout);
 	ft_putwstr(L"我是一只猫。");
-	printf("\n%p\n", &i);
-	fflush(stdout);
-	ft_putptn((unsigned long int)&i);
 	return (0);
 }
