@@ -40,5 +40,6 @@ int		main()
 	test("c test: %c", (void*)&a, 2);
 	int	i	= -42;
 	test("d test: %d", (void*)&i, 3);
+	ft_putwchar(945);
 	return (0);
 }

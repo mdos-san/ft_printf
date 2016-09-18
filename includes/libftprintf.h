@@ -3,6 +3,7 @@
 
 # include <stdlib.h>
 # include <stdarg.h>
+# include <unistd.h>
 # include "libft.h"
 
 typedef struct	s_ftpf
@@ -15,5 +16,6 @@ typedef struct	s_ftpf
 int		ft_printf(char *str, ...);
 t_ftpf	*ftpf_init(char *input);
 void	ftpf_del(t_ftpf **addr);
+void	ft_putwchar(int c);
 
 #endif

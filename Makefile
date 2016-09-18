@@ -3,7 +3,8 @@ NAME		=	libftprintf.a
 TMP_C		=\
 				ft_printf.c\
 				ftpf_init.c\
-				ftpf_del.c
+				ftpf_del.c\
+				ft_putwchar.c
 SRC_C		=	$(TMP_C:%=srcs/%)
 SRC_O		=	$(TMP_C:.c=.o)
 
