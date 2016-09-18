@@ -19,15 +19,15 @@ static	char *print_bit(int c)
 		c = c / 2;
 		++i;
 	}
-	ft_putendl("====PRINT_BIT====");
-	write(1, buf, 8);
-	ft_putchar(' ');
-	write(1, buf + 8, 8);
-	ft_putchar(' ');
-	write(1, buf + 16, 8);
-	ft_putchar(' ');
-	write(1, buf + 24, 8);
-	ft_putchar('\n');
+//	ft_putendl("====PRINT_BIT====");
+//	write(1, buf, 8);
+//	ft_putchar(' ');
+//	write(1, buf + 8, 8);
+//	ft_putchar(' ');
+//	write(1, buf + 16, 8);
+//	ft_putchar(' ');
+//	write(1, buf + 24, 8);
+//	ft_putchar('\n');
 	return (ft_strdup(buf));
 }
 
@@ -50,7 +50,6 @@ static void	mask_init(char *m, char nbr)
 			++i;
 		}
 	}
-	ft_putendl(m);
 }
 
 static void	mask_fill(char *m, char *n)
@@ -69,7 +68,6 @@ static void	mask_fill(char *m, char *n)
 		}
 		++i;
 	}
-	ft_putendl(m);
 }
 
 static int bin_to_int(char *bin)
@@ -88,7 +86,6 @@ static int bin_to_int(char *bin)
 		pow *= 2;
 		++i;
 	}
-	ft_putnbr(ret);
 	return (ret);
 }
 
