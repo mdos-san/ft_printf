@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 18:21:58 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/09/18 18:22:20 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/09/18 18:25:42 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,7 @@ static	char *print_bit(int c)
 		c = c / 2;
 		++i;
 	}
-/*	ft_putendl("====PRINT_BIT====");
-	write(1, buf, 8);
-	ft_putchar(' ');
-	write(1, buf + 8, 8);
-	ft_putchar(' ');
-	write(1, buf + 16, 8);
-	ft_putchar(' ');
-	write(1, buf + 24, 8);
-	ft_putchar('\n');
-*/	return (ft_strdup(buf));
+	return (ft_strdup(buf));
 }
 
 static char	*mask_init(char nbr)
@@ -98,9 +89,9 @@ static unsigned int bin_to_int(char *bin)
 
 void	ft_putwchar(int c)
 {
-	char	*mask;
-	char	*nbr;
-	unsigned int		result;
+	char			*mask;
+	char			*nbr;
+	unsigned int	result;
 
 	nbr = print_bit(c);
 	if (c <= 127)
@@ -119,4 +110,5 @@ void	ft_putwchar(int c)
 	(c > 2047) ? write(1, nbr + 2, 1) : 0;
 	(c > 127) ? write(1, nbr + 1, 1) : 0;
 	write(1, nbr + 0, 1);
+	free(mask);
 }

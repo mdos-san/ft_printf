@@ -49,7 +49,7 @@ int		main()
 	test("Basic output", NULL, 0);
 	c = 'a';
 	test("char test: %c", (void*)&c, 1);
-	i = 65536;
+	i = 65599;
 	test("wchar test: %C", (void*)&i, 2);
 	i = -42;
 	test("s test: %s", (void*)"coucou", 3);
