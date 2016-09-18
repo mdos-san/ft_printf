@@ -1,9 +1,12 @@
 #include "libftprintf.h"
 #include "stdio.h"
+#include <locale.h>
+#include <wchar.h>
 #include "unistd.h"
 
 static void	test(char *s, void *param, char type)
 {
+	setlocale(LC_ALL, "");
 	ft_putendl("#######################");
 	ft_putstr("TEST with '");
 	ft_putstr(s);
@@ -21,7 +24,7 @@ static void	test(char *s, void *param, char type)
 		ft_printf(s, *(int*)param);
 	ft_putendl("\n=======PRINTF======");
 	if (type == 0)
-		printf(s);
+		printf((char *)s);
 	if (type == 1)
 		printf(s, *(char*)param);
 	if (type == 2)
@@ -39,15 +42,17 @@ int		main()
 {
 	int i;
 	char  c;
+	wchar_t w;
+
+	w = L'\x03b1';
 	test("", NULL, 0);
 	test("Basic output", NULL, 0);
 	c = 'a';
 	test("char test: %c", (void*)&c, 1);
-	i = 945;
+	i = 9999;
 	test("wchar test: %C", (void*)&i, 2);
 	i = -42;
 	test("s test: %s", (void*)"coucou", 3);
 	test("d test: %d", (void*)&i, 4);
-	printf("test: %lc", 945);
 	return (0);
 }

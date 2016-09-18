@@ -1,8 +1,8 @@
 #include "libftprintf.h"
-#define MASK_1 0 
-#define MASK_2 49280
-#define MASK_3 14712960
-#define MASK_4 4034953344
+#define MASK_1 "0000000000000000000000000xxxxxxx"
+#define MASK_2 "0000000000000000110xxxxx10xxxxxx"
+#define MASK_3 "000000001110xxxx10xxxxxx10xxxxxx"
+#define MASK_4 "11110xxx10xxxxxx10xxxxxx10xxxxxx"
 
 
 static	char *print_bit(int c)
@@ -19,37 +19,34 @@ static	char *print_bit(int c)
 		c = c / 2;
 		++i;
 	}
-//	ft_putendl("====PRINT_BIT====");
-//	write(1, buf, 8);
-//	ft_putchar(' ');
-//	write(1, buf + 8, 8);
-//	ft_putchar(' ');
-//	write(1, buf + 16, 8);
-//	ft_putchar(' ');
-//	write(1, buf + 24, 8);
-//	ft_putchar('\n');
+	ft_putendl("====PRINT_BIT====");
+	write(1, buf, 8);
+	ft_putchar(' ');
+	write(1, buf + 8, 8);
+	ft_putchar(' ');
+	write(1, buf + 16, 8);
+	ft_putchar(' ');
+	write(1, buf + 24, 8);
+	ft_putchar('\n');
 	return (ft_strdup(buf));
 }
 
-static void	mask_init(char *m, char nbr)
+static char	*mask_init(char nbr)
 {
 	int i;
 
 	i = 0;
+	ft_putstr("mask:");
+	ft_putnbrl(nbr);
+	if (nbr == 1)
+		return (ft_strdup(MASK_1));
 	if (nbr == 2)
-	{
-		while (i < 6)
-		{
-			m[31 - i] = '#';
-			++i;
-		}
-		i += 2;
-		while (i < 13)
-		{
-			m[31 - i] = '#';
-			++i;
-		}
-	}
+		return (ft_strdup(MASK_2));
+	if (nbr == 3)
+		return (ft_strdup(MASK_3));
+	if (nbr == 4)
+		return (ft_strdup(MASK_4));
+	return (NULL);
 }
 
 static void	mask_fill(char *m, char *n)
@@ -61,13 +58,14 @@ static void	mask_fill(char *m, char *n)
 	j = 0;
 	while (i < 32)
 	{
-		if (m[31 - i] == '#')
+		if (m[31 - i] == 'x')
 		{
 			m[31 - i] = n[31 - j];
 			++j;
 		}
 		++i;
 	}
+	ft_putendl(m);
 }
 
 static int bin_to_int(char *bin)
@@ -95,15 +93,21 @@ void	ft_putwchar(int c)
 	char	*nbr;
 	int		result;
 
-	mask = print_bit(MASK_2);
 	nbr = print_bit(c);
-	mask_init(mask, 2);
+	if (c <= 127)
+		mask = mask_init(1);
+	else if (c <= 2047)
+		mask = mask_init(2);
+	else if (2047 < c && c <= 65535)
+		mask = mask_init(3);
+	else
+		mask = mask_init(4);
 	mask_fill(mask, nbr);
 	result = bin_to_int(mask);
 	free(nbr);
 	nbr = (char*)&result;
-	write(1, nbr + 3, 1);
-	write(1, nbr + 2, 1);
-	write(1, nbr + 1, 1);
+	(c > 65535) ? write(1, nbr + 3, 1) : 0;
+	(c > 2047) ? write(1, nbr + 2, 1) : 0;
+	(c > 127) ? write(1, nbr + 1, 1) : 0;
 	write(1, nbr + 0, 1);
 }

@@ -33,6 +33,6 @@ fclean: clean
 re: fclean all
 
 test: all
-	gcc -I./includes -o test srcs/main.c libftprintf.a libft.a $(FLAG)
+	gcc -I./includes -o test srcs/main.c libftprintf.a libft.a 
 
 retest: fclean all test
