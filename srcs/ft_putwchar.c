@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putwchar.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/09/18 18:21:58 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/09/18 18:22:20 by mdos-san         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 #define MASK_1 "0000000000000000000000000xxxxxxx"
 #define MASK_2 "0000000000000000110xxxxx10xxxxxx"
@@ -19,7 +31,7 @@ static	char *print_bit(int c)
 		c = c / 2;
 		++i;
 	}
-	ft_putendl("====PRINT_BIT====");
+/*	ft_putendl("====PRINT_BIT====");
 	write(1, buf, 8);
 	ft_putchar(' ');
 	write(1, buf + 8, 8);
@@ -28,7 +40,7 @@ static	char *print_bit(int c)
 	ft_putchar(' ');
 	write(1, buf + 24, 8);
 	ft_putchar('\n');
-	return (ft_strdup(buf));
+*/	return (ft_strdup(buf));
 }
 
 static char	*mask_init(char nbr)
@@ -36,8 +48,6 @@ static char	*mask_init(char nbr)
 	int i;
 
 	i = 0;
-	ft_putstr("mask:");
-	ft_putnbrl(nbr);
 	if (nbr == 1)
 		return (ft_strdup(MASK_1));
 	if (nbr == 2)
@@ -65,13 +75,12 @@ static void	mask_fill(char *m, char *n)
 		}
 		++i;
 	}
-	ft_putendl(m);
 }
 
-static int bin_to_int(char *bin)
+static unsigned int bin_to_int(char *bin)
 {
 	int	i;
-	int ret;
+	unsigned int ret;
 	double pow;
 
 	i = 0;
@@ -91,7 +100,7 @@ void	ft_putwchar(int c)
 {
 	char	*mask;
 	char	*nbr;
-	int		result;
+	unsigned int		result;
 
 	nbr = print_bit(c);
 	if (c <= 127)
