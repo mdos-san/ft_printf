@@ -4,7 +4,9 @@ TMP_C		=\
 				ft_printf.c\
 				ftpf_init.c\
 				ftpf_del.c\
-				ft_putwchar.c
+				ft_putwchar.c\
+				ft_putwstr.c\
+				ft_putptn.c
 SRC_C		=	$(TMP_C:%=srcs/%)
 SRC_O		=	$(TMP_C:.c=.o)
 

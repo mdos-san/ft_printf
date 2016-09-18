@@ -17,5 +17,7 @@ int		ft_printf(char *str, ...);
 t_ftpf	*ftpf_init(char *input);
 void	ftpf_del(t_ftpf **addr);
 void	ft_putwchar(int c);
+void	ft_putwstr(int *wstr);
+void	ft_putptn(unsigned long int pnt);
 
 #endif
