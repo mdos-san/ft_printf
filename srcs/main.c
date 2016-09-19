@@ -61,9 +61,9 @@ int		main()
 	test("s test: |%.5s|", (void*)"Hello World!", 3);
 	test("S test: |%.5S|", (void*)L"我是一只猫。", 4);
 	i = 42;
-	test("d test: |%+.5d|", (void*)&i, 5);
+	test("d test: |%8.5d|", (void*)&i, 5);
 	i = -42;
-	test("d test: |%016.5d|", (void*)&i, 5);
+	test("d test: |%8.5d|", (void*)&i, 5);
 	test("p test: |%.24p|", (void*)&i, 7);
 	return (0);
 }

@@ -14,6 +14,27 @@ static void *get_arg(va_list cp, char c)
 	return (i);
 }
 
+static int	get_width(char *s)
+{
+	int	ret;
+	int	i;
+
+	i = 0;
+	ret = 0;
+	while (s[i])
+	{
+		if (s[i] == '.')
+			break ;
+		if (ft_isdigit(s[i]))
+		{
+			ret = atoi(s + i);
+			break ;
+		}
+		++i;
+	}
+	return (ret);
+}
+
 int	ft_printf(char *str, ...)
 {
 	t_ftpf *ftpf;
@@ -35,8 +56,8 @@ int	ft_printf(char *str, ...)
 			ftpf->c = ft_str_last_char(ftpf->params[nb]);	
 			ftpf->tmp = ft_strchr(ftpf->params[nb], '.');
 			ftpf->flag.precision = 0;
-			if (ftpf->tmp)
-				ftpf->flag.precision = ft_atoi(ftpf->tmp + 1);
+			ftpf->flag.width = get_width(ftpf->input);
+			(ftpf->tmp) ? ftpf->flag.precision = ft_atoi(ftpf->tmp + 1) : 0;
 			ret = get_arg(cp, ftpf->c);
 			(*ftpf->fct[(int)ftpf->c])(ret, ftpf->flag);
 			va_arg(ap, void*);
