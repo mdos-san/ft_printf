@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 18:21:58 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/09/18 18:25:42 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/09/19 12:27:54 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,14 @@ static unsigned int bin_to_int(char *bin)
 	return (ret);
 }
 
-void	ft_putwchar(int c)
+void	ft_putwchar(void *r)
 {
+	int				c;
 	char			*mask;
 	char			*nbr;
 	unsigned int	result;
 
+	c = *(int*)r;
 	nbr = print_bit(c);
 	if (c <= 127)
 		mask = mask_init(1);

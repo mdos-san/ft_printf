@@ -1,33 +1,45 @@
 #include "libftprintf.h"
 
+static void *get_arg(va_list cp, char c)
+{
+	void	*i;
+
+	i = (void*)malloc(64);
+	(c == 'c') ? (*(int*)i = va_arg(cp, int)) : 0;
+	(c == 'C') ? (*(int*)i = va_arg(cp, int)) : 0;
+	(c == 's') ? (i = (void*)va_arg(cp, char *)) : 0;
+	(c == 'S') ? (i = (void*)va_arg(cp, int	*)) : 0;
+	return (i);
+}
+
 int	ft_printf(char *str, ...)
 {
 	t_ftpf *ftpf;
 	va_list ap;	
+	va_list cp;	
 	int		i;
-	char	in;
 	int		nb;
-	int		ret;
+	void	*ret;
 
 	i = 0;
-	in = 0;
 	nb = 0;
-	ret = 0;
 	va_start(ap, str);
 	ftpf = ftpf_init(str);
 	while (str[i])
 	{
-		(in == 0 && str[i] != '%') ? ft_putchar(str[i]) : 0;
-		(in == 1 && ftpf->param[nb] == 'c') ? ft_putchar(va_arg(ap, int)) : ++ret;
-		(in == 1 && ftpf->param[nb] == 'C') ? ft_putwchar(va_arg(ap, int)) : ++ret;
-		(in == 1 && ftpf->param[nb] == 's') ? ft_putstr(va_arg(ap, char *)) : ++ret;
-		(in == 1 && ftpf->param[nb] == 'S') ? ft_putwstr(va_arg(ap, int *)) : ++ret;
-		(in == 1 && ftpf->param[nb] == 'd') ? ft_putnbr(va_arg(ap, int)) : ++ret;
-		(in == 1 && ftpf->param[nb] == 'p') ? ft_putptn(va_arg(ap, unsigned long int)) : ++ret;
-		(ret < 6 && in == 1) ? ++nb : 0;
-		(str[i] == '%') ? (in = 1) : 0;
-		(in == 1 && str[i] == ' ') ? (in = 0) : 0;
-		ret = 0;
+		if (str[i] == '%')
+		{
+			va_copy(cp, ap);
+			ftpf->c = ft_str_last_char(ftpf->params[nb]);	
+			ret = get_arg(cp, ftpf->c);
+			(*ftpf->fct[(int)ftpf->c])(ret);
+			free(ret);
+			va_arg(ap, void*);
+			i += ft_strlen(ftpf->params[nb]) - 1;
+			++nb;
+		}
+		else
+			ft_putchar(str[i]);
 		++i;
 	}
 	ftpf_del(&ftpf);

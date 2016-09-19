@@ -60,13 +60,14 @@ int		main()
 	test("wchar test: %C", (void*)&i, 2);
 	i = -42;
 	test("s test: %s", (void*)"coucou", 3);
-	test("S test: %s", (void*)L"我是一只猫。", 4);
-	test("d test: % d", (void*)&i, 5);
+	test("S test: %S", (void*)L"我是一只猫。", 4);
+/*	test("d test: % d", (void*)&i, 5);
 	test("p test: % p", (void*)&i, 7);
 	printf("%S\n", L"我是一只猫。");
 	fflush(stdout);
 	ft_putwstr(L"我是一只猫。");
 	printf("%.4d %.4d\n",42, 21);
 	fflush(stdout);
+*/
 	return (0);
 }

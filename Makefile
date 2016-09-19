@@ -6,7 +6,11 @@ TMP_C		=\
 				ftpf_del.c\
 				ft_putwchar.c\
 				ft_putwstr.c\
-				ft_putptn.c
+				ft_putptn.c\
+				ft_str_last_char.c\
+				useless.c\
+				print_c.c\
+				print_s.c
 SRC_C		=	$(TMP_C:%=srcs/%)
 SRC_O		=	$(TMP_C:.c=.o)
 
