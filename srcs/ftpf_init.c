@@ -33,9 +33,8 @@ static void init_params(char *s, char *tab)
 		{
 			tab[j] = s[i];
 			++j;
-		}
-		else if (find == 1 && (s[i] == ' ' || s[i] == '%'))
 			find = 0;
+		}
 		++i;
 	}
 }

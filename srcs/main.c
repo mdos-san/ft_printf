@@ -45,7 +45,6 @@ static void	test(char *s, void *param, char type)
 	ft_putendl("\n===================\n\n");
 }
 
-
 int		main()
 {
 	int i;
@@ -62,10 +61,12 @@ int		main()
 	i = -42;
 	test("s test: %s", (void*)"coucou", 3);
 	test("S test: %s", (void*)L"我是一只猫。", 4);
-	test("d test: %d", (void*)&i, 5);
-	test("p test: %p", (void*)&i, 7);
+	test("d test: % d", (void*)&i, 5);
+	test("p test: % p", (void*)&i, 7);
 	printf("%S\n", L"我是一只猫。");
 	fflush(stdout);
 	ft_putwstr(L"我是一只猫。");
+	printf("%.4d %.4d\n",42, 21);
+	fflush(stdout);
 	return (0);
 }
