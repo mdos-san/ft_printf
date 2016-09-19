@@ -55,21 +55,15 @@ int		main()
 	test("", NULL, 0);
 	test("Basic output", NULL, 0);
 	c = 'a';
-	test("char test: %.5c", (void*)&c, 1);
+	test("char test: |%.5c|", (void*)&c, 1);
 	i = 65599;
-	test("wchar test: %.5C", (void*)&i, 2);
-	test("s test: %.5s", (void*)"Hello World!", 3);
-	test("S test: %.5S", (void*)L"我是一只猫。", 4);
+	test("wchar test: |%.5C|", (void*)&i, 2);
+	test("s test: |%.5s|", (void*)"Hello World!", 3);
+	test("S test: |%.5S|", (void*)L"我是一只猫。", 4);
 	i = 42;
-	test("d test: %.5d", (void*)&i, 5);
+	test("d test: |%+.5d|", (void*)&i, 5);
 	i = -42;
-	test("d test: %.5d", (void*)&i, 5);
-	test("p test: %.24p", (void*)&i, 7);
-/*	printf("%S\n", L"我是一只猫。");
-	fflush(stdout);
-	ft_putwstr(L"我是一只猫。");
-	printf("%.4d %.4d\n",42, 21);
-	fflush(stdout);
-*/
+	test("d test: |%016.5d|", (void*)&i, 5);
+	test("p test: |%.24p|", (void*)&i, 7);
 	return (0);
 }

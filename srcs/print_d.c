@@ -1,17 +1,17 @@
 #include "libftprintf.h"
 
-void	print_d(void *arg, int precision)
+void	print_d(void *arg, t_flag flag)
 {
 	char	*arr;
 	int		i;
 
 	i = 0;
 	arr = ft_itoa(*(int*)arg);
-	if (precision > (int)ft_strlen(arr))
+	if (flag.precision > (int)ft_strlen(arr))
 	{
 		(*(int*)arg < 0 ) ? ft_putchar('-') : 0;
-		(*(int*)arg < 0 ) ? precision++ : 0;
-		while (i < (int)(precision - ft_strlen(arr)))
+		(*(int*)arg < 0 ) ? flag.precision++ : 0;
+		while (i < (int)(flag.precision - ft_strlen(arr)))
 		{
 			ft_putchar('0');
 			++i;
@@ -20,5 +20,4 @@ void	print_d(void *arg, int precision)
 	}
 	else
 		ft_putnbr(*(int*)arg);
-	(void)precision;
 }

@@ -20,19 +20,19 @@ static int	*int_arr_dup(int *arr)
 	return (ret);
 }
 
-void	print_ls(void *s, int precision)
+void	print_ls(void *s, t_flag flag)
 {
 	int		tmp;
 	int		*arr;
 
 	arr = int_arr_dup((int*)s);
-	if (precision > 0)
+	if (flag.precision > 0)
 	{
-		tmp = arr[precision / 3];
-		arr[precision / 3] = 0;
+		tmp = arr[flag.precision / 3];
+		arr[flag.precision / 3] = 0;
 	}
 	ft_putwstr(arr);
-	if (precision > 0)
-		arr[precision / 3] = tmp;
+	if (flag.precision > 0)
+		arr[flag.precision / 3] = tmp;
 	(arr) ? free(arr) : 0;
 }

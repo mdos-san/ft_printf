@@ -25,7 +25,7 @@ static int pnt(unsigned long int n)
 }
 
 
-void	print_p(void *p, int precision)
+void	print_p(void *p, t_flag flag)
 {
 	int	i;
 	unsigned long int	nb;
@@ -35,14 +35,14 @@ void	print_p(void *p, int precision)
 	ft_putstr("0x");
 	nb = *(unsigned long int*)p;
 	size = pnt(nb);
-	if (precision > size)
+	if (flag.precision > size)
 	{
-		while (i < precision - size)
+		while (i < flag.precision - size)
 		{
 			ft_putchar('0');
 			++i;
 		}
 	}
 	ft_putptn(nb);
-	(void)precision;
+	(void)flag.precision;
 }

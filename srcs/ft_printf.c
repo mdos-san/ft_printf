@@ -34,11 +34,11 @@ int	ft_printf(char *str, ...)
 			va_copy(cp, ap);
 			ftpf->c = ft_str_last_char(ftpf->params[nb]);	
 			ftpf->tmp = ft_strchr(ftpf->params[nb], '.');
-			ftpf->precision = 0;
+			ftpf->flag.precision = 0;
 			if (ftpf->tmp)
-				ftpf->precision = ft_atoi(ftpf->tmp + 1);
+				ftpf->flag.precision = ft_atoi(ftpf->tmp + 1);
 			ret = get_arg(cp, ftpf->c);
-			(*ftpf->fct[(int)ftpf->c])(ret, ftpf->precision);
+			(*ftpf->fct[(int)ftpf->c])(ret, ftpf->flag);
 			va_arg(ap, void*);
 			i += ft_strlen(ftpf->params[nb]) - 1;
 			++nb;

@@ -1,7 +1,7 @@
 #include "libftprintf.h"
 
-void	print_c(void *c, int precision)
+void	print_c(void *c, t_flag flag)
 {
 	ft_putchar(*(char*)c);
-	(void)precision;
+	(void)flag;
 }

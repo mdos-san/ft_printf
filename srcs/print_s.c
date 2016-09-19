@@ -1,18 +1,18 @@
 #include "libftprintf.h"
 
-void	print_s(void *s, int precision)
+void	print_s(void *s, t_flag flag)
 {
 	char	tmp;
 	char	*str;
 
 	str = ft_strdup((char*)s);
-	if (precision > 0)
+	if (flag.precision > 0)
 	{
-		tmp = str[precision];
-		str[precision] = '\0';
+		tmp = str[flag.precision];
+		str[flag.precision] = '\0';
 	}
 	ft_putstr(str);
-	if (precision > 0)
-		str[precision] = tmp;
+	if (flag.precision > 0)
+		str[flag.precision] = tmp;
 	ft_strdel(&str);
 }

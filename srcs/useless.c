@@ -1,7 +1,7 @@
 #include "libftprintf.h"
 
-void	useless(void *param, int precision)
+void	useless(void *param, t_flag flag)
 {
 	(void)param;
-	(void)precision;
+	(void)flag.precision;
 }
