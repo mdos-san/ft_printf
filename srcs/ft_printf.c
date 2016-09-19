@@ -9,6 +9,7 @@ static void *get_arg(va_list cp, char c)
 	(c == 'C') ? (*(int*)i = va_arg(cp, int)) : 0;
 	(c == 's') ? (i = (void*)va_arg(cp, char *)) : 0;
 	(c == 'S') ? (i = (void*)va_arg(cp, int	*)) : 0;
+	(c == 'd') ? (*(int*)i = va_arg(cp, int)) : 0;
 	return (i);
 }
 
@@ -32,8 +33,7 @@ int	ft_printf(char *str, ...)
 			va_copy(cp, ap);
 			ftpf->c = ft_str_last_char(ftpf->params[nb]);	
 			ret = get_arg(cp, ftpf->c);
-			(*ftpf->fct[(int)ftpf->c])(ret);
-			free(ret);
+			(*ftpf->fct[(int)ftpf->c])(ret, 0);
 			va_arg(ap, void*);
 			i += ft_strlen(ftpf->params[nb]) - 1;
 			++nb;

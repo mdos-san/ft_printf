@@ -1,13 +1,13 @@
 #include "libftprintf.h"
 
-void	ft_putwstr(void *wstr)
+void	ft_putwstr(int *wstr)
 {
 	int	i;
 
 	i = 0;
-	while (((int*)wstr)[i] != 0)
+	while (wstr[i] != 0)
 	{
-		ft_putwchar((void *)((int*)wstr + i));
+		ft_putwchar(wstr[i]);
 		++i;
 	}
 }

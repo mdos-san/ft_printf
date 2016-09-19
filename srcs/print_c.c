@@ -1,6 +1,7 @@
 #include "libftprintf.h"
 
-void	print_c(void *c)
+void	print_c(void *c, int precision)
 {
-	write(1, (char *)c, 1);
+	ft_putchar(*(char*)c);
+	(void)precision;
 }

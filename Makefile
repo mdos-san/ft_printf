@@ -10,7 +10,10 @@ TMP_C		=\
 				ft_str_last_char.c\
 				useless.c\
 				print_c.c\
-				print_s.c
+				print_lc.c\
+				print_s.c\
+				print_ls.c\
+				print_d.c
 SRC_C		=	$(TMP_C:%=srcs/%)
 SRC_O		=	$(TMP_C:.c=.o)
 

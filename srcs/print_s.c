@@ -1,9 +1,7 @@
 #include "libftprintf.h"
 
-void	print_s(void *s)
+void	print_s(void *s, int precision)
 {
-	int	i;
-
-	i = ft_strlen((char *)s);
-	write(1, (char *)s, i);
+	ft_putstr((char*)s);
+	(void)precision;
 }

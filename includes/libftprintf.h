@@ -11,19 +11,22 @@ typedef struct	s_ftpf
 	char		*input;
 	int			nbr_param;
 	char		**params;
-	void		(*fct[256])(void *arg);
+	void		(*fct[256])(void *arg, int precision);
 	char		c;
 }				t_ftpf;	
 
 int		ft_printf(char *str, ...);
 t_ftpf	*ftpf_init(char *input);
 void	ftpf_del(t_ftpf **addr);
-void	ft_putwchar(void *c);
-void	ft_putwstr(void *wstr);
+void	ft_putwchar(int c);
+void	ft_putwstr(int *wstr);
 void	ft_putptn(unsigned long int pnt);
 char	ft_str_last_char(char *s);
-void	useless(void *param);
-void	print_c(void *c);
-void	print_s(void *s);
+void	useless(void *param, int precision);
+void	print_c(void *c, int precision);
+void	print_lc(void *c, int precision);
+void	print_s(void *s, int precision);
+void	print_ls(void *s, int precision);
+void	print_d(void *i, int precision);
 
 #endif
