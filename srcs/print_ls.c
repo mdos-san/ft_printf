@@ -20,16 +20,39 @@ static int	*int_arr_dup(int *arr)
 	return (ret);
 }
 
+static int	int_arr_len(int *arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+		++i;
+	return (i);
+}
+
 void	print_ls(void *s, t_flag flag)
 {
 	int		tmp;
 	int		*arr;
+	int		nb;
+	int		i;
 
+	i = 0;
+	nb = 0;
 	arr = int_arr_dup((int*)s);
 	if (flag.precision > 0)
 	{
 		tmp = arr[flag.precision / 3];
 		arr[flag.precision / 3] = 0;
+	}
+	if (flag.width > flag.precision)
+	{
+		nb = flag.width - int_arr_len(arr) * 3;	
+		while (i < nb)
+		{
+			ft_putchar(' ');
+			++i;
+		}
 	}
 	ft_putwstr(arr);
 	if (flag.precision > 0)
