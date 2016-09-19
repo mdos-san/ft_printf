@@ -10,8 +10,10 @@ void	print_d(void *arg, t_flag flag)
 	arr = ft_itoa(*(int*)arg);
 	if (flag.width > flag.precision)
 	{
-		nb = (int)(flag.width - ft_strlen(arr)  - flag.precision + ft_strlen(arr));
-		(*(int*)arg < 0) ? --nb : 0;
+		nb = (flag.precision > (int)ft_strlen(arr))
+			? (int)(flag.width - ft_strlen(arr)  - flag.precision + ft_strlen(arr))
+			: (int)(flag.width - ft_strlen(arr));
+		(*(int*)arg < 0 && flag.precision > (int)ft_strlen(arr)) ? --nb : 0;
 		while (i < nb)
 		{
 			ft_putchar(' ');

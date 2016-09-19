@@ -30,11 +30,22 @@ void	print_p(void *p, t_flag flag)
 	int	i;
 	unsigned long int	nb;
 	int	size;
+	int	n;
 
 	i = 0;
-	ft_putstr("0x");
 	nb = *(unsigned long int*)p;
 	size = pnt(nb);
+	if (flag.width > flag.precision && flag.precision > size)
+	{
+		n = flag.width - flag.precision  - 2;
+		while (i < n)
+		{
+			ft_putchar(' ');
+			++i;
+		}
+		i = 0;
+	}
+	ft_putstr("0x");
 	if (flag.precision > size)
 	{
 		while (i < flag.precision - size)
