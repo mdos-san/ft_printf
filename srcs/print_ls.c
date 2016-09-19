@@ -28,10 +28,11 @@ void	print_ls(void *s, int precision)
 	arr = int_arr_dup((int*)s);
 	if (precision > 0)
 	{
-		tmp = arr[precision / 4];
-		arr[precision / 4] = 0;
+		tmp = arr[precision / 3];
+		arr[precision / 3] = 0;
 	}
 	ft_putwstr(arr);
 	if (precision > 0)
-		arr[precision / 4] = tmp;
+		arr[precision / 3] = tmp;
+	(arr) ? free(arr) : 0;
 }

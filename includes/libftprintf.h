@@ -5,6 +5,7 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include "libft.h"
+# include "math.h"
 
 typedef struct	s_ftpf
 {
@@ -30,5 +31,6 @@ void	print_lc(void *c, int precision);
 void	print_s(void *s, int precision);
 void	print_ls(void *s, int precision);
 void	print_d(void *i, int precision);
+void	print_p(void *p, int precision);
 
 #endif

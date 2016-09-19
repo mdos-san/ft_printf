@@ -75,5 +75,6 @@ t_ftpf	*ftpf_init(char *input)
 	new->fct['s'] = print_s;
 	new->fct['S'] = print_ls;
 	new->fct['d'] = print_d;
+	new->fct['p'] = print_p;
 	return (new);
 }

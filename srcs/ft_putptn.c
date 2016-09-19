@@ -21,7 +21,6 @@ static void convert(unsigned long int n)
 		n /= 16;
 		++i;
 	}
-	ft_putstr("0x");
 	ft_putstr(buf + 31 - i + 1);
 }
 

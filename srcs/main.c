@@ -64,8 +64,8 @@ int		main()
 	test("d test: %.5d", (void*)&i, 5);
 	i = -42;
 	test("d test: %.5d", (void*)&i, 5);
-/*	test("p test: % p", (void*)&i, 7);
-	printf("%S\n", L"我是一只猫。");
+	test("p test: %.24p", (void*)&i, 7);
+/*	printf("%S\n", L"我是一只猫。");
 	fflush(stdout);
 	ft_putwstr(L"我是一只猫。");
 	printf("%.4d %.4d\n",42, 21);
