@@ -60,6 +60,8 @@ int		main()
 	test("wchar test: %C", (void*)&i, 2);
 	test("s test: %s", (void*)"coucou", 3);
 	test("S test: %S", (void*)L"我是一只猫。", 4);
+	i = 42;
+	test("d test: %.4d", (void*)&i, 5);
 	i = -42;
 	test("d test: %.4d", (void*)&i, 5);
 /*	test("p test: % p", (void*)&i, 7);

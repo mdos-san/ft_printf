@@ -12,7 +12,9 @@ typedef struct	s_ftpf
 	int			nbr_param;
 	char		**params;
 	void		(*fct[256])(void *arg, int precision);
+	int			precision;
 	char		c;
+	char		*tmp;
 }				t_ftpf;	
 
 int		ft_printf(char *str, ...);
