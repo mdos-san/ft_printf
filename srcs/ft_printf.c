@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/09/20 12:59:08 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/09/20 13:03:19 by mdos-san         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
 static void *get_arg(va_list cp, char c)
@@ -35,6 +47,16 @@ static int	get_width(char *s)
 	return (ret);
 }
 
+static	void	get_flag(t_ftpf *ftpf)
+{
+	char	*c;
+
+	ftpf->flag.flag[' '] = ((c = ft_strchr(ftpf->input, ' ')) != NULL) ? 1 : 0;
+	ftpf->flag.flag['#'] = ((c = ft_strchr(ftpf->input, '#')) != NULL) ? 1 : 0;
+	ftpf->flag.flag['+'] = ((c = ft_strchr(ftpf->input, '+')) != NULL) ? 1 : 0;
+	ftpf->flag.flag['-'] = ((c = ft_strchr(ftpf->input, '-')) != NULL) ? 1 : 0;
+}
+
 int	ft_printf(char *str, ...)
 {
 	t_ftpf *ftpf;
@@ -57,6 +79,7 @@ int	ft_printf(char *str, ...)
 			ftpf->tmp = ft_strchr(ftpf->params[nb], '.');
 			ftpf->flag.precision = 0;
 			ftpf->flag.width = get_width(ftpf->input);
+			get_flag(ftpf);
 			(ftpf->tmp) ? ftpf->flag.precision = ft_atoi(ftpf->tmp + 1) : 0;
 			ret = get_arg(cp, ftpf->c);
 			(*ftpf->fct[(int)ftpf->c])(ret, ftpf->flag);

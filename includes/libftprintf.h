@@ -11,7 +11,7 @@ typedef struct	s_flag
 {
 	int			precision;
 	int			width;
-	char		flag;
+	char		flag[256];
 	char		mod;
 }				t_flag;
 
