@@ -56,12 +56,14 @@ int		main()
 	char  c;
 	wchar_t w;
 
+	i = 945;
 	w = L'\x03b1';
 	test("", NULL, 0);
 	test("Basic output", NULL, 0);
 	c = 'a';
 	test("char test: |%-+10.5c|", (void*)&c, 1);
-	i = 65599;
+	i = 65539;
+	test("wchar test: |%-+10.5lc|", (void*)&i, 2);
 	test("wchar test: |%-+10.5C|", (void*)&i, 2);
 	test("s test: |%-+10.5s|", (void*)"Hello World!", 3);
 	test("S test: |%-+10.5S|", (void*)L"我是一只猫。", 4);
