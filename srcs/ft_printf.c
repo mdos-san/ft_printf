@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 12:59:08 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/09/20 13:03:19 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/09/20 14:26:06 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void *get_arg(va_list cp, char c)
 	(c == 's') ? (i = (void*)va_arg(cp, char *)) : 0;
 	(c == 'S') ? (i = (void*)va_arg(cp, int	*)) : 0;
 	(c == 'd') ? (*(int*)i = va_arg(cp, int)) : 0;
+	(c == 'D') ? (*(long*)i = va_arg(cp, long)) : 0;
 	(c == 'p') ? (*(unsigned long int*)i = va_arg(cp, unsigned long int)) : 0;
 	return (i);
 }

@@ -39,6 +39,7 @@ void	print_lc(void *c, t_flag flag);
 void	print_s(void *s, t_flag flag);
 void	print_ls(void *s, t_flag flag);
 void	print_d(void *i, t_flag flag);
+void	print_ld(void *arg, t_flag flag);
 void	print_p(void *p, t_flag flag);
 
 #endif

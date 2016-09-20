@@ -24,6 +24,8 @@ static void	test(char *s, void *param, char type)
 		ft_printf(s, (int*)param);
 	if (type == 5)
 		ft_printf(s, *(int*)param);
+	if (type == 6)
+		ft_printf(s, *(long*)param);
 	if (type == 7)
 		ft_printf(s, (unsigned long int*)param);
 	ft_putendl("\n=======PRINTF======");
@@ -39,6 +41,8 @@ static void	test(char *s, void *param, char type)
 		printf(s, (int*)param);
 	if (type == 5)
 		printf(s, *(int*)param);
+	if (type == 6)
+		printf(s, *(long*)param);
 	if (type == 7)
 		printf(s, (unsigned long int*)param);
 	fflush(stdout);
@@ -48,6 +52,7 @@ static void	test(char *s, void *param, char type)
 int		main()
 {
 	int i;
+	unsigned long l;
 	char  c;
 	wchar_t w;
 
@@ -64,6 +69,8 @@ int		main()
 	test("d test: |%-+10.5d|", (void*)&i, 5);
 	i = -42;
 	test("d test: |%-+10.5d|", (void*)&i, 5);
-	test("p test: |%-+30.20p|", (void*)&i, 7);
+	l = 9223372036854775807;
+	test("D test: |%-+42.21D|", (void*)&l, 6);
+	test("p test: |%-+42.20p|", (void*)&l, 7);
 	return (0);
 }
