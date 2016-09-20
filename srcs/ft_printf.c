@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 12:59:08 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/09/20 14:26:06 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/09/20 15:14:22 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int	ft_printf(char *str, ...)
 		{
 			va_copy(cp, ap);
 			ftpf->c = ft_str_last_char(ftpf->params[nb]);	
+			(ft_strstr(ftpf->params[nb], "l")) ? (ftpf->c -= 32) : 0; 
 			ftpf->tmp = ft_strchr(ftpf->params[nb], '.');
 			ftpf->flag.precision = 0;
 			ftpf->flag.width = get_width(ftpf->input);

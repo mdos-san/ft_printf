@@ -52,6 +52,18 @@ static void init_params(char *s, char ***arr)
 	str_array_add(arr, s + i2 + 1);
 }
 
+static void get_mod(t_ftpf *ftpf)
+{
+	if (ft_strchr(ftpf->input, 'l'))
+		ftpf->flag.mod = ft_strdup("l");
+	if (ft_strstr(ftpf->input, "ll"))
+		ftpf->flag.mod = ft_strdup("ll");
+	if (ft_strchr(ftpf->input, 'h'))
+		ftpf->flag.mod = ft_strdup("h");
+	if (ft_strstr(ftpf->input, "hh"))
+		ftpf->flag.mod = ft_strdup("hh");
+}
+
 t_ftpf	*ftpf_init(char *input)
 {
 	t_ftpf	*new;
@@ -68,6 +80,7 @@ t_ftpf	*ftpf_init(char *input)
 	new->params = str_array_new();
 	init_params(str, &new->params);
 	ft_strdel(&str);
+	get_mod(new);
 	while (++i < 256)
 		new->fct[i] = useless;
 	new->fct['c'] = print_c;

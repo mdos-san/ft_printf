@@ -12,7 +12,7 @@ typedef struct	s_flag
 	int			precision;
 	int			width;
 	char		flag[256];
-	char		mod;
+	char		*mod;
 }				t_flag;
 
 typedef struct	s_ftpf

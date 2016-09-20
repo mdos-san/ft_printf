@@ -66,11 +66,19 @@ int		main()
 	test("s test: |%-+10.5s|", (void*)"Hello World!", 3);
 	test("S test: |%-+10.5S|", (void*)L"我是一只猫。", 4);
 	i = 42;
-	test("d test: |%-+10.5d|", (void*)&i, 5);
+	test("d test: |%-+10.5ld|", (void*)&i, 5);
 	i = -42;
 	test("d test: |%-+10.5d|", (void*)&i, 5);
 	l = 9223372036854775807;
+	test("D test: |%-+42.21lld|", (void*)&l, 6);
+	l = 9223372036854775807;
 	test("D test: |%-+42.21D|", (void*)&l, 6);
 	test("p test: |%-+42.20p|", (void*)&l, 7);
+	ft_putnbrl(sizeof(long long));
+	ft_putnbrl(sizeof(long int));
+	ft_putnbrl(sizeof(long));
+	ft_putnbrl(sizeof(int));
+	ft_putnbrl(sizeof(short int));
+	ft_putnbrl(sizeof(signed char));
 	return (0);
 }
