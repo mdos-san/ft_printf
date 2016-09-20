@@ -43,6 +43,7 @@ void	print_p(void *p, t_flag flag);
 void	print_o(void *o, t_flag flag);
 void	print_lo(void *o, t_flag flag);
 void	print_x(void *arg, t_flag flag);
+void	print_lx(void *arg, t_flag flag);
 
 
 #endif

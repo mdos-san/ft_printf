@@ -96,11 +96,12 @@ int		main()
 	test("p test: |%-+42.20p|", (void*)&l, 7);
 	test("p test: |%-+42.20p|", (void*)&l, 7);
 	u = 4294967295;
-	test("o test: |%-+42.20o|", (void*)&u, 8);
 	ul = 9223372036854775807;
+	test("o test: |%-+42.20o|", (void*)&u, 8);
 	test("O test: |%-+42.42O|", (void*)&ul, 9);
-	u = 424242;
-	test("x test: |%#-+42.20x|", (void*)&u, 8);
+	test("x test: |%-+42.20x|", (void*)&u, 8);
+	test("lx test: |%-+42.20lx|", (void*)&ul, 9);
+	test("X test: |%-+42.20X|", (void*)&ul, 9);
 	ft_putnbrl(sizeof(long long));
 	ft_putnbrl(sizeof(long int));
 	ft_putnbrl(sizeof(long));

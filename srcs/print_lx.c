@@ -1,6 +1,6 @@
 #include "libftprintf.h"
 
-static char	*convert_hexa(unsigned int n)
+static char	*convert_hexa(unsigned long n)
 {
 	int	i;
 	int mod;
@@ -36,7 +36,7 @@ static void print_width(int n)
 	}
 }
 
-void	print_x(void *arg, t_flag flag)
+void	print_lx(void *arg, t_flag flag)
 {
 	char	*arr;
 	int		w;
@@ -44,7 +44,7 @@ void	print_x(void *arg, t_flag flag)
 	int		i;
 
 	i = -1;
-	arr = convert_hexa(*(unsigned int*)arg);
+	arr = convert_hexa(*(unsigned long*)arg);
 	p = flag.precision - ft_strlen(arr);
 	p = (p < 0) ? 0 : p;
 	w = flag.width - ft_strlen(arr) - p;

@@ -18,7 +18,8 @@ TMP_C		=\
 				print_p.c\
 				print_o.c\
 				print_lo.c\
-				print_x.c
+				print_x.c\
+				print_lx.c
 SRC_C		=	$(TMP_C:%=srcs/%)
 SRC_O		=	$(TMP_C:.c=.o)
 
