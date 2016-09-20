@@ -28,7 +28,9 @@ void	print_d(void *arg, t_flag flag)
 			: (int)(flag.width - ft_strlen(arr));
 		(*(int*)arg < 0 && flag.precision > (int)ft_strlen(arr)) ? --nb : 0;
 	}
+	(flag.flag['+'] == 1 && *(int*)arg > 0) ? --nb : 0;
 	(flag.flag['-'] == 0) ? print_width(nb) : 0;
+	(flag.flag['+'] == 1 && *(int*)arg > 0) ? ft_putchar('+') : 0;
 	if (flag.precision > (int)ft_strlen(arr))
 	{
 		(*(int*)arg < 0 ) ? ft_putchar('-') : 0;

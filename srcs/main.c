@@ -55,15 +55,15 @@ int		main()
 	test("", NULL, 0);
 	test("Basic output", NULL, 0);
 	c = 'a';
-	test("char test: |%-10.5c|", (void*)&c, 1);
+	test("char test: |%-+10.5c|", (void*)&c, 1);
 	i = 65599;
-	test("wchar test: |%-10.5C|", (void*)&i, 2);
-	test("s test: |%-10.5s|", (void*)"Hello World!", 3);
-	test("S test: |%-10.5S|", (void*)L"我是一只猫。", 4);
+	test("wchar test: |%-+10.5C|", (void*)&i, 2);
+	test("s test: |%-+10.5s|", (void*)"Hello World!", 3);
+	test("S test: |%-+10.5S|", (void*)L"我是一只猫。", 4);
 	i = 42;
-	test("d test: |%-10.5d|", (void*)&i, 5);
+	test("d test: |%-+10.5d|", (void*)&i, 5);
 	i = -42;
-	test("d test: |%-10.5d|", (void*)&i, 5);
-	test("p test: |%-30.20p|", (void*)&i, 7);
+	test("d test: |%-+10.5d|", (void*)&i, 5);
+	test("p test: |%-+30.20p|", (void*)&i, 7);
 	return (0);
 }
