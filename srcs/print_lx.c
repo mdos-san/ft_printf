@@ -24,7 +24,7 @@ static char	*convert_hexa(unsigned long n)
 	return (ft_strdup(buf + 63 - i + 1));
 }
 
-static void print_width(int n)
+static void print_width(int n, int *r)
 {
 	int	i;
 
@@ -32,11 +32,12 @@ static void print_width(int n)
 	while (i < n)
 	{
 		ft_putchar(' ');
+		++*r;
 		++i;
 	}
 }
 
-void	print_lx(void *arg, t_flag flag)
+void	print_lx(void *arg, t_flag flag, int *r)
 {
 	char	*arr;
 	int		w;
@@ -50,12 +51,13 @@ void	print_lx(void *arg, t_flag flag)
 	w = flag.width - ft_strlen(arr) - p;
 	w = (flag.flag['#'] == 1) ? w - 2 : w;
 	w = (w < 0) ? 0 : w;
-	(flag.flag['-'] == 0) ? print_width(w) : 0;
-	(flag.flag['#'] == 1) ? ft_putstr("0x") : 0;
+	(flag.flag['-'] == 0) ? print_width(w,  r) : 0;
+	(flag.flag['#'] == 1 && (*r += 2)) ? ft_putstr("0x") : 0;
 	while (++i < p)
 		ft_putchar('0');
 	ft_putstr(arr);
-	(flag.flag['-'] == 1) ? print_width(w): 0;
+	*r += ft_strlen(arr);
+	(flag.flag['-'] == 1) ? print_width(w, r): 0;
 	ft_strdel(&arr);
 	(void)flag;
 }

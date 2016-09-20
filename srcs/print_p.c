@@ -25,7 +25,7 @@ static int pnt(unsigned long int n)
 }
 
 
-static void print_width(int n)
+static void print_width(int n, int *r)
 {
 	int	i;
 
@@ -33,11 +33,12 @@ static void print_width(int n)
 		while (i < n)
 		{
 			ft_putchar(' ');
+			++*r;
 			++i;
 		}
 }
 
-void	print_p(void *p, t_flag flag)
+void	print_p(void *p, t_flag flag, int *r)
 {
 	int	i;
 	unsigned long int	nb;
@@ -47,19 +48,21 @@ void	print_p(void *p, t_flag flag)
 	i = 0;
 	nb = *(unsigned long int*)p;
 	size = pnt(nb);
+	*r += size;
 	n = (flag.width > flag.precision && flag.precision > size)
 			? (n = flag.width - flag.precision  - 2) : 0;
-	(flag.flag['-'] == 0) ? print_width(n): 0;
+	(flag.flag['-'] == 0) ? print_width(n, r) : 0;
 	ft_putstr("0x");
 	if (flag.precision > size)
 	{
 		while (i < flag.precision - size)
 		{
 			ft_putchar('0');
+			++*r;
 			++i;
 		}
 	}
 	ft_putptn(nb);
-	(flag.flag['-'] == 1) ? print_width(n): 0;
+	(flag.flag['-'] == 1) ? print_width(n, r): 0;
 	(void)flag.precision;
 }

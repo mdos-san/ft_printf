@@ -81,6 +81,7 @@ t_ftpf	*ftpf_init(char *input)
 	str = ft_strdup(new->input);
 	new->nbr_param = count_params(input);
 	new->params = str_array_new();
+	new->r = 0;
 	init_params(str, &new->params);
 	ft_strdel(&str);
 	get_mod(new);

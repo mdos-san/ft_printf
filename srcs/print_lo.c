@@ -25,7 +25,7 @@ static char *convert_octal(unsigned long n)
 }
 
 
-static void print_width(int n)
+static void print_width(int n, int *r)
 {
 	int	i;
 
@@ -33,11 +33,12 @@ static void print_width(int n)
 	while (i < n)
 	{
 		ft_putchar(' ');
+		++*r;
 		++i;
 	}
 }
 
-void	print_lo(void *o, t_flag flag)
+void	print_lo(void *o, t_flag flag, int *r)
 {
 	char			*array;
 	int		w;
@@ -51,12 +52,14 @@ void	print_lo(void *o, t_flag flag)
 	p = (p == 0 && flag.flag['#'] == 1) ? 1 : p;
 	w = flag.width - ft_strlen(array) - p;
 	w = (w < 0) ? 0 : w;
-	(flag.flag['-'] == 0) ? print_width(w): 0;
+	(flag.flag['-'] == 0) ? print_width(w, r): 0;
 	while (++i < p)
+	{
 		ft_putchar('0');
+		++*r;
+	}
 	ft_putstr(array);
-	(flag.flag['-'] == 1) ? print_width(w): 0;
+	*r += ft_strlen(array);
+	(flag.flag['-'] == 1) ? print_width(w, r): 0;
 	ft_strdel(&array);
-	(void)flag;
-	(void)print_width;
 }

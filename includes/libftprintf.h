@@ -19,10 +19,11 @@ typedef struct	s_ftpf
 	char		*input;
 	int			nbr_param;
 	char		**params;
-	void		(*fct[256])(void *arg, t_flag flag);
+	void		(*fct[256])(void *arg, t_flag flag, int *ret);
 	char		c;
 	char		*tmp;
 	t_flag		flag;
+	int			r;
 }				t_ftpf;	
 
 int		ft_printf(char *str, ...);
@@ -32,18 +33,18 @@ void	ft_putwchar(int c);
 void	ft_putwstr(int *wstr);
 void	ft_putptn(unsigned long int pnt);
 char	ft_str_last_char(char *s);
-void	useless(void *param, t_flag flag);
-void	print_c(void *c, t_flag flag);
-void	print_lc(void *c, t_flag flag);
-void	print_s(void *s, t_flag flag);
-void	print_ls(void *s, t_flag flag);
-void	print_d(void *i, t_flag flag);
-void	print_ld(void *arg, t_flag flag);
-void	print_p(void *p, t_flag flag);
-void	print_o(void *o, t_flag flag);
-void	print_lo(void *o, t_flag flag);
-void	print_x(void *arg, t_flag flag);
-void	print_lx(void *arg, t_flag flag);
+void	useless(void *param, t_flag flag, int *ret);
+void	print_c(void *c, t_flag flag, int *ret);
+void	print_lc(void *c, t_flag flag, int *ret);
+void	print_s(void *s, t_flag flag, int *ret);
+void	print_ls(void *s, t_flag flag, int *ret);
+void	print_d(void *i, t_flag flag, int *ret);
+void	print_ld(void *arg, t_flag flag, int *ret);
+void	print_p(void *p, t_flag flag, int *ret);
+void	print_o(void *o, t_flag flag, int *ret);
+void	print_lo(void *o, t_flag flag, int *ret);
+void	print_x(void *arg, t_flag flag, int *ret);
+void	print_lx(void *arg, t_flag flag, int *ret);
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 12:59:08 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/09/20 18:03:15 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/09/20 20:17:20 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	get_width(char *s)
 	{
 		if (s[i] == '.')
 			break ;
-		if (ft_isdigit(s[i]))
+		if (ft_isdigit(s[i]) && s[i] != '0')
 		{
 			ret = ft_atoi(s + i);
 			break ;
@@ -69,6 +69,7 @@ int	ft_printf(char *str, ...)
 	va_list cp;	
 	int		i;
 	int		nb;
+	int		value;
 	void	*ret;
 
 	i = 0;
@@ -88,16 +89,20 @@ int	ft_printf(char *str, ...)
 			get_flag(ftpf);
 			(ftpf->tmp) ? ftpf->flag.precision = ft_atoi(ftpf->tmp + 1) : 0;
 			ret = get_arg(cp, ftpf->c);
-			(*ftpf->fct[(int)ftpf->c])(ret, ftpf->flag);
+			(*ftpf->fct[(int)ftpf->c])(ret, ftpf->flag, &ftpf->r);
 			va_arg(ap, void*);
 			i += ft_strlen(ftpf->params[nb]) - 1;
 			++nb;
 		}
 		else
+		{
 			ft_putchar(str[i]);
+			++ftpf->r;
+		}
 		++i;
 	}
+	value = ftpf->r;
 	ftpf_del(&ftpf);
 	va_end(ap);
-	return (0);
+	return (value);
 }

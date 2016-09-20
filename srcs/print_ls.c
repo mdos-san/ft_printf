@@ -1,6 +1,6 @@
 #include "libftprintf.h"
 
-static void	print_width(int nb)
+static void	print_width(int nb, int *r)
 {
 	int	i;
 
@@ -8,6 +8,7 @@ static void	print_width(int nb)
 	while (i < nb)
 	{
 		ft_putchar(' ');
+		++*r;
 		++i;
 	}
 }
@@ -42,7 +43,7 @@ static int	int_arr_len(int *arr)
 	return (i);
 }
 
-void	print_ls(void *s, t_flag flag)
+void	print_ls(void *s, t_flag flag, int *r)
 {
 	int		tmp;
 	int		*arr;
@@ -58,9 +59,10 @@ void	print_ls(void *s, t_flag flag)
 		arr[flag.precision / 3] = 0;
 	}
 	nb = (flag.width > flag.precision) ? flag.width - int_arr_len(arr) * 3 : 0;
-	(flag.flag['-'] == 0) ? print_width(nb) : 0;
+	(flag.flag['-'] == 0) ? print_width(nb, r) : 0;
 	ft_putwstr(arr);
-	(flag.flag['-'] == 1) ? print_width(nb) : 0;
+	*r += int_arr_len(arr);
+	(flag.flag['-'] == 1) ? print_width(nb, r) : 0;
 	(flag.precision > 0) ? (arr[flag.precision / 3] = tmp) : 0;
 	(arr) ? free(arr) : 0;
 }

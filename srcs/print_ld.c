@@ -1,6 +1,6 @@
 #include "libftprintf.h"
 
-static void	print_width(int nb)
+static void	print_width(int nb, int *r)
 {
 	int	i;
 
@@ -8,6 +8,7 @@ static void	print_width(int nb)
 	while (i < nb)
 	{
 		ft_putchar(' ');
+		++*r;
 		++i;
 	}
 }
@@ -32,7 +33,7 @@ static	char *ft_ltoa(long l)
 	return (ft_strdup(buf + 19 - i));
 }
 
-void	print_ld(void *arg, t_flag flag)
+void	print_ld(void *arg, t_flag flag, int *r)
 {
 	char	*arr;
 	int		i;
@@ -50,20 +51,25 @@ void	print_ld(void *arg, t_flag flag)
 		(*(long*)arg < 0 && flag.precision > (int)ft_strlen(arr)) ? --nb : 0;
 	}
 	(flag.flag['+'] == 1 && *(long*)arg > 0) ? --nb : 0;
-	(flag.flag['-'] == 0) ? print_width(nb) : 0;
-	(flag.flag['+'] == 1 && *(long*)arg > 0) ? ft_putchar('+') : 0;
+	(flag.flag['-'] == 0) ? print_width(nb, r) : 0;
+	(flag.flag['+'] == 1 && *(long*)arg > 0 && ++*r) ? ft_putchar('+') : 0;
 	if (flag.precision > (int)ft_strlen(arr))
 	{
 		negative = (arr[0] == '-') ? 1 : 0;
-		(negative == 1) ? ft_putchar('-') : 0;
+		(negative == 1 && ++*r) ? ft_putchar('-') : 0;
 		while (i < flag.precision - (int)ft_strlen(arr) + negative)
 		{
 			ft_putchar('0');
+			++*r;
 			++i;
 		}
 		ft_putstr(arr + negative);
+		*r += ft_strlen(arr + negative);
 	}
 	else
+	{
 		ft_putstr(arr);
-	(flag.flag['-'] == 1) ? print_width(nb) : 0;
+		*r += ft_strlen(arr);
+	}
+	(flag.flag['-'] == 1) ? print_width(nb, r) : 0;
 }
