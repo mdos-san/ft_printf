@@ -99,6 +99,8 @@ int		main()
 	test("o test: |%-+42.20o|", (void*)&u, 8);
 	ul = 9223372036854775807;
 	test("O test: |%-+42.42O|", (void*)&ul, 9);
+	u = 424242;
+	test("x test: |%#-+42.20x|", (void*)&u, 8);
 	ft_putnbrl(sizeof(long long));
 	ft_putnbrl(sizeof(long int));
 	ft_putnbrl(sizeof(long));

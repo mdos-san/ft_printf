@@ -1,6 +1,6 @@
 #include "libftprintf.h"
 
-static char *convert_octal(unsigned long int n)
+static char	*convert_hexa(unsigned int n)
 {
 	int	i;
 	int mod;
@@ -10,7 +10,7 @@ static char *convert_octal(unsigned long int n)
 	ft_bzero(buf, 65);
 	while (n != 0)
 	{
-		mod = n % 8;
+		mod = n % 16;
 		if (mod <= 9)
 			buf[63 - i] = mod + 48;
 		else
@@ -18,12 +18,11 @@ static char *convert_octal(unsigned long int n)
 			mod -= 10;
 			buf[63 - i] = mod + 97;
 		}
-		n /= 8;
+		n /= 16;
 		++i;
 	}
 	return (ft_strdup(buf + 63 - i + 1));
 }
-
 
 static void print_width(int n)
 {
@@ -37,26 +36,26 @@ static void print_width(int n)
 	}
 }
 
-void	print_o(void *o, t_flag flag)
+void	print_x(void *arg, t_flag flag)
 {
-	char	*array;
+	char	*arr;
 	int		w;
 	int		p;
 	int		i;
 
 	i = -1;
-	array = convert_octal(*(unsigned int*)o);
-	p = flag.precision - ft_strlen(array);
-	p = (p < 0) ?  0 : p;
-	p = (p == 0 && flag.flag['#'] == 1) ? 1 : p;
-	w = flag.width - ft_strlen(array) - p;
+	arr = convert_hexa(*(unsigned int*)arg);
+	p = flag.precision - ft_strlen(arr);
+	p = (p < 0) ? 0 : p;
+	w = flag.width - ft_strlen(arr) - p;
+	w = (flag.flag['#'] == 1) ? w - 2 : 2;
 	w = (w < 0) ? 0 : w;
-	(flag.flag['-'] == 0) ? print_width(w): 0;
+	(flag.flag['-'] == 0) ? print_width(w) : 0;
+	(flag.flag['#'] == 1) ? ft_putstr("0x") : 0;
 	while (++i < p)
 		ft_putchar('0');
-	ft_putstr(array);
+	ft_putstr(arr);
 	(flag.flag['-'] == 1) ? print_width(w): 0;
-	ft_strdel(&array);
+	ft_strdel(&arr);
 	(void)flag;
-	(void)print_width;
 }
