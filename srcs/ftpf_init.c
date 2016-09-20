@@ -22,6 +22,7 @@ static int	is_flag(char c)
 		c == 's' || c == 'S' ||
 		c == 'd' || c == 'D' ||
 		c == 'i' || c == 'I' ||
+		c == 'o' || c == 'O' ||
 		c == 'p')
 		return (1);
 	return (0);
@@ -92,6 +93,7 @@ t_ftpf	*ftpf_init(char *input)
 	new->fct['D'] = print_ld;
 	new->fct['i'] = print_d;
 	new->fct['I'] = print_ld;
+	new->fct['o'] = print_o;
 	new->fct['p'] = print_p;
 	return (new);
 }

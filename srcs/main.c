@@ -28,6 +28,8 @@ static void	test(char *s, void *param, char type)
 		ft_printf(s, *(long*)param);
 	if (type == 7)
 		ft_printf(s, (unsigned long int*)param);
+	if (type == 8)
+		ft_printf(s, *(unsigned int*)param);
 	ft_putendl("\n=======PRINTF======");
 	if (type == 0)
 		printf((char *)s);
@@ -45,6 +47,8 @@ static void	test(char *s, void *param, char type)
 		printf(s, *(long*)param);
 	if (type == 7)
 		printf(s, (unsigned long int*)param);
+	if (type == 8)
+		printf(s, *(unsigned int*)param);
 	fflush(stdout);
 	ft_putendl("\n===================\n\n");
 }
@@ -53,6 +57,7 @@ int		main()
 {
 	int i;
 	unsigned long l;
+	unsigned int u;
 	char  c;
 	wchar_t w;
 
@@ -84,6 +89,10 @@ int		main()
 	l = 9223372036854775807;
 	test("D test: |%-+42.21li|", (void*)&l, 6);
 	test("p test: |%-+42.20p|", (void*)&l, 7);
+	test("p test: |%-+42.20p|", (void*)&l, 7);
+	u = 4294967295;
+	test("o test: |%-+42.20o|", (void*)&u, 8);
+	test("o test: |%#-+42o|", (void*)&u, 8);
 	ft_putnbrl(sizeof(long long));
 	ft_putnbrl(sizeof(long int));
 	ft_putnbrl(sizeof(long));

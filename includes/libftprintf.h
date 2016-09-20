@@ -5,7 +5,6 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include "libft.h"
-# include "math.h"
 
 typedef struct	s_flag
 {
@@ -41,5 +40,7 @@ void	print_ls(void *s, t_flag flag);
 void	print_d(void *i, t_flag flag);
 void	print_ld(void *arg, t_flag flag);
 void	print_p(void *p, t_flag flag);
+void	print_o(void *o, t_flag flag);
+
 
 #endif
