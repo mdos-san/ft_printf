@@ -11,6 +11,8 @@ typedef struct	s_flag
 {
 	int			precision;
 	int			width;
+	char		flag;
+	char		mod;
 }				t_flag;
 
 typedef struct	s_ftpf
