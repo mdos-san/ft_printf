@@ -1,53 +1,101 @@
-NAME		=	libftprintf.a
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2015/11/23 12:59:09 by mdos-san          #+#    #+#              #
+#    Updated: 2016/09/20 19:02:43 by mdos-san         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-TMP_C		=\
-				ft_printf.c\
-				ftpf_init.c\
-				ftpf_del.c\
-				ft_putwchar.c\
-				ft_putwstr.c\
-				ft_putptn.c\
-				ft_str_last_char.c\
-				useless.c\
-				print_c.c\
-				print_lc.c\
-				print_s.c\
-				print_ls.c\
-				print_d.c\
-				print_ld.c\
-				print_p.c\
-				print_o.c\
-				print_lo.c\
-				print_x.c\
-				print_lx.c
-SRC_C		=	$(TMP_C:%=srcs/%)
-SRC_O		=	$(TMP_C:.c=.o)
+NAME =		libftprintf.a
 
-FLAG		=	-Wall -Wextra -Werror
+COMPILER=	gcc
+FLAGS=		-Wall -Wextra -Werror -c
+INCLUDES=	-I ./includes
 
-all: libftprintf.a 
+TMP_C=		ft_memset.c		ft_bzero.c		ft_memcpy.c\
+			ft_memccpy.c	ft_memmove.c	ft_memchr.c\
+			ft_memcmp.c		ft_strlen.c		ft_strcpy.c\
+			ft_strncpy.c	ft_strcat.c		ft_strncat.c\
+			ft_strlcat.c	ft_strchr.c		ft_strrchr.c\
+			ft_strstr.c		ft_strnstr.c	ft_strcmp.c\
+			ft_strncmp.c	ft_isalpha.c	ft_isdigit.c\
+			ft_isalnum.c	ft_isascii.c	ft_isprint.c\
+			ft_toupper.c	ft_tolower.c	ft_atoi.c\
+			ft_memalloc.c	ft_memdel.c		ft_strnew.c\
+			ft_strdel.c		ft_strclr.c		ft_striter.c\
+			ft_striteri.c	ft_strmap.c		ft_strmapi.c\
+			ft_strequ.c		ft_strnequ.c	ft_strdup.c\
+			ft_strsub.c		ft_strjoin.c	ft_strtrim.c\
+			ft_putchar.c	ft_putchar_fd.c	ft_putstr.c\
+			ft_putstr_fd.c	ft_putendl.c	ft_putendl_fd.c\
+			ft_strsplit.c	ft_putnbr.c		ft_putnbr_fd.c\
+			ft_itoa.c		ft_lstnew.c		ft_lstdelone.c\
+			ft_lstdel.c		ft_lstadd.c		ft_lstiter.c\
+			ft_lstmap.c		ft_lstnew_cpy.c	get_next_line.c\
+			str_array_new.c\
+			str_array_count.c\
+			str_array_dup.c\
+			str_array_del.c\
+			str_array_add.c\
+			str_array_sub.c\
+			str_array_find.c\
+			ft_putnbrl.c
+SRC_C=$(TMP_C:%=libft/%)
+SRC_O=$(SRC_C:.c=.o)
+DEL_1=$(TMP_C:.c=.o)
 
-libftprintf.a: includes/libft.h libft.a
-	gcc -c $(SRC_C) -I./includes $(FLAG)
-	ar -rc $(NAME) $(SRC_O)
+TMP_C_2 = \
+		  ft_printf.c\
+		  ftpf_init.c\
+		  ftpf_del.c\
+		  ft_putwchar.c\
+		  ft_putwstr.c\
+		  ft_putptn.c\
+		  ft_str_last_char.c\
+		  useless.c\
+		  print_c.c\
+		  print_lc.c\
+		  print_s.c\
+		  print_ls.c\
+		  print_d.c\
+		  print_ld.c\
+		  print_p.c\
+		  print_o.c\
+		  print_lo.c\
+		  print_x.c\
+		  print_lx.c
+SRC_C_2=$(TMP_C_2:%=srcs/%)
+SRC_O_2=$(SRC_C_2:.c=.o)
+DEL_2=$(TMP_C_2:.c=.o)
 
-includes/libft.h:
-	cp libft/includes/libft.h includes
 
-libft.a:
-	make -C libft
-	cp libft/libft.a .
-	make fclean -C libft
+all: $(NAME)
 
-clean:
-	rm -rf $(SRC_O)
+$(NAME): $(SRC_O) $(SRC_O_2)
+	@echo "Creating libftprintf.a..."
+	@ar rc $(NAME) $(DEL_1) $(DEL_2)
+	@ranlib $(NAME)
+	@echo "Done !"
+
+%.o: %.c
+	@echo "Compiling $<"
+	@$(COMPILER) $(FLAGS) $(INCLUDES) $<
+
+clean: 
+	@echo "Removing *.o"
+	@rm -rf $(DEL_1) $(DEL_2)
+	@echo "Done"
 
 fclean: clean
-	rm -rf $(NAME) libft.a
+	@echo "Removing libftprintf.a"
+	@rm -rf $(NAME)
+	@echo "Done"
 
 re: fclean all
 
-test: all
-	gcc -I./includes -o test srcs/main.c libftprintf.a libft.a 
-
-retest: fclean all test
+norm	:
+	@norminette *.c includes
