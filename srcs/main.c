@@ -30,6 +30,8 @@ static void	test(char *s, void *param, char type)
 		ft_printf(s, (unsigned long int*)param);
 	if (type == 8)
 		ft_printf(s, *(unsigned int*)param);
+	if (type == 9)
+		ft_printf(s, *(unsigned long int*)param);
 	ft_putendl("\n=======PRINTF======");
 	if (type == 0)
 		printf((char *)s);
@@ -49,6 +51,8 @@ static void	test(char *s, void *param, char type)
 		printf(s, (unsigned long int*)param);
 	if (type == 8)
 		printf(s, *(unsigned int*)param);
+	if (type == 9)
+		printf(s, *(unsigned long int*)param);
 	fflush(stdout);
 	ft_putendl("\n===================\n\n");
 }
@@ -58,6 +62,7 @@ int		main()
 	int i;
 	unsigned long l;
 	unsigned int u;
+	unsigned long ul;
 	char  c;
 	wchar_t w;
 
@@ -92,12 +97,14 @@ int		main()
 	test("p test: |%-+42.20p|", (void*)&l, 7);
 	u = 4294967295;
 	test("o test: |%-+42.20o|", (void*)&u, 8);
-	test("o test: |%#-+42o|", (void*)&u, 8);
+	ul = 9223372036854775807;
+	test("O test: |%-+42.42O|", (void*)&ul, 9);
 	ft_putnbrl(sizeof(long long));
 	ft_putnbrl(sizeof(long int));
 	ft_putnbrl(sizeof(long));
 	ft_putnbrl(sizeof(int));
 	ft_putnbrl(sizeof(short int));
 	ft_putnbrl(sizeof(signed char));
+	ft_putnbrl(sizeof(unsigned long));
 	return (0);
 }

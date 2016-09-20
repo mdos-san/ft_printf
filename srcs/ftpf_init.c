@@ -94,6 +94,7 @@ t_ftpf	*ftpf_init(char *input)
 	new->fct['i'] = print_d;
 	new->fct['I'] = print_ld;
 	new->fct['o'] = print_o;
+	new->fct['O'] = print_lo;
 	new->fct['p'] = print_p;
 	return (new);
 }

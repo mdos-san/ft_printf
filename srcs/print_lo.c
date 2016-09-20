@@ -1,6 +1,6 @@
 #include "libftprintf.h"
 
-static char *convert_octal(unsigned long int n)
+static char *convert_octal(unsigned long n)
 {
 	int	i;
 	int mod;
@@ -37,7 +37,7 @@ static void print_width(int n)
 	}
 }
 
-void	print_o(void *o, t_flag flag)
+void	print_lo(void *o, t_flag flag)
 {
 	char			*array;
 	int		w;
@@ -45,7 +45,7 @@ void	print_o(void *o, t_flag flag)
 	int	i;
 
 	i = -1;
-	array = convert_octal(*(unsigned int*)o);
+	array = convert_octal(*(unsigned long*)o);
 	p = flag.precision - ft_strlen(array);
 	p = (p < 0) ?  0 : p;
 	p = (p == 0 && flag.flag['#'] == 1) ? 1 : p;
