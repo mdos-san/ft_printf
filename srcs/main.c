@@ -75,6 +75,14 @@ int		main()
 	test("D test: |%-+42.21lld|", (void*)&l, 6);
 	l = 9223372036854775807;
 	test("D test: |%-+42.21D|", (void*)&l, 6);
+	i = 42;
+	test("d test: |%-+10.5li|", (void*)&i, 5);
+	i = -42;
+	test("d test: |%-+10.5i|", (void*)&i, 5);
+	l = 9223372036854775807;
+	test("D test: |%-+42.21lli|", (void*)&l, 6);
+	l = 9223372036854775807;
+	test("D test: |%-+42.21li|", (void*)&l, 6);
 	test("p test: |%-+42.20p|", (void*)&l, 7);
 	ft_putnbrl(sizeof(long long));
 	ft_putnbrl(sizeof(long int));
