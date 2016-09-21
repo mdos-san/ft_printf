@@ -12,6 +12,7 @@ typedef struct	s_flag
 	int			width;
 	char		flag[256];
 	char		*mod;
+	char		uppercase;
 }				t_flag;
 
 typedef struct	s_ftpf
@@ -47,6 +48,7 @@ void	print_x(void *arg, t_flag flag, int *ret);
 void	print_lx(void *arg, t_flag flag, int *ret);
 void	print_percent(void *arg, t_flag flag, int *ret);
 void	print_width(int nbr, int *ret);
+void	print_width_z(int nb, int *r);
 
 
 #endif

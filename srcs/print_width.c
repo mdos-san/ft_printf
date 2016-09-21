@@ -13,3 +13,16 @@ void	print_width(int	nb, int *r)
 	}
 }
 
+void	print_width_z(int nb, int *r)
+{
+	int	i;
+
+	i = 0;
+	while (i < nb)
+	{
+		ft_putchar('0');
+		++*r;
+		++i;
+	}
+}
+

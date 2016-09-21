@@ -105,6 +105,7 @@ t_ftpf	*ftpf_init(char *input)
 	new->fct['p'] = print_p;
 	new->fct['x'] = print_x;
 	new->fct['X'] = print_x;
+	new->fct['Y'] = print_lx;
 	new->fct['%'] = print_percent;
 	return (new);
 }

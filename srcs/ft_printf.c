@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 12:59:08 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/09/21 13:19:02 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/09/21 14:37:06 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static void *get_arg(va_list cp, char c)
 	(c == 'D' || c == 'I') ? (*(long*)i = va_arg(cp, long)) : 0;
 	(c == 'o') ? (*(unsigned int*)i = va_arg(cp, unsigned int)) : 0;
 	(c == 'O') ? (*(unsigned long*)i = va_arg(cp, unsigned long)) : 0;
-	(c == 'x') ? (*(unsigned int*)i = va_arg(cp, unsigned int)) : 0;
-	(c == 'X') ? (*(unsigned long*)i = va_arg(cp, unsigned long)) : 0;
+	(c == 'x' || c == 'X') ? (*(unsigned int*)i = va_arg(cp, unsigned int)) : 0;
+	(c == 'Y') ? (*(unsigned long*)i = va_arg(cp, unsigned long)) : 0;
 	(c == 'p') ? (*(unsigned long int*)i = va_arg(cp, unsigned long int)) : 0;
 	return (i);
 }
@@ -55,11 +55,16 @@ static int	get_width(char *s)
 static	void	get_flag(t_ftpf *ftpf)
 {
 	char	*c;
+	int		i;
 
+	i = 0;
 	ftpf->flag.flag[' '] = ((c = ft_strchr(ftpf->input, ' ')) != NULL) ? 1 : 0;
 	ftpf->flag.flag['#'] = ((c = ft_strchr(ftpf->input, '#')) != NULL) ? 1 : 0;
 	ftpf->flag.flag['+'] = ((c = ft_strchr(ftpf->input, '+')) != NULL) ? 1 : 0;
 	ftpf->flag.flag['-'] = ((c = ft_strchr(ftpf->input, '-')) != NULL) ? 1 : 0;
+	while (!ft_isdigit(ftpf->input[i]) && ftpf->input[i] != 0)
+		++i;
+	ftpf->flag.flag['0'] = (ftpf->input[i] == '0') ? 1 : 0;
 }
 
 int	ft_printf(char *str, ...)
@@ -82,6 +87,9 @@ int	ft_printf(char *str, ...)
 		{
 			va_copy(cp, ap);
 			ftpf->c = ft_str_last_char(ftpf->params[nb]);	
+			ftpf->flag.uppercase = (ftpf->c == 'X') ? 1 : 0;
+			(ft_strstr(ftpf->params[nb], "l") && (ftpf->c == 'x' || ftpf->c == 'X'))
+				? (ftpf->c = 'y') : 0; 
 			(ft_strstr(ftpf->params[nb], "l")) ? (ftpf->c -= 32) : 0; 
 			ftpf->tmp = ft_strchr(ftpf->params[nb], '.');
 			ftpf->flag.precision = 0;

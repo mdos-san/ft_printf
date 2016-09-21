@@ -109,7 +109,7 @@ int		main()
 	ft_putnbrl(sizeof(short int));
 	ft_putnbrl(sizeof(signed char));
 	ft_putnbrl(sizeof(unsigned long));
-	ft_printf("%%\n");
-	printf("%%\n");
+	ft_printf("%010x\n", 42);
+	printf("%010x\n", 42);
 	return (0);
 }

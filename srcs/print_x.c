@@ -1,6 +1,6 @@
 #include "libftprintf.h"
 
-static char	*convert_hexa(unsigned int n)
+static char	*convert_hexa(unsigned int n, char up)
 {
 	int	i;
 	int mod;
@@ -21,7 +21,7 @@ static char	*convert_hexa(unsigned int n)
 		else
 		{
 			mod -= 10;
-			buf[63 - i] = mod + 97;
+			buf[63 - i] = mod + 97 - (32 * up);
 		}
 		n /= 16;
 		++i;
@@ -37,14 +37,16 @@ void	print_x(void *arg, t_flag flag, int *r)
 	int		i;
 
 	i = -1;
-	arr = convert_hexa(*(unsigned int*)arg);
+	arr = convert_hexa(*(unsigned int*)arg, flag.uppercase);
 	p = flag.precision - ft_strlen(arr);
 	p = (p < 0) ? 0 : p;
 	w = flag.width - ft_strlen(arr) - p;
 	w = (flag.flag['#'] == 1) ? w - 2 : w;
 	w = (w < 0) ? 0 : w;
-	(flag.flag['-'] == 0) ? print_width(w, r) : 0;
-	(flag.flag['#'] == 1 && (*r += 2)) ? ft_putstr("0x") : 0;
+	(flag.flag['-'] == 0 && flag.flag['0'] == 0) ? print_width(w, r) : 0;
+	(flag.flag['#'] && !flag.uppercase && *(unsigned int*)arg > 0 && (*r += 2)) ? ft_putstr("0x") : 0;
+	(flag.flag['#'] && flag.uppercase && *(unsigned int*)arg > 0 && (*r += 2)) ? ft_putstr("0X") : 0;
+	(flag.flag['-'] == 0 && flag.flag['0'] == 1) ? print_width_z(w, r) : 0;
 	while (++i < p)
 	{
 		ft_putchar('0');
