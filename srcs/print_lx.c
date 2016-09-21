@@ -24,19 +24,6 @@ static char	*convert_hexa(unsigned long n)
 	return (ft_strdup(buf + 63 - i + 1));
 }
 
-static void print_width(int n, int *r)
-{
-	int	i;
-
-	i = 0;
-	while (i < n)
-	{
-		ft_putchar(' ');
-		++*r;
-		++i;
-	}
-}
-
 void	print_lx(void *arg, t_flag flag, int *r)
 {
 	char	*arr;

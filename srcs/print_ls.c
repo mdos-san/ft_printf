@@ -1,18 +1,5 @@
 #include "libftprintf.h"
 
-static void	print_width(int nb, int *r)
-{
-	int	i;
-
-	i = 0;
-	while (i < nb)
-	{
-		ft_putchar(' ');
-		++*r;
-		++i;
-	}
-}
-
 static int	*int_arr_dup(int *arr)
 {
 	int	i;

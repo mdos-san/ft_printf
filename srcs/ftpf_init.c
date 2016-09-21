@@ -9,8 +9,11 @@ static int count_params(char *s)
 	nbr = 0;
 	while (s[i])
 	{
-		if (s[i] == '%' && s[i + 1] != '%')
+		if (s[i] == '%')
+		{
 			++nbr;
+			++i;
+		}
 		++i;
 	}
 	return (nbr);
@@ -24,6 +27,7 @@ static int	is_flag(char c)
 		c == 'i' || c == 'I' ||
 		c == 'o' || c == 'O' ||
 		c == 'x' || c == 'X' ||
+		c == '%' ||
 		c == 'p')
 		return (1);
 	return (0);
@@ -42,7 +46,8 @@ static void init_params(char *s, char ***arr)
 		if (s[i1] == '%')
 		{
 			i2 = i1;
-			while (!is_flag(s[i2]))
+			++i2;
+			while (!is_flag(s[i2]) && s[i2 + 1] != '\0')
 				++i2;
 			tmp = s[i2++];
 			s[i2] = '\0';
@@ -100,5 +105,6 @@ t_ftpf	*ftpf_init(char *input)
 	new->fct['p'] = print_p;
 	new->fct['x'] = print_x;
 	new->fct['X'] = print_x;
+	new->fct['%'] = print_percent;
 	return (new);
 }

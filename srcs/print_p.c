@@ -24,20 +24,6 @@ static int pnt(unsigned long int n)
 	return (ft_strlen(buf + 31 - i + 1));
 }
 
-
-static void print_width(int n, int *r)
-{
-	int	i;
-
-	i = 0;
-		while (i < n)
-		{
-			ft_putchar(' ');
-			++*r;
-			++i;
-		}
-}
-
 void	print_p(void *p, t_flag flag, int *r)
 {
 	int	i;

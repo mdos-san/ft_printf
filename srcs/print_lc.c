@@ -1,17 +1,5 @@
 #include "libftprintf.h"
 
-static	void print_width(int nb, int *r)
-{
-	int	i;
-
-	i = 0;
-	while (i < nb)
-	{
-		ft_putchar(' ');
-		++*r;
-		++i;
-	}
-}
 
 void	print_lc(void *c, t_flag flag, int *r)
 {

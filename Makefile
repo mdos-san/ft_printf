@@ -6,7 +6,7 @@
 #    By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 12:59:09 by mdos-san          #+#    #+#              #
-#    Updated: 2016/09/20 19:02:43 by mdos-san         ###   ########.fr        #
+#    Updated: 2016/09/21 13:36:52 by mdos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,9 @@ TMP_C_2 = \
 		  print_o.c\
 		  print_lo.c\
 		  print_x.c\
-		  print_lx.c
+		  print_lx.c\
+		  print_percent.c\
+		  print_width.c
 SRC_C_2=$(TMP_C_2:%=srcs/%)
 SRC_O_2=$(SRC_C_2:.c=.o)
 DEL_2=$(TMP_C_2:.c=.o)
