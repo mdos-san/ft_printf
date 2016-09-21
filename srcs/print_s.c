@@ -17,7 +17,7 @@ void	print_s(void *s, t_flag flag, int *r)
 	}
 	nb = (flag.width > flag.precision) ? flag.width - ft_strlen(str) : 0;
 	(flag.flag['-'] == 0) ? print_width(nb, r) : 0;
-	ft_putstr(str);
+	((char *)s != NULL) ? ft_putstr(str) : ft_putstr("(null)");
 	*r += ft_strlen(str);
 	(flag.precision > 0) ? (str[flag.precision] = tmp) : 0;
 	(flag.flag['-'] == 1) ? print_width(nb, r) : 0;

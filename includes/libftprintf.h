@@ -13,6 +13,7 @@ typedef struct	s_flag
 	char		flag[256];
 	char		*mod;
 	char		uppercase;
+	char		p_given;
 }				t_flag;
 
 typedef struct	s_ftpf

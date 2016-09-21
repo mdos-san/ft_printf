@@ -8,6 +8,8 @@ static char *convert_octal(unsigned long int n)
 
 	i = 0;
 	ft_bzero(buf, 65);
+	if (n == 0)
+		return (ft_strdup("0"));
 	while (n != 0)
 	{
 		mod = n % 8;
@@ -38,14 +40,16 @@ void	print_o(void *o, t_flag flag, int *r)
 	p = (p == 0 && flag.flag['#'] == 1) ? 1 : p;
 	w = flag.width - ft_strlen(array) - p;
 	w = (w < 0) ? 0 : w;
-	(flag.flag['-'] == 0) ? print_width(w, r): 0;
+	w = (flag.p_given && flag.precision == 0) ? flag.width : w;
+	(!flag.flag['-'] && !flag.flag['0']) ? print_width(w, r): 0;
+	(!flag.flag['-'] && flag.flag['0']) ? print_width_z(w, r): 0;
 	while (++i < p)
 	{
 		ft_putchar('0');
 		++*r;
 	}
-	ft_putstr(array);
-	*r += ft_strlen(array);
+	(flag.p_given && flag.precision == 0) ? 0 : ft_putstr(array);
+	*r += (flag.p_given && flag.precision == 0) ? 0 : ft_strlen(array);
 	(flag.flag['-'] == 1) ? print_width(w, r): 0;
 	ft_strdel(&array);
 	(void)flag;

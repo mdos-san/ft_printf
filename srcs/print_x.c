@@ -43,6 +43,7 @@ void	print_x(void *arg, t_flag flag, int *r)
 	w = flag.width - ft_strlen(arr) - p;
 	w = (flag.flag['#'] == 1) ? w - 2 : w;
 	w = (w < 0) ? 0 : w;
+	w = (flag.p_given && flag.precision == 0) ? flag.width : w;
 	(flag.flag['-'] == 0 && flag.flag['0'] == 0) ? print_width(w, r) : 0;
 	(flag.flag['#'] && !flag.uppercase && *(unsigned int*)arg > 0 && (*r += 2)) ? ft_putstr("0x") : 0;
 	(flag.flag['#'] && flag.uppercase && *(unsigned int*)arg > 0 && (*r += 2)) ? ft_putstr("0X") : 0;
@@ -52,9 +53,8 @@ void	print_x(void *arg, t_flag flag, int *r)
 		ft_putchar('0');
 		++*r;
 	}
-	ft_putstr(arr);
-	*r += ft_strlen(arr);
+	(flag.p_given && flag.precision == 0) ? 0 : ft_putstr(arr);
+	*r += (flag.p_given && flag.precision == 0) ? 0 : ft_strlen(arr);
 	(flag.flag['-'] == 1) ? print_width(w, r): 0;
 	ft_strdel(&arr);
-	(void)flag;
 }
