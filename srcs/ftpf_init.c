@@ -100,11 +100,13 @@ t_ftpf	*ftpf_init(char *input)
 	new->fct['d'] = print_d;
 	new->fct['D'] = print_ld;
 	new->h['d'] = print_hd;
+	new->hh['d'] = print_hhd;
 	new->fct['i'] = print_d;
 	new->fct['I'] = print_ld;
 	new->fct['o'] = print_o;
 	new->fct['O'] = print_lo;
 	new->fct['p'] = print_p;
+	new->h['x'] = print_hx;
 	new->fct['x'] = print_x;
 	new->fct['X'] = print_x;
 	new->fct['x' + 'j'] = print_jx;

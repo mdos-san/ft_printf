@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 12:59:08 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/09/21 18:45:38 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/09/21 19:10:36 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ static void *get_arg(va_list cp, unsigned char c)
 	(c == 'u' + 'j') ? (*(uintmax_t*)i = va_arg(cp, uintmax_t)) : 0;
 	(c == 'Y') ? (*(unsigned long*)i = va_arg(cp, unsigned long)) : 0;
 	(c == 'p') ? (*(unsigned long int*)i = va_arg(cp, unsigned long int)) : 0;
-	(c == 'h') ? (*(short*)i = (short)va_arg(cp, int)) : 0;
+	(c == 'h' + 'd') ? (*(short*)i = (short)va_arg(cp, int)) : 0;
+	(c == 'h' + 'x') ? (*(unsigned short*)i = (unsigned short)va_arg(cp, int)) : 0;
+	(c == 'h' + 'h') ? (*(char*)i = (char)va_arg(cp, int)) : 0;
 	return (i);
 }
 
@@ -103,9 +105,14 @@ int	ft_printf(char *str, ...)
 			ftpf->flag.width = get_width(ftpf->input);
 			get_flag(ftpf, ftpf->params[nb]);
 			(ftpf->tmp) ? ftpf->flag.precision = ft_atoi(ftpf->tmp + 1) : 0;
-			if (ft_strstr(ftpf->params[nb], "h"))
+			if (ft_strstr(ftpf->params[nb], "hh"))
 			{
-				ret = get_arg(cp, 'h');
+				ret = get_arg(cp, 'h' + 'h');
+				(*ftpf->hh[(int)ftpf->c])(ret, ftpf->flag, &ftpf->r);
+			}
+			else if (ft_strstr(ftpf->params[nb], "h"))
+			{
+				ret = get_arg(cp, 'h' + ftpf->c);
 				(*ftpf->h[(int)ftpf->c])(ret, ftpf->flag, &ftpf->r);
 			}
 			else
