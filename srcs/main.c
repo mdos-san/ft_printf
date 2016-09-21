@@ -109,7 +109,6 @@ int		main()
 	ft_putnbrl(sizeof(short int));
 	ft_putnbrl(sizeof(signed char));
 	ft_putnbrl(sizeof(unsigned long));
-	ft_printf("%hd", 32768);
-	printf("%hd", 32768);
+	ft_printf("%jx", 4294967295);
 	return (0);
 }

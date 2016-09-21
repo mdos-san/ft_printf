@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 12:59:08 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/09/21 19:10:36 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/09/21 20:25:51 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void *get_arg(va_list cp, unsigned char c)
 	(c == 'S') ? (i = (void*)va_arg(cp, int	*)) : 0;
 	(c == 'd' || c == 'i') ? (*(int*)i = va_arg(cp, int)) : 0;
 	(c == 'D' || c == 'I') ? (*(long*)i = va_arg(cp, long)) : 0;
+	(c == 'd' + 'j') ? (*(intmax_t*)i = va_arg(cp, intmax_t)) : 0;
 	(c == 'o') ? (*(unsigned int*)i = va_arg(cp, unsigned int)) : 0;
 	(c == 'O') ? (*(unsigned long*)i = va_arg(cp, unsigned long)) : 0;
 	(c == 'x' || c == 'X') ? (*(unsigned int*)i = va_arg(cp, unsigned int)) : 0;
@@ -34,7 +35,8 @@ static void *get_arg(va_list cp, unsigned char c)
 	(c == 'p') ? (*(unsigned long int*)i = va_arg(cp, unsigned long int)) : 0;
 	(c == 'h' + 'd') ? (*(short*)i = (short)va_arg(cp, int)) : 0;
 	(c == 'h' + 'x') ? (*(unsigned short*)i = (unsigned short)va_arg(cp, int)) : 0;
-	(c == 'h' + 'h') ? (*(char*)i = (char)va_arg(cp, int)) : 0;
+	(c == 'H' + 'd') ? (*(char*)i = (char)va_arg(cp, int)) : 0;
+	(c == 'H' + 'x') ? (*(unsigned char*)i = (unsigned char)va_arg(cp, int)) : 0;
 	return (i);
 }
 
@@ -95,7 +97,6 @@ int	ft_printf(char *str, ...)
 			va_copy(cp, ap);
 			ftpf->c = ft_str_last_char(ftpf->params[nb]);	
 			ftpf->flag.uppercase = (ftpf->c == 'X') ? 1 : 0;
-			(ft_strstr(ftpf->params[nb], "j")) ? ftpf->c += 'j' : 0;
 			(ft_strstr(ftpf->params[nb], "l") && (ftpf->c == 'x' || ftpf->c == 'X'))
 				? (ftpf->c = 'y') : 0; 
 			(ft_strstr(ftpf->params[nb], "l")) ? (ftpf->c -= 32) : 0; 
@@ -107,13 +108,18 @@ int	ft_printf(char *str, ...)
 			(ftpf->tmp) ? ftpf->flag.precision = ft_atoi(ftpf->tmp + 1) : 0;
 			if (ft_strstr(ftpf->params[nb], "hh"))
 			{
-				ret = get_arg(cp, 'h' + 'h');
+				ret = get_arg(cp, 'H' + ftpf->c);
 				(*ftpf->hh[(int)ftpf->c])(ret, ftpf->flag, &ftpf->r);
 			}
 			else if (ft_strstr(ftpf->params[nb], "h"))
 			{
 				ret = get_arg(cp, 'h' + ftpf->c);
 				(*ftpf->h[(int)ftpf->c])(ret, ftpf->flag, &ftpf->r);
+			}
+			else if (ft_strstr(ftpf->params[nb], "j"))
+			{	
+				ret = get_arg(cp, 'j' + ftpf->c);
+				(*ftpf->j[(int)ftpf->c])(ret, ftpf->flag, &ftpf->r);
 			}
 			else
 			{
