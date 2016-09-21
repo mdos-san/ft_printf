@@ -10,6 +10,8 @@ static	char *ft_ltoa(long l)
 	ft_bzero(buf, 21);
 	negative = (l < 0) ? 1 : 0;
 	(negative == 1) ? (l *= -1) : 0;
+	if (l == 0)
+		return (ft_strdup("0"));
 	while (l != 0)
 	{
 		buf[19 - i] = l % 10 + 48;

@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 12:59:08 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/09/21 15:22:48 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/09/21 16:21:59 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void *get_arg(va_list cp, char c)
 	(c == 'o') ? (*(unsigned int*)i = va_arg(cp, unsigned int)) : 0;
 	(c == 'O') ? (*(unsigned long*)i = va_arg(cp, unsigned long)) : 0;
 	(c == 'x' || c == 'X') ? (*(unsigned int*)i = va_arg(cp, unsigned int)) : 0;
+	(c == 'u') ? (*(unsigned int*)i = va_arg(cp, unsigned int)) : 0;
 	(c == 'Y') ? (*(unsigned long*)i = va_arg(cp, unsigned long)) : 0;
 	(c == 'p') ? (*(unsigned long int*)i = va_arg(cp, unsigned long int)) : 0;
 	return (i);
@@ -52,19 +53,19 @@ static int	get_width(char *s)
 	return (ret);
 }
 
-static	void	get_flag(t_ftpf *ftpf)
+static	void	get_flag(t_ftpf *ftpf, char *str)
 {
 	char	*c;
 	int		i;
 
 	i = 0;
-	ftpf->flag.flag[' '] = ((c = ft_strchr(ftpf->input, ' ')) != NULL) ? 1 : 0;
-	ftpf->flag.flag['#'] = ((c = ft_strchr(ftpf->input, '#')) != NULL) ? 1 : 0;
-	ftpf->flag.flag['+'] = ((c = ft_strchr(ftpf->input, '+')) != NULL) ? 1 : 0;
-	ftpf->flag.flag['-'] = ((c = ft_strchr(ftpf->input, '-')) != NULL) ? 1 : 0;
-	while (!ft_isdigit(ftpf->input[i]) && ftpf->input[i] != 0)
+	ftpf->flag.flag[' '] = ((c = ft_strchr(str, ' ')) != NULL) ? 1 : 0;
+	ftpf->flag.flag['#'] = ((c = ft_strchr(str, '#')) != NULL) ? 1 : 0;
+	ftpf->flag.flag['+'] = ((c = ft_strchr(str, '+')) != NULL) ? 1 : 0;
+	ftpf->flag.flag['-'] = ((c = ft_strchr(str, '-')) != NULL) ? 1 : 0;
+	while (!ft_isdigit(str[i]) && str[i] != 0)
 		++i;
-	ftpf->flag.flag['0'] = (ftpf->input[i] == '0') ? 1 : 0;
+	ftpf->flag.flag['0'] = (str[i] == '0') ? 1 : 0;
 }
 
 int	ft_printf(char *str, ...)
@@ -95,7 +96,7 @@ int	ft_printf(char *str, ...)
 			ftpf->flag.p_given = (ft_strchr(ftpf->params[nb], '.')) ? 1 : 0;
 			ftpf->flag.precision = 0;
 			ftpf->flag.width = get_width(ftpf->input);
-			get_flag(ftpf);
+			get_flag(ftpf, ftpf->params[nb]);
 			(ftpf->tmp) ? ftpf->flag.precision = ft_atoi(ftpf->tmp + 1) : 0;
 			ret = get_arg(cp, ftpf->c);
 			(*ftpf->fct[(int)ftpf->c])(ret, ftpf->flag, &ftpf->r);

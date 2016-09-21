@@ -27,6 +27,7 @@ static int	is_flag(char c)
 		c == 'i' || c == 'I' ||
 		c == 'o' || c == 'O' ||
 		c == 'x' || c == 'X' ||
+		c == 'u' || c == 'U' ||
 		c == '%' ||
 		c == 'p')
 		return (1);
@@ -106,6 +107,7 @@ t_ftpf	*ftpf_init(char *input)
 	new->fct['x'] = print_x;
 	new->fct['X'] = print_x;
 	new->fct['Y'] = print_lx;
+	new->fct['u'] = print_u;
 	new->fct['%'] = print_percent;
 	return (new);
 }
