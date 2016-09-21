@@ -1,6 +1,6 @@
 #include "libftprintf.h"
 
-static	char *convert_ui(unsigned int ui)
+static	char *convert_ui(unsigned long ui)
 {
 	char	buf[257];
 	int		i;
@@ -20,7 +20,7 @@ static	char *convert_ui(unsigned int ui)
 	return (ft_strdup(buf + 255 - i));
 }
 
-void	print_u(void *ui, t_flag flag, int *r)
+void	print_lu(void *ui, t_flag flag, int *r)
 {
 	char	*arr;
 	int		w;
@@ -28,7 +28,7 @@ void	print_u(void *ui, t_flag flag, int *r)
 	int		i;
 
 	i = -1;
-	arr = convert_ui(*(unsigned int*)ui);
+	arr = convert_ui(*(unsigned long*)ui);
 	p = flag.precision - ft_strlen(arr);
 	p = (p < 0) ?  0 : p;
 	p = (p == 0 && flag.flag['#'] == 1) ? 1 : p;

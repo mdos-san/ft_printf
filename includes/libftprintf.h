@@ -48,6 +48,7 @@ void	print_lo(void *o, t_flag flag, int *ret);
 void	print_x(void *arg, t_flag flag, int *ret);
 void	print_lx(void *arg, t_flag flag, int *ret);
 void	print_u(void *ui, t_flag flag, int *r);
+void	print_lu(void *ui, t_flag flag, int *r);
 void	print_percent(void *arg, t_flag flag, int *ret);
 void	print_width(int nbr, int *ret);
 void	print_width_z(int nb, int *r);
