@@ -6,13 +6,13 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 12:59:08 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/09/21 16:29:00 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/09/21 17:03:34 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static void *get_arg(va_list cp, char c)
+static void *get_arg(va_list cp, unsigned char c)
 {
 	void	*i;
 
@@ -26,8 +26,10 @@ static void *get_arg(va_list cp, char c)
 	(c == 'o') ? (*(unsigned int*)i = va_arg(cp, unsigned int)) : 0;
 	(c == 'O') ? (*(unsigned long*)i = va_arg(cp, unsigned long)) : 0;
 	(c == 'x' || c == 'X') ? (*(unsigned int*)i = va_arg(cp, unsigned int)) : 0;
+	(c == 'x' + 'j') ? (*(uintmax_t*)i = va_arg(cp, uintmax_t)) : 0;
 	(c == 'u') ? (*(unsigned int*)i = va_arg(cp, unsigned int)) : 0;
 	(c == 'U') ? (*(unsigned long*)i = va_arg(cp, unsigned long)) : 0;
+	(c == 'u' + 'j') ? (*(uintmax_t*)i = va_arg(cp, uintmax_t)) : 0;
 	(c == 'Y') ? (*(unsigned long*)i = va_arg(cp, unsigned long)) : 0;
 	(c == 'p') ? (*(unsigned long int*)i = va_arg(cp, unsigned long int)) : 0;
 	return (i);
@@ -90,6 +92,7 @@ int	ft_printf(char *str, ...)
 			va_copy(cp, ap);
 			ftpf->c = ft_str_last_char(ftpf->params[nb]);	
 			ftpf->flag.uppercase = (ftpf->c == 'X') ? 1 : 0;
+			(ft_strstr(ftpf->params[nb], "j")) ? ftpf->c += 'j' : 0;
 			(ft_strstr(ftpf->params[nb], "l") && (ftpf->c == 'x' || ftpf->c == 'X'))
 				? (ftpf->c = 'y') : 0; 
 			(ft_strstr(ftpf->params[nb], "l")) ? (ftpf->c -= 32) : 0; 

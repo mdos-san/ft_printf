@@ -6,7 +6,7 @@
 #    By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 12:59:09 by mdos-san          #+#    #+#              #
-#    Updated: 2016/09/21 16:29:24 by mdos-san         ###   ########.fr        #
+#    Updated: 2016/09/21 17:14:25 by mdos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,8 +68,10 @@ TMP_C_2 = \
 		  print_lo.c\
 		  print_x.c\
 		  print_lx.c\
+		  print_jx.c\
 		  print_u.c\
 		  print_lu.c\
+		  print_ju.c\
 		  print_percent.c\
 		  print_width.c
 SRC_C_2=$(TMP_C_2:%=srcs/%)
@@ -79,13 +81,17 @@ DEL_2=$(TMP_C_2:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(SRC_O) $(SRC_O_2)
+$(NAME): $(DEL_1) $(DEL_2)
 	@echo "Creating libftprintf.a..."
 	@ar rc $(NAME) $(DEL_1) $(DEL_2)
 	@ranlib $(NAME)
 	@echo "Done !"
 
-%.o: %.c
+%.o: libft/%.c
+	@echo "Compiling $<"
+	@$(COMPILER) $(FLAGS) $(INCLUDES) $<
+
+%.o: srcs/%.c
 	@echo "Compiling $<"
 	@$(COMPILER) $(FLAGS) $(INCLUDES) $<
 

@@ -109,7 +109,6 @@ int		main()
 	ft_putnbrl(sizeof(short int));
 	ft_putnbrl(sizeof(signed char));
 	ft_putnbrl(sizeof(unsigned long));
-	ft_printf("%s%s%s%s%s", "this", "is", "a", "multi", "string");
-	printf("%s%s%s%s%s", "this", "is", "a", "multi", "string");
+	printf("%5.d", 42);
 	return (0);
 }
