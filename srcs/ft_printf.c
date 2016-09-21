@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 12:59:08 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/09/21 17:03:34 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/09/21 18:45:38 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void *get_arg(va_list cp, unsigned char c)
 	(c == 'u' + 'j') ? (*(uintmax_t*)i = va_arg(cp, uintmax_t)) : 0;
 	(c == 'Y') ? (*(unsigned long*)i = va_arg(cp, unsigned long)) : 0;
 	(c == 'p') ? (*(unsigned long int*)i = va_arg(cp, unsigned long int)) : 0;
+	(c == 'h') ? (*(short*)i = (short)va_arg(cp, int)) : 0;
 	return (i);
 }
 
@@ -102,8 +103,16 @@ int	ft_printf(char *str, ...)
 			ftpf->flag.width = get_width(ftpf->input);
 			get_flag(ftpf, ftpf->params[nb]);
 			(ftpf->tmp) ? ftpf->flag.precision = ft_atoi(ftpf->tmp + 1) : 0;
-			ret = get_arg(cp, ftpf->c);
-			(*ftpf->fct[(int)ftpf->c])(ret, ftpf->flag, &ftpf->r);
+			if (ft_strstr(ftpf->params[nb], "h"))
+			{
+				ret = get_arg(cp, 'h');
+				(*ftpf->h[(int)ftpf->c])(ret, ftpf->flag, &ftpf->r);
+			}
+			else
+			{
+				ret = get_arg(cp, ftpf->c);
+				(*ftpf->fct[(int)ftpf->c])(ret, ftpf->flag, &ftpf->r);
+			}
 			va_arg(ap, void*);
 			i += ft_strlen(ftpf->params[nb]) - 1;
 			++nb;

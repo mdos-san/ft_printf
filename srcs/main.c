@@ -109,6 +109,7 @@ int		main()
 	ft_putnbrl(sizeof(short int));
 	ft_putnbrl(sizeof(signed char));
 	ft_putnbrl(sizeof(unsigned long));
-	printf("%5.d", 42);
+	ft_printf("%hd", 32768);
+	printf("%hd", 32768);
 	return (0);
 }

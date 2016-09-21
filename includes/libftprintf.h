@@ -22,6 +22,8 @@ typedef struct	s_ftpf
 	int			nbr_param;
 	char		**params;
 	void		(*fct[256])(void *arg, t_flag flag, int *ret);
+	void		(*h[256])(void *arg, t_flag flag, int *ret);
+	void		(*hh[256])(void *arg, t_flag flag, int *ret);
 	unsigned char	c;
 	char		*tmp;
 	t_flag		flag;
@@ -40,6 +42,7 @@ void	print_c(void *c, t_flag flag, int *ret);
 void	print_lc(void *c, t_flag flag, int *ret);
 void	print_s(void *s, t_flag flag, int *ret);
 void	print_ls(void *s, t_flag flag, int *ret);
+void	print_hd(void *arg, t_flag flag, int *ret);
 void	print_d(void *i, t_flag flag, int *ret);
 void	print_ld(void *arg, t_flag flag, int *ret);
 void	print_p(void *p, t_flag flag, int *ret);
