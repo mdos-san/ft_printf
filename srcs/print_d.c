@@ -62,8 +62,8 @@ void	print_d(void *arg, t_flag flag, int *r)
 		negative = (arr[0] == '-') ? 1 : 0;
 		(negative == 1 && ++*r) ? ft_putchar('-') : 0;
 		(flag.flag['-'] == 0 && flag.flag['0'] && !flag.precision) ? print_width_z(nb, r) : 0;
-		ft_putstr(arr + negative);
-		*r += ft_strlen(arr + negative);
+		(flag.p_given && !flag.precision && !*(int*)arg) ? 0 : ft_putstr(arr + negative);
+		*r += (flag.p_given && !flag.precision && !*(int*)arg) ? 0 : ft_strlen(arr + negative);
 	}
 	(flag.flag['-'] == 1) ? print_width(nb, r) : 0;
 }
