@@ -8,6 +8,8 @@ static char *convert_octal(unsigned long n)
 
 	i = 0;
 	ft_bzero(buf, 65);
+	if (!n)
+		return (ft_strdup("0"));
 	while (n != 0)
 	{
 		mod = n % 8;
