@@ -16,7 +16,8 @@ void	print_s(void *s, t_flag flag, int *r)
 		str[flag.precision] = '\0';
 	}
 	nb = (flag.width > flag.precision) ? flag.width - ft_strlen(str) : 0;
-	(flag.flag['-'] == 0) ? print_width(nb, r) : 0;
+	(flag.flag['-'] == 0 && !flag.flag['0']) ? print_width(nb, r) : 0;
+	(flag.flag['-'] == 0 && flag.flag['0']) ? print_width_z(nb, r) : 0;
 	((char *)s != NULL) ? ft_putstr(str) : ft_putstr("(null)");
 	*r += ft_strlen(str);
 	(flag.precision > 0) ? (str[flag.precision] = tmp) : 0;

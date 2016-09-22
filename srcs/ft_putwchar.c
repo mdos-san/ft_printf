@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 18:21:58 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/09/19 14:12:16 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/09/22 17:33:43 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,21 +87,26 @@ static unsigned int bin_to_int(char *bin)
 	return (ret);
 }
 
-void	ft_putwchar(int c)
+int	ft_putwchar(int c)
 {
 	char			*mask;
 	char			*nbr;
 	unsigned int	result;
+	int				r;
 
 	nbr = print_bit(c);
-	if (c <= 127)
+	r = 0;
+	if (c <= 127 && (r = 1))
 		mask = mask_init(1);
-	else if (c <= 2047)
+	else if (c <= 2047 && (r = 2))
 		mask = mask_init(2);
-	else if (2047 < c && c <= 65535)
+	else if (2047 < c && c <= 65535 && (r = 3))
 		mask = mask_init(3);
 	else
+	{
 		mask = mask_init(4);
+		r = 4;
+	}
 	mask_fill(mask, nbr);
 	result = bin_to_int(mask);
 	free(nbr);
@@ -111,4 +116,5 @@ void	ft_putwchar(int c)
 	(c > 127) ? write(1, nbr + 1, 1) : 0;
 	write(1, nbr + 0, 1);
 	free(mask);
+	return (r);
 }

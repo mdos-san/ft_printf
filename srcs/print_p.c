@@ -35,9 +35,10 @@ void	print_p(void *p, t_flag flag, int *r)
 	i = 0;
 	arr = pnt(*(unsigned int*)p);
 	n = (flag.width > flag.precision) ? (flag.width - ft_strlen(arr) - 2) : 0;
-	(flag.flag['-'] == 0) ? print_width(n, r) : 0;
+	(flag.flag['-'] == 0 && !flag.flag['0']) ? print_width(n, r) : 0;
 	ft_putstr("0x");
 	*r += 2;
+	(flag.flag['-'] == 0 && flag.flag['0']) ? print_width_z(n, r) : 0;
 	if (flag.precision > (int)ft_strlen(arr))
 	{
 		while (i < flag.precision - (int)ft_strlen(arr))

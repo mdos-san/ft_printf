@@ -35,8 +35,8 @@ typedef struct	s_ftpf
 int		ft_printf(char *str, ...);
 t_ftpf	*ftpf_init(char *input);
 void	ftpf_del(t_ftpf **addr);
-void	ft_putwchar(int c);
-void	ft_putwstr(int *wstr);
+int		ft_putwchar(int c);
+int		ft_putwstr(int *wstr);
 void	ft_putptn(unsigned long int pnt);
 char	ft_str_last_char(char *s);
 void	useless(void *param, t_flag flag, int *ret);

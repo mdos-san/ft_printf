@@ -46,9 +46,9 @@ void	print_ls(void *s, t_flag flag, int *r)
 		arr[flag.precision / 3] = 0;
 	}
 	nb = (flag.width > flag.precision) ? flag.width - int_arr_len(arr) * 3 : 0;
-	(flag.flag['-'] == 0) ? print_width(nb, r) : 0;
-	ft_putwstr(arr);
-	*r += int_arr_len(arr);
+	(flag.flag['-'] == 0 && !flag.flag['0']) ? print_width(nb, r) : 0;
+	(flag.flag['-'] == 0 && flag.flag['0']) ? print_width_z(nb, r) : 0;
+	*r += ft_putwstr(arr);
 	(flag.flag['-'] == 1) ? print_width(nb, r) : 0;
 	(flag.precision > 0) ? (arr[flag.precision / 3] = tmp) : 0;
 	(arr) ? free(arr) : 0;
