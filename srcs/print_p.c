@@ -47,7 +47,7 @@ void	print_p(void *p, t_flag flag, int *r)
 			++i;
 		}
 	}
-	ft_putstr(arr);
-	*r += ft_strlen(arr);
+	(flag.p_given && !flag.precision) ? 0 : ft_putstr(arr);
+	*r += (flag.p_given && !flag.precision) ? 0 : ft_strlen(arr);
 	(flag.flag['-'] == 1) ? print_width(n, r): 0;
 }
