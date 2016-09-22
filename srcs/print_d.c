@@ -5,7 +5,7 @@ static	char *ft_ltoa(long l)
 	char	buf[21];
 	int		i;
 	char	negative;
-	
+
 	i = 0;
 	ft_bzero(buf, 21);
 	negative = (l < 0) ? 1 : 0;
@@ -32,6 +32,7 @@ void	print_d(void *arg, t_flag flag, int *r)
 	i = 0;
 	nb = 0;
 	arr = ft_ltoa(*(int*)arg);
+	negative = (arr[0] == '-') ? 1 : 0;
 	if (flag.width > flag.precision)
 	{
 		nb = (flag.precision > (int)ft_strlen(arr))
@@ -42,11 +43,10 @@ void	print_d(void *arg, t_flag flag, int *r)
 	}
 	(flag.flag[' '] && !flag.flag['+'] && !flag.flag['-'] && *(int*)arg > 0 && !flag.width && !flag.precision && ++*r) ? ft_putchar(' ') : 0;
 	(flag.flag['+'] == 1 && *(int*)arg > 0) ? --nb : 0;
-	(flag.flag['-'] == 0 && (!flag.flag['0'] || flag.precision)) ? print_width(nb, r) : 0;
+	(flag.flag['-'] == 0 && (!flag.flag['0'] || flag.precision) && flag.width - negative > flag.precision) ? print_width(nb, r) : 0;
 	(flag.flag['+'] == 1 && *(int*)arg >= 0 && ++*r) ? ft_putchar('+') : 0;
-	if (flag.precision > (int)ft_strlen(arr))
+	if (flag.precision >= (int)ft_strlen(arr))
 	{
-		negative = (arr[0] == '-') ? 1 : 0;
 		(negative == 1 && ++*r) ? ft_putchar('-') : 0;
 		(flag.flag['-'] == 0 && flag.flag['0'] && !flag.precision) ? print_width_z(nb, r) : 0;
 		while (i < flag.precision - (int)ft_strlen(arr) + negative)
