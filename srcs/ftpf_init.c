@@ -114,6 +114,8 @@ t_ftpf	*ftpf_init(char *input)
 	new->fct['X'] = print_x;
 	new->j['x'] = print_jx;
 	new->fct['Y'] = print_lx;
+	new->h['u'] = print_hu;
+	new->h['U'] = print_hu;
 	new->fct['u'] = print_u;
 	new->j['u'] = print_ju;
 	new->fct['U'] = print_lu;

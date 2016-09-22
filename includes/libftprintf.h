@@ -58,6 +58,7 @@ void	print_hx(void *arg, t_flag flag, int *ret);
 void	print_x(void *arg, t_flag flag, int *ret);
 void	print_lx(void *arg, t_flag flag, int *ret);
 void	print_jx(void *arg, t_flag flag, int *ret);
+void	print_hu(void *ui, t_flag flag, int *r);
 void	print_u(void *ui, t_flag flag, int *r);
 void	print_lu(void *ui, t_flag flag, int *r);
 void	print_ju(void *ui, t_flag flag, int *r);

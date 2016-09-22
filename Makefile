@@ -6,7 +6,7 @@
 #    By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 12:59:09 by mdos-san          #+#    #+#              #
-#    Updated: 2016/09/21 20:39:42 by mdos-san         ###   ########.fr        #
+#    Updated: 2016/09/22 14:24:57 by mdos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,6 +75,7 @@ TMP_C_2 = \
 		  print_x.c\
 		  print_lx.c\
 		  print_jx.c\
+		  print_hu.c\
 		  print_u.c\
 		  print_lu.c\
 		  print_ju.c\
