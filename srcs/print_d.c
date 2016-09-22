@@ -38,6 +38,7 @@ void	print_d(void *arg, t_flag flag, int *r)
 			? (int)(flag.width - ft_strlen(arr)  - flag.precision + ft_strlen(arr))
 			: (int)(flag.width - ft_strlen(arr));
 		(*(int*)arg < 0 && flag.precision > (int)ft_strlen(arr)) ? --nb : 0;
+		nb += (flag.p_given && !flag.precision && !*(int*)arg) ? ft_strlen(arr) : 0;
 	}
 	(flag.flag[' '] && !flag.flag['+'] && !flag.flag['-'] && *(int*)arg > 0 && !flag.width && !flag.precision && ++*r) ? ft_putchar(' ') : 0;
 	(flag.flag['+'] == 1 && *(int*)arg > 0) ? --nb : 0;
