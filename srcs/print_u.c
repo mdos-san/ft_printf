@@ -20,30 +20,45 @@ static	char *convert_ui(unsigned int ui)
 	return (ft_strdup(buf + 255 - i));
 }
 
-void	print_u(void *ui, t_flag flag, int *r)
+void	print_u(void *arg, t_flag flag, int *r)
 {
 	char	*arr;
-	int		w;
-	int		p;
 	int		i;
+	int		nb;
+	int		negative;
 
-	i = -1;
-	arr = convert_ui(*(unsigned int*)ui);
-	p = flag.precision - ft_strlen(arr);
-	p = (p < 0) ?  0 : p;
-	p = (p == 0 && flag.flag['#'] == 1) ? 1 : p;
-	w = flag.width - ft_strlen(arr) - p;
-	w = (w < 0) ? 0 : w;
-	w = (flag.p_given && flag.precision == 0) ? flag.width : w;
-	(!flag.flag['-'] && !flag.flag['0']) ? print_width(w, r): 0;
-	(!flag.flag['-'] && flag.flag['0']) ? print_width_z(w, r): 0;
-	while (++i < p)
+	i = 0;
+	nb = 0;
+	arr = convert_ui(*(unsigned int*)arg);
+	negative = (arr[0] == '-') ? 1 : 0;
+	if (flag.width > flag.precision)
 	{
-		ft_putchar('0');
-		++*r;
+		nb = (flag.precision > (int)ft_strlen(arr))
+			? (int)(flag.width - ft_strlen(arr)  - flag.precision + ft_strlen(arr))
+			: (int)(flag.width - ft_strlen(arr));
+		nb += (flag.p_given && !flag.precision && !*(unsigned int*)arg) ? ft_strlen(arr) : 0;
 	}
-	ft_putstr(arr);
-	*r += ft_strlen(arr);
-	(flag.flag['-'] == 1) ? print_width(w, r): 0;
-	(void)flag;
+	(flag.flag['-'] == 0 && (!flag.flag['0'] || flag.precision) && flag.width - negative > flag.precision) ? print_width(nb, r) : 0;
+	if (flag.precision >= (int)ft_strlen(arr))
+	{
+		(negative == 1 && ++*r) ? ft_putchar('-') : 0;
+		(flag.flag['-'] == 0 && flag.flag['0'] && !flag.precision) ? print_width_z(nb, r) : 0;
+		while (i < flag.precision - (int)ft_strlen(arr) + negative)
+		{
+			ft_putchar('0');
+			++*r;
+			++i;
+		}
+		ft_putstr(arr + negative);
+		*r += ft_strlen(arr + negative);
+	}
+	else
+	{
+		negative = (arr[0] == '-') ? 1 : 0;
+		(negative == 1 && ++*r) ? ft_putchar('-') : 0;
+		(flag.flag['-'] == 0 && flag.flag['0'] && !flag.precision) ? print_width_z(nb, r) : 0;
+		(flag.p_given && !flag.precision && !*(unsigned int*)arg) ? 0 : ft_putstr(arr + negative);
+		*r += (flag.p_given && !flag.precision && !*(unsigned int*)arg) ? 0 : ft_strlen(arr + negative);
+	}
+	(flag.flag['-'] == 1) ? print_width(nb, r) : 0;
 }

@@ -1,6 +1,6 @@
 #include "libftprintf.h"
 
-static int pnt(unsigned long int n)
+static char *pnt(unsigned long int n)
 {
 	int	i;
 	int mod;
@@ -8,6 +8,8 @@ static int pnt(unsigned long int n)
 
 	i = 0;
 	ft_bzero(buf, 33);
+	if (!n)
+		return (ft_strdup("0"));
 	while (n != 0)
 	{
 		mod = n % 16;
@@ -21,34 +23,31 @@ static int pnt(unsigned long int n)
 		n /= 16;
 		++i;
 	}
-	return (ft_strlen(buf + 31 - i + 1));
+	return (ft_strdup(buf + 31 - i + 1));
 }
 
 void	print_p(void *p, t_flag flag, int *r)
 {
 	int	i;
-	unsigned long int	nb;
-	int	size;
 	int	n;
+	char *arr;
 
 	i = 0;
-	nb = *(unsigned long int*)p;
-	size = pnt(nb);
-	*r += size;
-	n = (flag.width > flag.precision && flag.precision > size)
-			? (n = flag.width - flag.precision  - 2) : 0;
+	arr = pnt(*(unsigned int*)p);
+	n = (flag.width > flag.precision) ? (flag.width - ft_strlen(arr) - 2) : 0;
 	(flag.flag['-'] == 0) ? print_width(n, r) : 0;
 	ft_putstr("0x");
-	if (flag.precision > size)
+	*r += 2;
+	if (flag.precision > (int)ft_strlen(arr))
 	{
-		while (i < flag.precision - size)
+		while (i < flag.precision - (int)ft_strlen(arr))
 		{
 			ft_putchar('0');
 			++*r;
 			++i;
 		}
 	}
-	ft_putptn(nb);
+	ft_putstr(arr);
+	*r += ft_strlen(arr);
 	(flag.flag['-'] == 1) ? print_width(n, r): 0;
-	(void)flag.precision;
 }
