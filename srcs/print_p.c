@@ -3,7 +3,7 @@
 static char *pnt(unsigned long int n)
 {
 	int	i;
-	unsigned long int mod;
+	int mod;
 	char buf[33];
 
 	i = 0;
@@ -33,7 +33,7 @@ void	print_p(void *p, t_flag flag, int *r)
 	char *arr;
 
 	i = 0;
-	arr = pnt(*(unsigned long int*)p);
+	arr = pnt(*(unsigned int*)p);
 	n = (flag.width > flag.precision) ? (flag.width - ft_strlen(arr) - 2) : 0;
 	(flag.flag['-'] == 0 && !flag.flag['0']) ? print_width(n, r) : 0;
 	ft_putstr("0x");
