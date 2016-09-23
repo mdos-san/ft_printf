@@ -3,6 +3,7 @@
 
 # include <stdlib.h>
 # include <stdarg.h>
+# include <stdint.h>
 # include <unistd.h>
 # include "libft.h"
 
@@ -51,6 +52,8 @@ void	print_zd(void *i, t_flag flag, int *ret);
 void	print_jd(void *i, t_flag flag, int *ret);
 void	print_ld(void *arg, t_flag flag, int *ret);
 void	print_p(void *p, t_flag flag, int *ret);
+void	print_hho(void *o, t_flag flag, int *ret);
+void	print_ho(void *o, t_flag flag, int *ret);
 void	print_o(void *o, t_flag flag, int *ret);
 void	print_lo(void *o, t_flag flag, int *ret);
 void	print_hhx(void *arg, t_flag flag, int *ret);
@@ -60,6 +63,7 @@ void	print_lx(void *arg, t_flag flag, int *ret);
 void	print_jx(void *arg, t_flag flag, int *ret);
 void	print_hu(void *ui, t_flag flag, int *r);
 void	print_u(void *ui, t_flag flag, int *r);
+void	print_hhu(void *ui, t_flag flag, int *r);
 void	print_lu(void *ui, t_flag flag, int *r);
 void	print_ju(void *ui, t_flag flag, int *r);
 void	print_percent(void *arg, t_flag flag, int *ret);

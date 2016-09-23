@@ -26,6 +26,8 @@ static void *get_arg(va_list cp, unsigned char c)
 	(c == 'd' + 'j') ? (*(intmax_t*)i = va_arg(cp, intmax_t)) : 0;
 	(c == 'o') ? (*(unsigned int*)i = va_arg(cp, unsigned int)) : 0;
 	(c == 'O') ? (*(unsigned long*)i = va_arg(cp, unsigned long)) : 0;
+	(c == 'h' + 'o' || c == 'h' + 'O') ? (*(unsigned short*)i = va_arg(cp, int)) : 0;
+	(c == 'H' + 'o' || c == 'H' + 'O') ? (*(unsigned char*)i = va_arg(cp, int)) : 0;
 	(c == 'x' || c == 'X') ? (*(unsigned int*)i = va_arg(cp, unsigned int)) : 0;
 	(c == 'x' + 'j') ? (*(uintmax_t*)i = va_arg(cp, uintmax_t)) : 0;
 	(c == 'u') ? (*(unsigned int*)i = va_arg(cp, unsigned int)) : 0;
@@ -40,6 +42,7 @@ static void *get_arg(va_list cp, unsigned char c)
 	(c == 'H' + 'x') ? (*(unsigned char*)i = (unsigned char)va_arg(cp, int)) : 0;
 	(c == 'd' + 'z') ? (*(size_t*)i = va_arg(cp, size_t)) : 0;
 	(c == 'h' + 'u' || c == 'h' + 'U') ? (*(unsigned long*)i = va_arg(cp, unsigned long)) : 0;
+	(c == 'H' + 'u' || c == 'H' + 'U') ? (*(unsigned char*)i = va_arg(cp, int)) : 0;
 	return (i);
 }
 

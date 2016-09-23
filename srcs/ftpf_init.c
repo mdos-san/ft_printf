@@ -105,6 +105,8 @@ t_ftpf	*ftpf_init(char *input)
 	new->hh['d'] = print_hhd;
 	new->fct['i'] = print_d;
 	new->fct['I'] = print_ld;
+	new->h['o'] = print_ho;
+	new->hh['o'] = print_hho;
 	new->fct['o'] = print_o;
 	new->fct['O'] = print_lo;
 	new->fct['p'] = print_p;
@@ -119,6 +121,7 @@ t_ftpf	*ftpf_init(char *input)
 	new->h['U'] = print_hu;
 	new->fct['u'] = print_u;
 	new->j['u'] = print_ju;
+	new->hh['u'] = print_hhu;
 	new->fct['U'] = print_lu;
 	new->fct['%'] = print_percent;
 	return (new);

@@ -68,8 +68,11 @@ TMP_C_2 = \
 		  print_jd.c\
 		  print_ld.c\
 		  print_p.c\
+		  print_ho.c\
+		  print_hho.c\
 		  print_o.c\
 		  print_lo.c\
+		  print_hhu.c\
 		  print_hhx.c\
 		  print_hx.c\
 		  print_x.c\

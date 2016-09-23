@@ -36,9 +36,6 @@ static	char *print_bit(int c)
 
 static char	*mask_init(char nbr)
 {
-	int i;
-
-	i = 0;
 	if (nbr == 1)
 		return (ft_strdup(MASK_1));
 	if (nbr == 2)

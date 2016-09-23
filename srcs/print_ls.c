@@ -35,21 +35,27 @@ void	print_ls(void *s, t_flag flag, int *r)
 	int		tmp;
 	int		*arr;
 	int		nb;
-	int		i;
 
-	i = 0;
 	nb = 0;
-	arr = int_arr_dup((int*)s);
-	if (flag.precision > 0)
+	if ((int*)s == NULL)
 	{
-		tmp = arr[flag.precision / 3];
-		arr[flag.precision / 3] = 0;
+		ft_putstr("(null)");
+		*r += 6;
 	}
-	nb = (flag.width > flag.precision) ? flag.width - int_arr_len(arr) * 3 : 0;
-	(flag.flag['-'] == 0 && !flag.flag['0']) ? print_width(nb, r) : 0;
-	(flag.flag['-'] == 0 && flag.flag['0']) ? print_width_z(nb, r) : 0;
-	*r += ft_putwstr(arr);
-	(flag.flag['-'] == 1) ? print_width(nb, r) : 0;
-	(flag.precision > 0) ? (arr[flag.precision / 3] = tmp) : 0;
-	(arr) ? free(arr) : 0;
+	else
+	{
+		arr = int_arr_dup((int*)s);
+		if (flag.precision > 0)
+		{
+			tmp = arr[flag.precision / 3];
+			arr[flag.precision / 3] = 0;
+		}
+		nb = (flag.width > flag.precision) ? flag.width - int_arr_len(arr) * 3 : 0;
+		(flag.flag['-'] == 0 && !flag.flag['0']) ? print_width(nb, r) : 0;
+		(flag.flag['-'] == 0 && flag.flag['0']) ? print_width_z(nb, r) : 0;
+		*r += ft_putwstr(arr);
+		(flag.flag['-'] == 1) ? print_width(nb, r) : 0;
+		(flag.precision > 0) ? (arr[flag.precision / 3] = tmp) : 0;
+		(arr) ? free(arr) : 0;
+	}
 }
