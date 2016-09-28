@@ -92,7 +92,13 @@ t_ftpf	*ftpf_init(char *input)
 	ft_strdel(&str);
 	get_mod(new);
 	while (++i < 256)
+	{
+		new->hh[i] = useless;
+		new->h[i] = useless;
 		new->fct[i] = useless;
+		new->z[i] = useless;
+		new->j[i] = useless;
+	}
 	new->fct['c'] = print_c;
 	new->fct['C'] = print_lc;
 	new->fct['s'] = print_s;
