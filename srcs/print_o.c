@@ -48,10 +48,8 @@ void	print_o(void *o, t_flag flag, int *r)
 		ft_putchar('0');
 		++*r;
 	}
-	(flag.p_given && flag.precision == 0) ? 0 : ft_putstr(array);
-	*r += (flag.p_given && flag.precision == 0) ? 0 : ft_strlen(array);
+	(flag.p_given && flag.precision == 0 && flag.flag['#'] == 0) ? 0 : ft_putstr(array);
+	*r += (flag.p_given && flag.precision == 0 && flag.flag['#'] == 0) ? 0 : ft_strlen(array);
 	(flag.flag['-'] == 1) ? print_width(w, r): 0;
 	ft_strdel(&array);
-	(void)flag;
-	(void)print_width;
 }
