@@ -132,6 +132,10 @@ int	ft_printf(char *str, ...)
 				ret = get_arg(cp, 'z' + ftpf->c);
 				(*ftpf->z[(int)ftpf->c])(ret, ftpf->flag, &ftpf->r);
 			}
+			else if (ft_strcmp(ftpf->params[nb], "%") == 0)
+			{
+				ftpf->r = -1;
+			}
 			else
 			{
 				ret = get_arg(cp, ftpf->c);
