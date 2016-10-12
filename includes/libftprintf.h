@@ -48,6 +48,7 @@ void	print_ls(void *s, t_flag flag, int *ret);
 void	print_hhd(void *arg, t_flag flag, int *ret);
 void	print_hd(void *arg, t_flag flag, int *ret);
 void	print_d(void *i, t_flag flag, int *ret);
+void	print_zi(void *i, t_flag flag, int *ret);
 void	print_zd(void *i, t_flag flag, int *ret);
 void	print_jd(void *i, t_flag flag, int *ret);
 void	print_ld(void *arg, t_flag flag, int *ret);

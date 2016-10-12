@@ -109,6 +109,7 @@ t_ftpf	*ftpf_init(char *input)
 	new->j['d'] = print_jd;
 	new->h['d'] = print_hd;
 	new->hh['d'] = print_hhd;
+	new->z['i'] = print_zi;
 	new->fct['i'] = print_d;
 	new->fct['I'] = print_ld;
 	new->h['o'] = print_ho;
