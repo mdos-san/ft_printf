@@ -4,17 +4,19 @@ static	char *ft_ltoa(intmax_t l)
 {
 	char	buf[21];
 	int		i;
+	intmax_t	mod;
 	char	negative;
 	
 	i = 0;
 	ft_bzero(buf, 21);
 	negative = (l < 0) ? 1 : 0;
-	(negative == 1) ? (l *= -1) : 0;
 	if (l == 0)
 		return (ft_strdup("0"));
 	while (l != 0)
 	{
-		buf[19 - i] = l % 10 + 48;
+		mod = l % 10;
+		mod *= (negative) ? -1 : 1;
+		buf[19 - i] = mod + 48;
 		l /= 10;
 		++i;
 	}
@@ -31,7 +33,7 @@ void	print_jd(void *arg, t_flag flag, int *r)
 
 	i = 0;
 	nb = 0;
-	arr = ft_ltoa(*(intmax_t*)arg);
+	arr = ft_ltoa(va_arg(flag.arg, intmax_t));
 	if (flag.width > flag.precision)
 	{
 		nb = (flag.precision > (int)ft_strlen(arr))
@@ -66,4 +68,5 @@ void	print_jd(void *arg, t_flag flag, int *r)
 		*r += ft_strlen(arr + negative);
 	}
 	(flag.flag['-'] == 1) ? print_width(nb, r) : 0;
+	(void)arg;
 }

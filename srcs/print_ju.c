@@ -28,7 +28,7 @@ void	print_ju(void *ui, t_flag flag, int *r)
 	int		i;
 
 	i = -1;
-	arr = convert_ui(*(uintmax_t*)ui);
+	arr = convert_ui(va_arg(flag.arg, uintmax_t));
 	p = flag.precision - ft_strlen(arr);
 	p = (p < 0) ?  0 : p;
 	p = (p == 0 && flag.flag['#'] == 1) ? 1 : p;
@@ -46,4 +46,5 @@ void	print_ju(void *ui, t_flag flag, int *r)
 	*r += ft_strlen(arr);
 	(flag.flag['-'] == 1) ? print_width(w, r): 0;
 	ft_strdel(&arr);
+	(void)ui;
 }

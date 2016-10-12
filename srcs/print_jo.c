@@ -1,9 +1,9 @@
 #include "libftprintf.h"
 
-static char *convert_octal(unsigned long long n)
+static char *convert_octal(uintmax_t n)
 {
 	int	i;
-	unsigned long long mod;
+	uintmax_t mod;
 	char buf[65];
 
 	i = 0;
@@ -13,20 +13,14 @@ static char *convert_octal(unsigned long long n)
 	while (n != 0)
 	{
 		mod = n % 8;
-		if (mod <= 9)
-			buf[63 - i] = mod + 48;
-		else
-		{
-			mod -= 10;
-			buf[63 - i] = mod + 97;
-		}
+		buf[63 - i] = mod + 48;
 		n /= 8;
 		++i;
 	}
 	return (ft_strdup(buf + 63 - i + 1));
 }
 
-void	print_zo(void *o, t_flag flag, int *r)
+void	print_jo(void *o, t_flag flag, int *r)
 {
 	char	*array;
 	int		w;
@@ -34,7 +28,7 @@ void	print_zo(void *o, t_flag flag, int *r)
 	int		i;
 
 	i = -1;
-	array = convert_octal(va_arg(flag.arg, unsigned long long));
+	array = convert_octal(va_arg(flag.arg, uintmax_t));
 	p = flag.precision - ft_strlen(array);
 	p = (p < 0) ?  0 : p;
 	p = (p == 0 && flag.flag['#'] == 1 && ft_strcmp("0", array) != 0) ? 1 : p;

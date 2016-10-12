@@ -37,7 +37,7 @@ void	print_jx(void *arg, t_flag flag, int *r)
 	int		i;
 
 	i = -1;
-	arr = convert_hexa(*(uintmax_t*)arg, flag.uppercase);
+	arr = convert_hexa(va_arg(flag.arg, uintmax_t), flag.uppercase);
 	p = flag.precision - ft_strlen(arr);
 	p = (p < 0) ? 0 : p;
 	w = flag.width - ft_strlen(arr) - p;
@@ -57,4 +57,5 @@ void	print_jx(void *arg, t_flag flag, int *r)
 	*r += (flag.p_given && flag.precision == 0) ? 0 : ft_strlen(arr);
 	(flag.flag['-'] == 1) ? print_width(w, r): 0;
 	ft_strdel(&arr);
+	(void)arg;
 }

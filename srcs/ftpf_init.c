@@ -113,9 +113,14 @@ t_ftpf	*ftpf_init(char *input)
 	new->h['U'] = print_hu;
 
 	new->j['d'] = print_jd;
+	new->j['D'] = print_jd;
 	new->j['i'] = print_jd;
 	new->j['x'] = print_jx;
+	new->j['X'] = print_jx;
 	new->j['u'] = print_ju;
+	new->j['U'] = print_ju;
+	new->j['o'] = print_jo;
+	new->j['O'] = print_jo;
 
 	new->fct['D'] = print_ld;
 	new->fct['c'] = print_c;
@@ -137,9 +142,12 @@ t_ftpf	*ftpf_init(char *input)
 	new->fct['%'] = print_percent;
 
 	new->z['d'] = print_zi;
+	new->z['D'] = print_zi;
 	new->z['i'] = print_zi;
 	new->z['u'] = print_zu;
+	new->z['U'] = print_zu;
 	new->z['o'] = print_zo;
+	new->z['O'] = print_zo;
 	new->z['x'] = print_zx;
 	new->z['X'] = print_zx;
 	return (new);

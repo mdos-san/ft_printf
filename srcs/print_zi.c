@@ -33,7 +33,7 @@ void	print_zi(void *arg, t_flag flag, int *r)
 
 	i = 0;
 	nb = 0;
-	arr = ft_ltoa(*(long long*)arg);
+	arr = ft_ltoa(va_arg(flag.arg, long long));
 	negative = (arr[0] == '-') ? 1 : 0;
 	if (flag.width > flag.precision)
 	{
@@ -68,4 +68,5 @@ void	print_zi(void *arg, t_flag flag, int *r)
 		*r += (flag.p_given && !flag.precision && !*(long long*)arg) ? 0 : ft_strlen(arr + negative);
 	}
 	(flag.flag['-'] == 1) ? print_width(nb, r) : 0;
+	(void)arg;
 }
