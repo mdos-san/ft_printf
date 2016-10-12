@@ -3,7 +3,7 @@
 static char	*convert_hexa(unsigned char n, char up)
 {
 	int	i;
-	int mod;
+	unsigned char mod;
 	char buf[65];
 
 	i = 0;

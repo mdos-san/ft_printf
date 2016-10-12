@@ -31,7 +31,7 @@ void	print_p(void *p, t_flag flag, int *r)
 	int		i;
 
 	i = 0;
-	arr = convert(*(unsigned long int*)p);
+	arr = convert(va_arg(flag.arg, unsigned long long));
 	pre = flag.precision - ft_strlen(arr);
 	pre = (pre < 0) ? 0 : pre;
 	flag.width = flag.width - ft_strlen(arr) - 2;
@@ -52,4 +52,5 @@ void	print_p(void *p, t_flag flag, int *r)
 	}
 	(!flag.flag['0'] && flag.flag['-']) ? print_width(flag.width ,r) : 0;
 	ft_strdel(&arr);
+	(void)p;
 }

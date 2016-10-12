@@ -1,10 +1,10 @@
 #include "libftprintf.h"
 
-static	char *convert_ui(unsigned long ui)
+static	char *convert_ui(unsigned short ui)
 {
 	char	buf[257];
 	int		i;
-	int		mod;
+	unsigned short mod;
 
 	i = 0;
 	ft_bzero(buf, 257);
@@ -28,7 +28,7 @@ void	print_hu(void *ui, t_flag flag, int *r)
 	int		i;
 
 	i = -1;
-	arr = convert_ui(*(unsigned long*)ui);
+	arr = convert_ui((unsigned short)va_arg(flag.arg, int));
 	p = flag.precision - ft_strlen(arr);
 	p = (p < 0) ?  0 : p;
 	p = (p == 0 && flag.flag['#'] == 1) ? 1 : p;
@@ -46,4 +46,5 @@ void	print_hu(void *ui, t_flag flag, int *r)
 	*r += ft_strlen(arr);
 	(flag.flag['-'] == 1) ? print_width(w, r): 0;
 	(void)flag;
+	(void)ui;
 }

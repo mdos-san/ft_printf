@@ -62,16 +62,18 @@ void	print_ls(void *s, t_flag flag, int *r)
 {
 	int		*arr;
 	int		nb;
+	int		*st;
 
 	nb = 0;
-	if ((int*)s == NULL)
+	st = va_arg(flag.arg, int *);
+	if (st == NULL)
 	{
 		ft_putstr("(null)");
 		*r += 6;
 	}
 	else
 	{
-		arr = int_arr_dup(va_arg(flag.arg, int *), flag.precision);
+		arr = int_arr_dup(st, flag.precision);
 		nb = (flag.width > flag.precision) ? flag.width - int_arr_len(arr) : 0;
 		(flag.flag['-'] == 0 && !flag.flag['0']) ? print_width(nb, r) : 0;
 		(flag.flag['-'] == 0 && flag.flag['0']) ? print_width_z(nb, r) : 0;

@@ -100,11 +100,19 @@ t_ftpf	*ftpf_init(char *input)
 		new->z[i] = useless;
 		new->j[i] = useless;
 	}
+	new->hh['s'] = print_ls;
+	new->hh['S'] = print_ls;
+	new->hh['c'] = print_lc;
+	new->hh['C'] = print_lc;
 	new->hh['d'] = print_hhd;
+	new->hh['D'] = print_hu;
 	new->hh['i'] = print_hhd;
 	new->hh['o'] = print_hho;
+	new->hh['O'] = print_ho;
+	new->hh['x'] = print_hhx;
 	new->hh['X'] = print_hhx;
 	new->hh['u'] = print_hhu;
+	new->hh['U'] = print_hu;
 
 	new->h['d'] = print_hd;
 	new->h['D'] = print_hud;
@@ -141,6 +149,8 @@ t_ftpf	*ftpf_init(char *input)
 	new->l['X'] = print_lx;
 	new->l['u'] = print_lu;
 	new->l['U'] = print_lu;
+	new->l['p'] = print_p;
+	new->l['P'] = print_p;
 
 	new->fct['D'] = print_ld;
 	new->fct['I'] = print_ld;
