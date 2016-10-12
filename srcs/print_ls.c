@@ -5,17 +5,23 @@ static int	*int_arr_dup(int *arr, int pre)
 	int	i;
 	int	nbr;
 	int	bla;
+	int	to_go;
 	int	*ret;
 
 	i = 0;
 	nbr = 0;
+	to_go = 0;
 	while (arr[nbr])
 	{
+		++to_go;
+		to_go += (arr[nbr] > 127) ? 1 : 0;
+		to_go += (arr[nbr] > 2047) ? 1 : 0;
+		to_go += (arr[nbr] > 65535) ? 1 : 0;
 		++nbr;
 	}
 	ret = (int*)malloc(sizeof(int) * (nbr + 1));
 	ret[nbr] = 0;
-	pre = (pre <= 0) ? nbr : pre;
+	pre = (pre <= 0) ? to_go : pre;
 	bla = 0;
 	while (bla < pre)
 	{
