@@ -106,9 +106,13 @@ t_ftpf	*ftpf_init(char *input)
 	new->hh['u'] = print_hhu;
 
 	new->h['d'] = print_hd;
+	new->h['D'] = print_hud;
 	new->h['i'] = print_hd;
+	new->h['I'] = print_hd;
 	new->h['o'] = print_ho;
+	new->h['O'] = print_ho;
 	new->h['x'] = print_hx;
+	new->h['X'] = print_hx;
 	new->h['u'] = print_hu;
 	new->h['U'] = print_hu;
 

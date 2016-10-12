@@ -32,9 +32,11 @@ void	print_ho(void *o, t_flag flag, int *r)
 	int		w;
 	int		p;
 	int		i;
+	unsigned short us;
 
 	i = -1;
-	array = convert_octal(*(unsigned short*)o);
+	us = (unsigned short)va_arg(flag.arg, int);
+	array = convert_octal(us);
 	p = flag.precision - ft_strlen(array);
 	p = (p < 0) ?  0 : p;
 	p = (p == 0 && flag.flag['#'] == 1 && ft_strcmp("0", array) != 0) ? 1 : p;
@@ -53,5 +55,6 @@ void	print_ho(void *o, t_flag flag, int *r)
 	(flag.flag['-'] == 1) ? print_width(w, r): 0;
 	ft_strdel(&array);
 	(void)flag;
+	(void)o;
 	(void)print_width;
 }

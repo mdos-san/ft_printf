@@ -47,7 +47,6 @@ void	print_lc(void *c, t_flag flag, int *ret);
 void	print_s(void *s, t_flag flag, int *ret);
 void	print_ls(void *s, t_flag flag, int *ret);
 void	print_hhd(void *arg, t_flag flag, int *ret);
-void	print_hd(void *arg, t_flag flag, int *ret);
 void	print_d(void *i, t_flag flag, int *ret);
 
 void	print_zi(void *i, t_flag flag, int *ret);
@@ -59,10 +58,13 @@ void	print_zd(void *i, t_flag flag, int *ret);
 void	print_jd(void *i, t_flag flag, int *ret);
 void	print_jo(void *i, t_flag flag, int *ret);
 
+void	print_hd(void *arg, t_flag flag, int *ret);
+void	print_hud(void *arg, t_flag flag, int *ret);
+void	print_ho(void *o, t_flag flag, int *ret);
+
 void	print_ld(void *arg, t_flag flag, int *ret);
 void	print_p(void *p, t_flag flag, int *ret);
 void	print_hho(void *o, t_flag flag, int *ret);
-void	print_ho(void *o, t_flag flag, int *ret);
 void	print_o(void *o, t_flag flag, int *ret);
 void	print_lo(void *o, t_flag flag, int *ret);
 void	print_hhx(void *arg, t_flag flag, int *ret);

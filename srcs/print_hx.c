@@ -32,9 +32,11 @@ void	print_hx(void *arg, t_flag flag, int *r)
 	int		w;
 	int		p;
 	int		i;
+	unsigned short us;
 
 	i = -1;
-	arr = convert_hexa(*(unsigned short*)arg, flag.uppercase);
+	us = (unsigned short)va_arg(flag.arg, int);
+	arr = convert_hexa(us, flag.uppercase);
 	p = flag.precision - ft_strlen(arr);
 	p = (p < 0) ? 0 : p;
 	w = flag.width - ft_strlen(arr) - p;
@@ -42,8 +44,8 @@ void	print_hx(void *arg, t_flag flag, int *r)
 	w = (w < 0) ? 0 : w;
 	w = (flag.p_given && flag.precision == 0) ? flag.width : w;
 	(flag.flag['-'] == 0 && flag.flag['0'] == 0) ? print_width(w, r) : 0;
-	(flag.flag['#'] && !flag.uppercase && *(unsigned short*)arg > 0 && (*r += 2)) ? ft_putstr("0x") : 0;
-	(flag.flag['#'] && flag.uppercase && *(unsigned short*)arg > 0 && (*r += 2)) ? ft_putstr("0X") : 0;
+	(flag.flag['#'] && !flag.uppercase && us > 0 && (*r += 2)) ? ft_putstr("0x") : 0;
+	(flag.flag['#'] && flag.uppercase && us > 0 && (*r += 2)) ? ft_putstr("0X") : 0;
 	(flag.flag['-'] == 0 && flag.flag['0'] == 1) ? print_width_z(w, r) : 0;
 	while (++i < p)
 	{
@@ -54,4 +56,5 @@ void	print_hx(void *arg, t_flag flag, int *r)
 	*r += (flag.p_given && flag.precision == 0) ? 0 : ft_strlen(arr);
 	(flag.flag['-'] == 1) ? print_width(w, r): 0;
 	ft_strdel(&arr);
+	(void)arg;
 }

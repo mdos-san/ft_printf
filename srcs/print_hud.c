@@ -1,6 +1,6 @@
 #include "libftprintf.h"
 
-static	char *ft_ltoa(short l)
+static	char *ft_ltoa(unsigned short l)
 {
 	char	buf[21];
 	int		i;
@@ -24,17 +24,17 @@ static	char *ft_ltoa(short l)
 	return (ft_strdup(buf + 19 - i));
 }
 
-void	print_hd(void *arg, t_flag flag, int *r)
+void	print_hud(void *arg, t_flag flag, int *r)
 {
 	char	*arr;
 	int		i;
 	int		nb;
 	int		negative;
-	short	bla;
+	unsigned short	bla;
 
 	i = 0;
 	nb = 0;
-	bla = (short)va_arg(flag.arg, int);
+	bla = (unsigned short)va_arg(flag.arg, int);
 	arr = ft_ltoa(bla);
 	if (flag.width > flag.precision)
 	{
