@@ -27,10 +27,12 @@ void	print_hhu(void *arg, t_flag flag, int *r)
 	int		i;
 	int		nb;
 	int		negative;
+	unsigned char uc;
 
 	i = 0;
 	nb = 0;
-	arr = ft_ltoa((unsigned char)va_arg(flag.arg, int));
+	uc = (unsigned char)va_arg(flag.arg, int);
+	arr = ft_ltoa(uc);
 	if (flag.width > flag.precision)
 	{
 		nb = (flag.precision > (int)ft_strlen(arr))
@@ -38,8 +40,8 @@ void	print_hhu(void *arg, t_flag flag, int *r)
 			: (int)(flag.width - ft_strlen(arr));
 		(flag.precision > (int)ft_strlen(arr)) ? --nb : 0;
 	}
-	(flag.flag[' '] && !flag.flag['+'] && !flag.flag['-'] && *(unsigned char*)arg > 0 && !flag.width && !flag.precision && ++*r) ? ft_putchar(' ') : 0;
-	(flag.flag['+'] == 1 && *(unsigned char*)arg > 0) ? --nb : 0;
+	(flag.flag[' '] && !flag.flag['+'] && !flag.flag['-'] && uc > 0 && !flag.width && !flag.precision && ++*r) ? ft_putchar(' ') : 0;
+	(flag.flag['+'] == 1 && uc > 0) ? --nb : 0;
 	(flag.flag['-'] == 0 && (!flag.flag['0'] || flag.precision)) ? print_width(nb, r) : 0;
 	(flag.flag['+'] == 1 && ++*r) ? ft_putchar('+') : 0;
 	if (flag.precision > (int)ft_strlen(arr))
