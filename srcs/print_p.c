@@ -27,15 +27,29 @@ static char	*convert(unsigned long int n)
 void	print_p(void *p, t_flag flag, int *r)
 {
 	char	*arr;
+	int		pre;
+	int		i;
 
+	i = 0;
 	arr = convert(*(unsigned long int*)p);
+	pre = flag.precision - ft_strlen(arr);
+	pre = (pre < 0) ? 0 : pre;
 	flag.width = flag.width - ft_strlen(arr) - 2;
 	(!flag.flag['0'] && !flag.flag['-']) ? print_width(flag.width ,r) : 0;
 	ft_putstr("0x");
 	*r += 2;
 	(flag.flag['0'] && !flag.flag['-']) ? print_width_z(flag.width ,r) : 0;
-	ft_putstr(arr);
-	*r += ft_strlen(arr);
+	while (i < pre)
+	{
+		ft_putchar('0');
+		++*r;	
+		++i;
+	}
+	if (!(flag.p_given && flag.precision == 0))
+	{
+		ft_putstr(arr);
+		*r += ft_strlen(arr);
+	}
 	(!flag.flag['0'] && flag.flag['-']) ? print_width(flag.width ,r) : 0;
 	ft_strdel(&arr);
 }
