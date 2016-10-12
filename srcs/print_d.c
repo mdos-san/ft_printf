@@ -42,7 +42,14 @@ void	print_d(void *arg, t_flag flag, int *r)
 		nb += (flag.p_given && !flag.precision && !*(int*)arg) ? ft_strlen(arr) : 0;
 	}
 	(flag.flag[' '] && !flag.flag['+'] && !flag.flag['-'] && *(int*)arg > 0 && !flag.width && !flag.precision && ++*r) ? ft_putchar(' ') : 0;
-	(flag.flag['+'] == 1 && *(int*)arg > 0) ? --nb : 0;
+	if (flag.flag[' '] && *(int*)arg == 0)
+	{
+		ft_putchar(' ');
+		++*r;
+		--nb;
+	}
+			
+	(flag.flag['+'] == 1) ? --nb : 0;
 	(flag.flag['-'] == 0 && (!flag.flag['0'] || flag.precision) && flag.width - negative > flag.precision) ? print_width(nb, r) : 0;
 	(flag.flag['+'] == 1 && *(int*)arg >= 0 && ++*r) ? ft_putchar('+') : 0;
 	if (flag.precision >= (int)ft_strlen(arr))

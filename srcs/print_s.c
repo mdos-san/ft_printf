@@ -13,7 +13,7 @@ void	print_s(void *s, t_flag flag, int *r)
 	}
 	else
 	{
-		str = ft_strdup((char*)s);
+		str = ft_strdup(va_arg(flag.arg, char *));
 		nb = 0;
 		if (flag.precision > 0)
 		{
@@ -36,4 +36,5 @@ void	print_s(void *s, t_flag flag, int *r)
 		(flag.flag['-'] == 1) ? print_width(nb, r) : 0;
 		ft_strdel(&str);
 	}
+	(void)s;
 }

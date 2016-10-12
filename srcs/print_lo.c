@@ -3,12 +3,12 @@
 static char *convert_octal(unsigned long n)
 {
 	int	i;
-	int mod;
+	unsigned int mod;
 	char buf[65];
 
 	i = 0;
 	ft_bzero(buf, 65);
-	if (!n)
+	if (n == 0)
 		return (ft_strdup("0"));
 	while (n != 0)
 	{
@@ -28,26 +28,29 @@ static char *convert_octal(unsigned long n)
 
 void	print_lo(void *o, t_flag flag, int *r)
 {
-	char			*array;
+	char	*array;
 	int		w;
 	int		p;
-	int	i;
+	int		i;
 
 	i = -1;
-	array = convert_octal(*(unsigned long*)o);
+	array = convert_octal(va_arg(flag.arg, unsigned long));
 	p = flag.precision - ft_strlen(array);
 	p = (p < 0) ?  0 : p;
-	p = (p == 0 && flag.flag['#'] == 1) ? 1 : p;
+	p = (p == 0 && flag.flag['#'] == 1 && ft_strcmp("0", array) != 0) ? 1 : p;
 	w = flag.width - ft_strlen(array) - p;
 	w = (w < 0) ? 0 : w;
-	(flag.flag['-'] == 0) ? print_width(w, r): 0;
+	w = (flag.p_given && flag.precision == 0) ? flag.width : w;
+	(!flag.flag['-'] && !flag.flag['0']) ? print_width(w, r): 0;
+	(!flag.flag['-'] && flag.flag['0']) ? print_width_z(w, r): 0;
 	while (++i < p)
 	{
 		ft_putchar('0');
 		++*r;
 	}
-	ft_putstr(array);
-	*r += ft_strlen(array);
+	(flag.p_given && flag.precision == 0 && flag.flag['#'] == 0) ? 0 : ft_putstr(array);
+	*r += (flag.p_given && flag.precision == 0 && flag.flag['#'] == 0) ? 0 : ft_strlen(array);
 	(flag.flag['-'] == 1) ? print_width(w, r): 0;
 	ft_strdel(&array);
+	(void)o;
 }

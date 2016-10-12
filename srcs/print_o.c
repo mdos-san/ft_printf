@@ -34,7 +34,7 @@ void	print_o(void *o, t_flag flag, int *r)
 	int		i;
 
 	i = -1;
-	array = convert_octal(*(unsigned int*)o);
+	array = convert_octal(va_arg(flag.arg, unsigned int));
 	p = flag.precision - ft_strlen(array);
 	p = (p < 0) ?  0 : p;
 	p = (p == 0 && flag.flag['#'] == 1 && ft_strcmp("0", array) != 0) ? 1 : p;
@@ -52,4 +52,5 @@ void	print_o(void *o, t_flag flag, int *r)
 	*r += (flag.p_given && flag.precision == 0 && flag.flag['#'] == 0) ? 0 : ft_strlen(array);
 	(flag.flag['-'] == 1) ? print_width(w, r): 0;
 	ft_strdel(&array);
+	(void)o;
 }

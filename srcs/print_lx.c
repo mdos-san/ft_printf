@@ -1,22 +1,19 @@
 #include "libftprintf.h"
 
-static char	*convert_hexa(long n, char up)
+static char	*convert_hexa(unsigned long n, char up)
 {
 	int	i;
-	int mod;
+	unsigned long mod;
 	char buf[65];
 
 	i = 0;
 	ft_bzero(buf, 65);
 	if (n == 0)
-	{
-		buf[0] = '0';
-		return (ft_strdup(buf));
-	}
+		return (ft_strdup("0"));
 	while (n != 0)
 	{
 		mod = n % 16;
-		if (-9 <= mod && mod <= 9 )
+		if (mod <= 9 )
 		{
 			buf[63 - i] = mod + 48;
 		}
@@ -39,7 +36,7 @@ void	print_lx(void *arg, t_flag flag, int *r)
 	int		i;
 
 	i = -1;
-	arr = convert_hexa(*(long*)arg, flag.uppercase);
+	arr = convert_hexa(va_arg(flag.arg, unsigned long), flag.uppercase);
 	p = flag.precision - ft_strlen(arr);
 	p = (p < 0) ? 0 : p;
 	w = flag.width - ft_strlen(arr) - p;
@@ -57,4 +54,5 @@ void	print_lx(void *arg, t_flag flag, int *r)
 	(flag.flag['-'] == 1) ? print_width(w, r): 0;
 	ft_strdel(&arr);
 	(void)flag;
+	(void)arg;
 }
