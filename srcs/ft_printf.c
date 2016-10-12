@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 12:59:08 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/12 18:37:04 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/12 18:47:23 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ int	ft_printf(char *str, ...)
 				ret = get_arg(cp, ftpf->c);
 				(*ftpf->fct[(int)ftpf->c])(ret, ftpf->flag, &ftpf->r);
 			}
-				va_arg(ap, void*);
+			va_arg(ap, void*);
 			i += ft_strlen(ftpf->params[nb]) - 1;
 			++nb;
 		}

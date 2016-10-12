@@ -50,7 +50,8 @@ static void init_params(char *s, char ***arr)
 			++i2;
 			while (!is_flag(s[i2]) && s[i2 + 1] != '\0')
 				++i2;
-			tmp = s[++i2];
+			i2++;
+			tmp = s[i2];
 			s[i2] = '\0';
 			str_array_add(arr, s + i1);
 			s[i2] = tmp;
