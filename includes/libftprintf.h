@@ -24,6 +24,7 @@ typedef struct	s_ftpf
 	int			nbr_param;
 	char		**params;
 	void		(*fct[256])(void *arg, t_flag flag, int *ret);
+	void		(*l[256])(void *arg, t_flag flag, int *ret);
 	void		(*h[256])(void *arg, t_flag flag, int *ret);
 	void		(*hh[256])(void *arg, t_flag flag, int *ret);
 	void		(*j[256])(void *arg, t_flag flag, int *ret);

@@ -26,9 +26,11 @@ void	print_lu(void *ui, t_flag flag, int *r)
 	int		w;
 	int		p;
 	int		i;
+	unsigned long ul;
 
 	i = -1;
-	arr = convert_ui(*(unsigned long*)ui);
+	ul = va_arg(flag.arg, unsigned long);
+	arr = convert_ui(ul);
 	p = flag.precision - ft_strlen(arr);
 	p = (p < 0) ?  0 : p;
 	p = (p == 0 && flag.flag['#'] == 1) ? 1 : p;
@@ -46,4 +48,5 @@ void	print_lu(void *ui, t_flag flag, int *r)
 	*r += ft_strlen(arr);
 	(flag.flag['-'] == 1) ? print_width(w, r): 0;
 	(void)flag;
+	(void)ui;
 }

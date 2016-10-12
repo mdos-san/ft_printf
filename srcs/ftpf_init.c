@@ -96,6 +96,7 @@ t_ftpf	*ftpf_init(char *input)
 		new->hh[i] = useless;
 		new->h[i] = useless;
 		new->fct[i] = useless;
+		new->l[i] = useless;
 		new->z[i] = useless;
 		new->j[i] = useless;
 	}
@@ -126,24 +127,37 @@ t_ftpf	*ftpf_init(char *input)
 	new->j['o'] = print_jo;
 	new->j['O'] = print_jo;
 
+	new->l['d'] = print_ld;
+	new->l['D'] = print_ld;
+	new->l['i'] = print_ld;
+	new->l['I'] = print_ld;
+	new->l['c'] = print_lc;
+	new->l['C'] = print_lc;
+	new->l['s'] = print_ls;
+	new->l['S'] = print_ls;
+	new->l['o'] = print_lo;
+	new->l['O'] = print_lo;
+	new->l['x'] = print_lx;
+	new->l['X'] = print_lx;
+	new->l['u'] = print_lu;
+	new->l['U'] = print_lu;
+
 	new->fct['D'] = print_ld;
-	new->fct['c'] = print_c;
+	new->fct['I'] = print_ld;
 	new->fct['C'] = print_lc;
-	new->fct['s'] = print_s;
 	new->fct['S'] = print_ls;
+	new->fct['O'] = print_lo;
+	new->fct['U'] = print_lu;
+	new->fct['c'] = print_c;
+	new->fct['s'] = print_s;
 	new->fct['d'] = print_d;
 	new->fct['i'] = print_d;
-	new->fct['I'] = print_ld;
 	new->fct['o'] = print_o;
-	new->fct['O'] = print_lo;
 	new->fct['p'] = print_p;
 	new->fct['P'] = print_p;
 	new->fct['x'] = print_x;
 	new->fct['X'] = print_x;
-	new->fct['Y'] = print_lx;
 	new->fct['u'] = print_u;
-	new->fct['U'] = print_lu;
-	new->fct['%'] = print_percent;
 
 	new->z['d'] = print_zi;
 	new->z['D'] = print_zi;
@@ -154,5 +168,8 @@ t_ftpf	*ftpf_init(char *input)
 	new->z['O'] = print_zo;
 	new->z['x'] = print_zx;
 	new->z['X'] = print_zx;
+
+	new->fct['%'] = print_percent;
+
 	return (new);
 }

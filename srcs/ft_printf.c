@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 12:59:08 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/12 13:56:44 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/12 17:46:08 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,13 +112,10 @@ int	ft_printf(char *str, ...)
 			va_copy(ftpf->flag.arg, ap);
 			ftpf->c = ft_str_last_char(ftpf->params[nb]);	
 			ftpf->flag.uppercase = (ftpf->c == 'X') ? 1 : 0;
-			(ft_strstr(ftpf->params[nb], "l") && (ftpf->c == 'x' || ftpf->c == 'X'))
-				? (ftpf->c = 'y') : 0; 
-			(ft_strstr(ftpf->params[nb], "l")) ? (ftpf->c -= 32) : 0; 
 			ftpf->tmp = ft_strchr(ftpf->params[nb], '.');
 			ftpf->flag.p_given = (ft_strchr(ftpf->params[nb], '.')) ? 1 : 0;
 			ftpf->flag.precision = 0;
-			ftpf->flag.width = get_width(ftpf->input);
+			ftpf->flag.width = get_width(ftpf->params[nb]);
 			get_flag(ftpf, ftpf->params[nb]);
 			(ftpf->tmp) ? ftpf->flag.precision = ft_atoi(ftpf->tmp + 1) : 0;
 			if (ft_strstr(ftpf->params[nb], "hh"))
@@ -130,6 +127,11 @@ int	ft_printf(char *str, ...)
 			{
 				ret = get_arg(cp, 'h' + ftpf->c);
 				(*ftpf->h[(int)ftpf->c])(ret, ftpf->flag, &ftpf->r);
+			}
+			else if (ft_strstr(ftpf->params[nb], "l"))
+			{
+				ret = get_arg(cp, 'l' + ftpf->c);
+				(*ftpf->l[(int)ftpf->c])(ret, ftpf->flag, &ftpf->r);
 			}
 			else if (ft_strstr(ftpf->params[nb], "j"))
 			{	

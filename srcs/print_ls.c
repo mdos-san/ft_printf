@@ -71,7 +71,7 @@ void	print_ls(void *s, t_flag flag, int *r)
 	}
 	else
 	{
-		arr = int_arr_dup((int*)s, flag.precision);
+		arr = int_arr_dup(va_arg(flag.arg, int *), flag.precision);
 		nb = (flag.width > flag.precision) ? flag.width - int_arr_len(arr) : 0;
 		(flag.flag['-'] == 0 && !flag.flag['0']) ? print_width(nb, r) : 0;
 		(flag.flag['-'] == 0 && flag.flag['0']) ? print_width_z(nb, r) : 0;
@@ -86,4 +86,5 @@ void	print_ls(void *s, t_flag flag, int *r)
 		}
 		(arr) ? free(arr) : 0;
 	}
+	(void)s;
 }

@@ -11,6 +11,6 @@ void	print_lc(void *c, t_flag flag, int *r)
 	(*(int*)c > 2047) ? --nb : 0;
 	(*(int*)c > 65535) ? --nb : 0;
 	(flag.flag['-'] == 0) ? print_width(nb, r) : 0;
-	*r += ft_putwchar(*(int*)c);
+	*r += ft_putwchar(va_arg(flag.arg, int));
 	(flag.flag['-'] == 1) ? print_width(nb, r) : 0;
 }
