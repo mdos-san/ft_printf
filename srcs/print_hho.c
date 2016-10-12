@@ -28,7 +28,6 @@ void	print_hho(void *o, t_flag flag, int *r)
 	int		i;
 
 	i = -1;
-	(void)o;
 	array = convert_octal((unsigned char)va_arg(flag.arg, int));
 	p = flag.precision - ft_strlen(array);
 	p = (p < 0) ?  0 : p;
@@ -47,6 +46,7 @@ void	print_hho(void *o, t_flag flag, int *r)
 	*r += (flag.p_given && flag.precision == 0) ? 0 : ft_strlen(array);
 	(flag.flag['-'] == 1) ? print_width(w, r): 0;
 	ft_strdel(&array);
+	(void)o;
 	(void)flag;
 	(void)print_width;
 }

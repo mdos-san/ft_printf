@@ -30,7 +30,7 @@ void	print_hhu(void *arg, t_flag flag, int *r)
 
 	i = 0;
 	nb = 0;
-	arr = ft_ltoa(*(unsigned char*)arg);
+	arr = ft_ltoa((unsigned char)va_arg(flag.arg, int));
 	if (flag.width > flag.precision)
 	{
 		nb = (flag.precision > (int)ft_strlen(arr))
@@ -65,4 +65,5 @@ void	print_hhu(void *arg, t_flag flag, int *r)
 		*r += ft_strlen(arr + negative);
 	}
 	(flag.flag['-'] == 1) ? print_width(nb, r) : 0;
+	(void)arg;
 }
