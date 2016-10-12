@@ -4,7 +4,7 @@ static	char *ft_ltoa(unsigned char l)
 {
 	char	buf[21];
 	int		i;
-	char	mod;
+	unsigned char	mod;
 	
 	i = 0;
 	ft_bzero(buf, 21);
