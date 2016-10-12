@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 12:59:08 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/12 12:33:22 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/12 13:32:41 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,31 +23,36 @@ static void *get_arg(va_list cp, unsigned char c)
 	(c == 'S') ? (i = (void*)va_arg(cp, int	*)) : 0;
 	(c == 'd' || c == 'i') ? (*(int*)i = va_arg(cp, int)) : 0;
 	(c == 'D' || c == 'I') ? (*(long*)i = va_arg(cp, long)) : 0;
-	(c == 'd' + 'j') ? (*(intmax_t*)i = va_arg(cp, intmax_t)) : 0;
 	(c == 'o') ? (*(unsigned int*)i = va_arg(cp, unsigned int)) : 0;
 	(c == 'O') ? (*(unsigned long*)i = va_arg(cp, unsigned long)) : 0;
-	(c == 'h' + 'o' || c == 'h' + 'O') ? (*(unsigned short*)i = va_arg(cp, int)) : 0;
-	(c == 'H' + 'o' || c == 'H' + 'O') ? (*(unsigned char*)i = va_arg(cp, int)) : 0;
 	(c == 'x' || c == 'X') ? (*(unsigned int*)i = va_arg(cp, unsigned int)) : 0;
-	(c == 'x' + 'j') ? (*(uintmax_t*)i = va_arg(cp, uintmax_t)) : 0;
 	(c == 'u') ? (*(unsigned int*)i = va_arg(cp, unsigned int)) : 0;
 	(c == 'U') ? (*(unsigned long*)i = va_arg(cp, unsigned long)) : 0;
-	(c == 'u' + 'j') ? (*(uintmax_t*)i = va_arg(cp, uintmax_t)) : 0;
 	(c == 'Y') ? (*(unsigned long*)i = va_arg(cp, unsigned long)) : 0;
 	(c == 'P') ? (*(unsigned long int*)i = va_arg(cp, unsigned long int)) : 0;
 	(c == 'p') ? (*(unsigned long int*)i = va_arg(cp, unsigned long int)) : 0;
+
+	(c == 'd' + 'j') ? (*(intmax_t*)i = va_arg(cp, intmax_t)) : 0;
+	(c == 'x' + 'j') ? (*(uintmax_t*)i = va_arg(cp, uintmax_t)) : 0;
+	(c == 'u' + 'j') ? (*(uintmax_t*)i = va_arg(cp, uintmax_t)) : 0;
+
+	(c == 'H' + 'd') ? (*(char*)i = (char)va_arg(cp, int)) : 0;
+	(c == 'H' + 'i') ? (*(char*)i = (char)va_arg(cp, int)) : 0;
+	(c == 'H' + 'x') ? (*(unsigned char*)i = (unsigned char)va_arg(cp, int)) : 0;
+	(c == 'H' + 'u' || c == 'H' + 'U') ? (*(unsigned char*)i = va_arg(cp, int)) : 0;
+	(c == 'H' + 'o' || c == 'H' + 'O') ? (*(unsigned char*)i = va_arg(cp, int)) : 0;
+
 	(c == 'h' + 'd') ? (*(short*)i = (short)va_arg(cp, int)) : 0;
 	(c == 'h' + 'x') ? (*(unsigned short*)i = (unsigned short)va_arg(cp, int)) : 0;
-	(c == 'H' + 'd') ? (*(char*)i = (char)va_arg(cp, int)) : 0;
-	(c == 'H' + 'x') ? (*(unsigned char*)i = (unsigned char)va_arg(cp, int)) : 0;
-	(c == 'd' + 'z') ? (*(size_t*)i = va_arg(cp, size_t)) : 0;
-	(c == 'i' + 'z') ? (*(size_t*)i = va_arg(cp, size_t)) : 0;
+	(c == 'h' + 'u' || c == 'h' + 'U') ? (*(unsigned long*)i = va_arg(cp, unsigned long)) : 0;
+	(c == 'h' + 'o' || c == 'h' + 'O') ? (*(unsigned short*)i = va_arg(cp, int)) : 0;
+
+	(c == 'd' + 'z') ? (*(long long*)i = va_arg(cp, long long)) : 0;
+	(c == 'i' + 'z') ? (*(long long*)i = va_arg(cp, long long)) : 0;
 	(c == 'u' + 'z') ? (*(unsigned long long*)i = va_arg(cp, unsigned long long)) : 0;
 	(c == 'o' + 'z') ? (*(unsigned long long*)i = va_arg(cp, unsigned long long)) : 0;
 	(c == 'x' + 'z') ? (*(unsigned long long*)i = va_arg(cp, unsigned long long)) : 0;
 	(c == 'X' + 'z') ? (*(unsigned long long*)i = va_arg(cp, unsigned long long)) : 0;
-	(c == 'h' + 'u' || c == 'h' + 'U') ? (*(unsigned long*)i = va_arg(cp, unsigned long)) : 0;
-	(c == 'H' + 'u' || c == 'H' + 'U') ? (*(unsigned char*)i = va_arg(cp, int)) : 0;
 	return (i);
 }
 
@@ -106,6 +111,7 @@ int	ft_printf(char *str, ...)
 		if (str[i] == '%')
 		{
 			va_copy(cp, ap);
+			va_copy(ftpf->flag.arg, ap);
 			ftpf->c = ft_str_last_char(ftpf->params[nb]);	
 			ftpf->flag.uppercase = (ftpf->c == 'X') ? 1 : 0;
 			(ft_strstr(ftpf->params[nb], "l") && (ftpf->c == 'x' || ftpf->c == 'X'))

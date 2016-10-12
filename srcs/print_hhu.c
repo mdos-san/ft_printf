@@ -17,6 +17,7 @@ static	char *ft_ltoa(unsigned char l)
 		l /= 10;
 		++i;
 	}
+	--i;
 	return (ft_strdup(buf + 19 - i));
 }
 

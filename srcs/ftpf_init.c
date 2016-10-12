@@ -99,38 +99,44 @@ t_ftpf	*ftpf_init(char *input)
 		new->z[i] = useless;
 		new->j[i] = useless;
 	}
+	new->hh['d'] = print_hhd;
+	new->hh['i'] = print_hhd;
+	new->hh['o'] = print_hho;
+	new->hh['X'] = print_hhx;
+	new->hh['u'] = print_hhu;
+
+	new->h['d'] = print_hd;
+	new->h['i'] = print_hd;
+	new->h['o'] = print_ho;
+	new->h['x'] = print_hx;
+	new->h['u'] = print_hu;
+	new->h['U'] = print_hu;
+
+	new->j['d'] = print_jd;
+	new->j['i'] = print_jd;
+	new->j['x'] = print_jx;
+	new->j['u'] = print_ju;
+
+	new->fct['D'] = print_ld;
 	new->fct['c'] = print_c;
 	new->fct['C'] = print_lc;
 	new->fct['s'] = print_s;
 	new->fct['S'] = print_ls;
 	new->fct['d'] = print_d;
-	new->fct['D'] = print_ld;
-	new->j['d'] = print_jd;
-	new->h['d'] = print_hd;
-	new->hh['d'] = print_hhd;
 	new->fct['i'] = print_d;
 	new->fct['I'] = print_ld;
-	new->h['o'] = print_ho;
-	new->hh['o'] = print_hho;
 	new->fct['o'] = print_o;
 	new->fct['O'] = print_lo;
 	new->fct['p'] = print_p;
 	new->fct['P'] = print_p;
-	new->hh['X'] = print_hhx;
-	new->h['x'] = print_hx;
 	new->fct['x'] = print_x;
 	new->fct['X'] = print_x;
-	new->j['x'] = print_jx;
 	new->fct['Y'] = print_lx;
-	new->h['u'] = print_hu;
-	new->h['U'] = print_hu;
 	new->fct['u'] = print_u;
-	new->j['u'] = print_ju;
-	new->hh['u'] = print_hhu;
 	new->fct['U'] = print_lu;
 	new->fct['%'] = print_percent;
 
-	new->z['d'] = print_lu;
+	new->z['d'] = print_zi;
 	new->z['i'] = print_zi;
 	new->z['u'] = print_zu;
 	new->z['o'] = print_zo;

@@ -13,13 +13,7 @@ static char *convert_octal(unsigned char n)
 	while (n != 0)
 	{
 		mod = n % 8;
-		if (mod <= 9)
-			buf[63 - i] = mod + 48;
-		else
-		{
-			mod -= 10;
-			buf[63 - i] = mod + 97;
-		}
+		buf[63 - i] = mod + 48;
 		n /= 8;
 		++i;
 	}
@@ -34,7 +28,8 @@ void	print_hho(void *o, t_flag flag, int *r)
 	int		i;
 
 	i = -1;
-	array = convert_octal(*(unsigned char*)o);
+	(void)o;
+	array = convert_octal((unsigned char)va_arg(flag.arg, int));
 	p = flag.precision - ft_strlen(array);
 	p = (p < 0) ?  0 : p;
 	p = (p == 0 && flag.flag['#'] == 1 && ft_strcmp("0", array) != 0) ? 1 : p;

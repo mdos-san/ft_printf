@@ -15,6 +15,7 @@ typedef struct	s_flag
 	char		*mod;
 	char		uppercase;
 	char		p_given;
+	va_list		arg;	
 }				t_flag;
 
 typedef struct	s_ftpf
