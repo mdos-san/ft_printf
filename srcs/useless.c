@@ -6,17 +6,37 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:50:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/13 12:50:33 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/13 14:33:57 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
+static int	find_alpha(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (ft_isalpha(s[i]))
+			break ;
+		++i;
+	}
+	return (i);
+}
+
 void	useless(void *param, t_flag flag, int *r)
 {
-	ft_putstr(flag.param + 1);
-	*r += ft_strlen(flag.param + 1);
+	int	start;
+	int	nb;
+
+	start = find_alpha(flag.param);
+	nb = flag.width - ft_strlen(flag.param + start + 1);
+	(flag.flag['-'] == 0 && !flag.flag['0']) ? print_width(nb, r) : 0;
+	(flag.flag['0']) ? print_width_z(nb, r) : 0;
+	ft_putstr(flag.param + start);
+	*r += ft_strlen(flag.param + start);
+	(flag.flag['-'] == 1 && !flag.flag['0']) ? print_width(nb, r) : 0;
 	(void)param;
-	(void)flag.precision;
-	(void)r;
 }
