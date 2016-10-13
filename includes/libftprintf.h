@@ -16,6 +16,7 @@ typedef struct	s_flag
 	char		uppercase;
 	char		p_given;
 	va_list		arg;	
+	char		*param;
 }				t_flag;
 
 typedef struct	s_ftpf
@@ -42,13 +43,8 @@ int		ft_putwchar(int c);
 int		ft_putwstr(int *wstr);
 void	ft_putptn(unsigned long int pnt);
 char	ft_str_last_char(char *s);
+
 void	useless(void *param, t_flag flag, int *ret);
-void	print_c(void *c, t_flag flag, int *ret);
-void	print_lc(void *c, t_flag flag, int *ret);
-void	print_s(void *s, t_flag flag, int *ret);
-void	print_ls(void *s, t_flag flag, int *ret);
-void	print_hhd(void *arg, t_flag flag, int *ret);
-void	print_d(void *i, t_flag flag, int *ret);
 
 void	print_zi(void *i, t_flag flag, int *ret);
 void	print_zo(void *i, t_flag flag, int *ret);
@@ -58,29 +54,38 @@ void	print_zd(void *i, t_flag flag, int *ret);
 
 void	print_jd(void *i, t_flag flag, int *ret);
 void	print_jo(void *i, t_flag flag, int *ret);
+void	print_ju(void *ui, t_flag flag, int *r);
+void	print_jx(void *arg, t_flag flag, int *ret);
 
 void	print_hd(void *arg, t_flag flag, int *ret);
 void	print_hud(void *arg, t_flag flag, int *ret);
 void	print_ho(void *o, t_flag flag, int *ret);
-
-void	print_ld(void *arg, t_flag flag, int *ret);
-void	print_p(void *p, t_flag flag, int *ret);
-void	print_hho(void *o, t_flag flag, int *ret);
-void	print_o(void *o, t_flag flag, int *ret);
-void	print_lo(void *o, t_flag flag, int *ret);
-void	print_hhx(void *arg, t_flag flag, int *ret);
 void	print_hx(void *arg, t_flag flag, int *ret);
-void	print_x(void *arg, t_flag flag, int *ret);
-void	print_lx(void *arg, t_flag flag, int *ret);
-void	print_jx(void *arg, t_flag flag, int *ret);
 void	print_hu(void *ui, t_flag flag, int *r);
-void	print_u(void *ui, t_flag flag, int *r);
+
+void	print_hhx(void *arg, t_flag flag, int *ret);
 void	print_hhu(void *ui, t_flag flag, int *r);
+void	print_hhd(void *arg, t_flag flag, int *ret);
+void	print_hho(void *o, t_flag flag, int *ret);
+
+void	print_lc(void *c, t_flag flag, int *ret);
+void	print_ls(void *s, t_flag flag, int *ret);
+void	print_ld(void *arg, t_flag flag, int *ret);
+void	print_lo(void *o, t_flag flag, int *ret);
+void	print_lx(void *arg, t_flag flag, int *ret);
 void	print_lu(void *ui, t_flag flag, int *r);
-void	print_ju(void *ui, t_flag flag, int *r);
+
+void	print_c(void *c, t_flag flag, int *ret);
+void	print_s(void *s, t_flag flag, int *ret);
+void	print_d(void *i, t_flag flag, int *ret);
+void	print_p(void *p, t_flag flag, int *ret);
+void	print_o(void *o, t_flag flag, int *ret);
+void	print_x(void *arg, t_flag flag, int *ret);
+void	print_u(void *ui, t_flag flag, int *r);
+
 void	print_percent(void *arg, t_flag flag, int *ret);
+
 void	print_width(int nbr, int *ret);
 void	print_width_z(int nb, int *r);
-
 
 #endif

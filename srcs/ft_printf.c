@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 12:59:08 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/13 10:48:21 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/13 11:24:14 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ int	ft_printf(char *str, ...)
 			ftpf->flag.p_given = (ft_strchr(ftpf->params[nb], '.')) ? 1 : 0;
 			ftpf->flag.precision = 0;
 			ftpf->flag.width = get_width(ftpf->params[nb]);
+			ftpf->flag.param = ftpf->params[nb];
 			get_flag(ftpf, ftpf->params[nb]);
 			(ftpf->tmp) ? ftpf->flag.precision = ft_atoi(ftpf->tmp + 1) : 0;
 			if (ft_strstr(ftpf->params[nb], "hh"))
@@ -145,7 +146,6 @@ int	ft_printf(char *str, ...)
 			}
 			else if (ft_strcmp(ftpf->params[nb], "%") == 0)
 			{
-				ftpf->r = -1;
 			}
 			else
 			{

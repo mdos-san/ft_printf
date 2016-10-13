@@ -20,7 +20,7 @@ static int	*int_arr_dup(int *arr, int pre)
 		++nbr;
 	}
 	ret = (int*)malloc(sizeof(int) * (nbr + 1));
-	ret[nbr] = 0;
+	ft_bzero(ret, sizeof(int) * (nbr + 1));
 	pre = (pre <= 0) ? to_go : pre;
 	bla = 0;
 	while (bla < pre)
