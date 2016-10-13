@@ -6,7 +6,7 @@
 #    By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 12:59:09 by mdos-san          #+#    #+#              #
-#    Updated: 2016/10/13 13:06:42 by mdos-san         ###   ########.fr        #
+#    Updated: 2016/10/13 13:22:02 by mdos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -119,10 +119,12 @@ clean:
 
 fclean: clean
 	@echo "Removing libftprintf.a"
-	@rm -rf $(NAME)
+	@rm -rf libftprintf.a
 	@echo "Done"
 
 re: fclean all
 
 norm	:
-	@norminette *.c includes
+	@norminette srcs includes
+
+.PHONY: all clean flcean re norm
