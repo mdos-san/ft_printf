@@ -30,21 +30,23 @@ void	print_hhd(void *arg, t_flag flag, int *r)
 	int		i;
 	int		nb;
 	int		negative;
+	char	c;
 
 	i = 0;
 	nb = 0;
-	arr = ft_ltoa(*(char*)arg);
+	c = (char)va_arg(flag.arg, int);
+	arr = ft_ltoa(c);
 	if (flag.width > flag.precision)
 	{
 		nb = (flag.precision > (int)ft_strlen(arr))
 			? (int)(flag.width - ft_strlen(arr)  - flag.precision + ft_strlen(arr))
 			: (int)(flag.width - ft_strlen(arr));
-		(*(short*)arg < 0 && flag.precision > (int)ft_strlen(arr)) ? --nb : 0;
+		(c < 0 && flag.precision > (int)ft_strlen(arr)) ? --nb : 0;
 	}
 	(flag.flag[' '] && !flag.flag['+'] && !flag.flag['-'] && *(short*)arg > 0 && !flag.width && !flag.precision && ++*r) ? ft_putchar(' ') : 0;
-	(flag.flag['+'] == 1 && *(char*)arg > 0) ? --nb : 0;
+	(flag.flag['+'] == 1 && c > 0) ? --nb : 0;
 	(flag.flag['-'] == 0 && (!flag.flag['0'] || flag.precision)) ? print_width(nb, r) : 0;
-	(flag.flag['+'] == 1 && *(char*)arg >= 0 && ++*r) ? ft_putchar('+') : 0;
+	(flag.flag['+'] == 1 && c >= 0 && ++*r) ? ft_putchar('+') : 0;
 	if (flag.precision > (int)ft_strlen(arr))
 	{
 		negative = (arr[0] == '-') ? 1 : 0;
@@ -68,4 +70,5 @@ void	print_hhd(void *arg, t_flag flag, int *r)
 		*r += ft_strlen(arr + negative);
 	}
 	(flag.flag['-'] == 1) ? print_width(nb, r) : 0;
+	(void)arg;
 }

@@ -6,53 +6,11 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 12:59:08 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/13 11:24:14 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/13 12:13:45 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-
-static void *get_arg(va_list cp, unsigned char c)
-{
-	void	*i;
-
-	i = (void*)malloc(64);
-	(c == 'c') ? (*(int*)i = va_arg(cp, int)) : 0;
-	(c == 'C') ? (*(int*)i = va_arg(cp, int)) : 0;
-	(c == 's') ? (i = (void*)va_arg(cp, char *)) : 0;
-	(c == 'S') ? (i = (void*)va_arg(cp, int	*)) : 0;
-	(c == 'd' || c == 'i') ? (*(int*)i = va_arg(cp, int)) : 0;
-	(c == 'D' || c == 'I') ? (*(long*)i = va_arg(cp, long)) : 0;
-	(c == 'o') ? (*(unsigned int*)i = va_arg(cp, unsigned int)) : 0;
-	(c == 'O') ? (*(unsigned long*)i = va_arg(cp, unsigned long)) : 0;
-	(c == 'x' || c == 'X') ? (*(unsigned int*)i = va_arg(cp, unsigned int)) : 0;
-	(c == 'u') ? (*(unsigned int*)i = va_arg(cp, unsigned int)) : 0;
-	(c == 'U') ? (*(unsigned long*)i = va_arg(cp, unsigned long)) : 0;
-	(c == 'Y') ? (*(unsigned long*)i = va_arg(cp, unsigned long)) : 0;
-	(c == 'P') ? (*(unsigned long int*)i = va_arg(cp, unsigned long int)) : 0;
-	(c == 'p') ? (*(unsigned long int*)i = va_arg(cp, unsigned long int)) : 0;
-
-	(c == 'd' + 'j') ? (*(intmax_t*)i = va_arg(cp, intmax_t)) : 0;
-	(c == 'x' + 'j') ? (*(uintmax_t*)i = va_arg(cp, uintmax_t)) : 0;
-	(c == 'u' + 'j') ? (*(uintmax_t*)i = va_arg(cp, uintmax_t)) : 0;
-
-	(c == 'H' + 'd') ? (*(char*)i = (char)va_arg(cp, int)) : 0;
-	(c == 'H' + 'i') ? (*(char*)i = (char)va_arg(cp, int)) : 0;
-	(c == 'H' + 'x') ? (*(unsigned char*)i = (unsigned char)va_arg(cp, int)) : 0;
-
-	(c == 'h' + 'd') ? (*(short*)i = (short)va_arg(cp, int)) : 0;
-	(c == 'h' + 'x') ? (*(unsigned short*)i = (unsigned short)va_arg(cp, int)) : 0;
-	(c == 'h' + 'u' || c == 'h' + 'U') ? (*(unsigned long*)i = va_arg(cp, unsigned long)) : 0;
-	(c == 'h' + 'o' || c == 'h' + 'O') ? (*(unsigned short*)i = va_arg(cp, int)) : 0;
-
-	(c == 'd' + 'z') ? (*(long long*)i = va_arg(cp, long long)) : 0;
-	(c == 'i' + 'z') ? (*(long long*)i = va_arg(cp, long long)) : 0;
-	(c == 'u' + 'z') ? (*(unsigned long long*)i = va_arg(cp, unsigned long long)) : 0;
-	(c == 'o' + 'z') ? (*(unsigned long long*)i = va_arg(cp, unsigned long long)) : 0;
-	(c == 'x' + 'z') ? (*(unsigned long long*)i = va_arg(cp, unsigned long long)) : 0;
-	(c == 'X' + 'z') ? (*(unsigned long long*)i = va_arg(cp, unsigned long long)) : 0;
-	return (i);
-}
 
 static int	get_width(char *s)
 {
@@ -104,6 +62,7 @@ int	ft_printf(char *str, ...)
 	nb = 0;
 	va_start(ap, str);
 	ftpf = ftpf_init(str);
+	ret = NULL;
 	while (str[i])
 	{
 		if (str[i] == '%')
@@ -121,27 +80,22 @@ int	ft_printf(char *str, ...)
 			(ftpf->tmp) ? ftpf->flag.precision = ft_atoi(ftpf->tmp + 1) : 0;
 			if (ft_strstr(ftpf->params[nb], "hh"))
 			{
-				ret = get_arg(cp, 'H' + ftpf->c);
 				(*ftpf->hh[(int)ftpf->c])(ret, ftpf->flag, &ftpf->r);
 			}
 			else if (ft_strstr(ftpf->params[nb], "h"))
 			{
-				ret = get_arg(cp, 'h' + ftpf->c);
 				(*ftpf->h[(int)ftpf->c])(ret, ftpf->flag, &ftpf->r);
 			}
 			else if (ft_strstr(ftpf->params[nb], "l"))
 			{
-				ret = get_arg(cp, 'l' + ftpf->c);
 				(*ftpf->l[(int)ftpf->c])(ret, ftpf->flag, &ftpf->r);
 			}
 			else if (ft_strstr(ftpf->params[nb], "j"))
 			{	
-				ret = get_arg(cp, 'j' + ftpf->c);
 				(*ftpf->j[(int)ftpf->c])(ret, ftpf->flag, &ftpf->r);
 			}
 			else if (ft_strstr(ftpf->params[nb], "z"))
 			{	
-				ret = get_arg(cp, 'z' + ftpf->c);
 				(*ftpf->z[(int)ftpf->c])(ret, ftpf->flag, &ftpf->r);
 			}
 			else if (ft_strcmp(ftpf->params[nb], "%") == 0)

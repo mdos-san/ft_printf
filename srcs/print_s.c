@@ -31,7 +31,7 @@ void	print_s(void *s, t_flag flag, int *r)
 		}
 		if ((flag.p_given && flag.precision) || !flag.p_given)
 		{
-			((char *)s != NULL) ? ft_putstr(str) : ft_putstr("(null)");
+			(ss != NULL) ? ft_putstr(str) : ft_putstr("(null)");
 			*r += ft_strlen(str);
 		}
 		(flag.precision > 0) ? (str[flag.precision] = tmp) : 0;
