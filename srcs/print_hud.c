@@ -4,23 +4,20 @@ static	char *ft_ltoa(unsigned short l)
 {
 	char	buf[21];
 	int		i;
-	char	negative;
 	short	mod;
 	
 	i = 0;
 	ft_bzero(buf, 21);
-	negative = (l < 0) ? 1 : 0;
 	if (l == 0)
 		return (ft_strdup("0"));
 	while (l != 0)
 	{
 		mod = l % 10;
-		mod *= (negative) ? -1 : 1;
 		buf[19 - i] = mod + 48;
 		l /= 10;
 		++i;
 	}
-	(negative == 1) ? (buf[19 - i] = '-') : --i;
+	--i;
 	return (ft_strdup(buf + 19 - i));
 }
 
@@ -41,12 +38,11 @@ void	print_hud(void *arg, t_flag flag, int *r)
 		nb = (flag.precision > (int)ft_strlen(arr))
 			? (int)(flag.width - ft_strlen(arr)  - flag.precision + ft_strlen(arr))
 			: (int)(flag.width - ft_strlen(arr));
-		(bla < 0 && flag.precision > (int)ft_strlen(arr)) ? --nb : 0;
 	}
 	(flag.flag[' '] && !flag.flag['+'] && !flag.flag['-'] && bla > 0 && !flag.width && !flag.precision && ++*r) ? ft_putchar(' ') : 0;
 	(flag.flag['+'] == 1 && bla > 0) ? --nb : 0;
 	(flag.flag['-'] == 0 && (!flag.flag['0'] || flag.precision)) ? print_width(nb, r) : 0;
-	(flag.flag['+'] == 1 && bla >= 0 && ++*r) ? ft_putchar('+') : 0;
+	(flag.flag['+'] == 1 && ++*r) ? ft_putchar('+') : 0;
 	if (flag.precision > (int)ft_strlen(arr))
 	{
 		negative = (arr[0] == '-') ? 1 : 0;
