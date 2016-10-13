@@ -62,6 +62,7 @@ void	print_hud(void *arg, t_flag flag, int *ret);
 void	print_ho(void *o, t_flag flag, int *ret);
 void	print_hx(void *arg, t_flag flag, int *ret);
 void	print_hu(void *ui, t_flag flag, int *r);
+void	print_huu(void *ui, t_flag flag, int *r);
 
 void	print_hhx(void *arg, t_flag flag, int *ret);
 void	print_hhu(void *ui, t_flag flag, int *r);
