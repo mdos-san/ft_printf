@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_ls.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/10/13 12:39:09 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/10/13 12:39:37 by mdos-san         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
 static int	*int_arr_dup(int *arr, int pre)
@@ -58,7 +70,7 @@ static int	int_arr_len(int *arr)
 	return (ret);
 }
 
-void	print_ls(void *s, t_flag flag, int *r)
+void		print_ls(void *s, t_flag flag, int *r)
 {
 	int		*arr;
 	int		nb;

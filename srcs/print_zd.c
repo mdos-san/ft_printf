@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_zd.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/10/13 12:43:31 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/10/13 12:44:47 by mdos-san         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
-static	char *ft_ltoa(size_t l)
+static char	*ft_ltoa(size_t l)
 {
 	char	buf[21];
 	int		i;
@@ -18,16 +30,18 @@ static	char *ft_ltoa(size_t l)
 	return (ft_strdup(buf + 19 - i));
 }
 
-void	print_zd(void *arg, t_flag flag, int *r)
+void		print_zd(void *arg, t_flag flag, int *r)
 {
 	char	*arr;
 	int		i;
 	int		nb;
 	int		negative;
+	size_t	st;
 
 	i = 0;
 	nb = 0;
-	arr = ft_ltoa(*(size_t*)arg);
+	st = va_arg(flag.arg, size_t);
+	arr = ft_ltoa(st);
 	if (flag.width > flag.precision)
 	{
 		nb = (flag.precision > (int)ft_strlen(arr))
@@ -36,7 +50,7 @@ void	print_zd(void *arg, t_flag flag, int *r)
 		(flag.precision > (int)ft_strlen(arr)) ? --nb : 0;
 	}
 	(flag.flag[' '] && !flag.flag['+'] && !flag.flag['-'] && *(int*)arg > 0 && !flag.width && !flag.precision && ++*r) ? ft_putchar(' ') : 0;
-	(flag.flag['+'] == 1 && *(size_t*)arg > 0) ? --nb : 0;
+	(flag.flag['+'] == 1 && st > 0) ? --nb : 0;
 	(flag.flag['-'] == 0 && (!flag.flag['0'] || flag.precision)) ? print_width(nb, r) : 0;
 	(flag.flag['+'] == 1 && ++*r) ? ft_putchar('+') : 0;
 	if (flag.precision > (int)ft_strlen(arr))
@@ -62,4 +76,5 @@ void	print_zd(void *arg, t_flag flag, int *r)
 		*r += ft_strlen(arr + negative);
 	}
 	(flag.flag['-'] == 1) ? print_width(nb, r) : 0;
+	(void)arg;
 }

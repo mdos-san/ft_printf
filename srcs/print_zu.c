@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_zu.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/10/13 12:47:08 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/10/13 12:48:42 by mdos-san         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
-static	char *ft_ltoa(unsigned long long l)
+static char	*ft_ltoa(unsigned long long l)
 {
 	char	buf[257];
 	int		i;
@@ -19,26 +31,28 @@ static	char *ft_ltoa(unsigned long long l)
 	return (ft_strdup(buf + 255 - i));
 }
 
-void	print_zu(void *arg, t_flag flag, int *r)
+void		print_zu(void *arg, t_flag flag, int *r)
 {
-	char	*arr;
-	int		i;
-	int		nb;
-	int		negative;
+	char				*arr;
+	int					i;
+	int					nb;
+	int					negative;
+	unsigned long long	ull;
 
 	i = 0;
 	nb = 0;
-	arr = ft_ltoa(va_arg(flag.arg, unsigned long long));
+	ull = va_arg(flag.arg, unsigned long long);
+	arr = ft_ltoa(ull);
 	negative = (arr[0] == '-') ? 1 : 0;
 	if (flag.width > flag.precision)
 	{
 		nb = (flag.precision > (int)ft_strlen(arr))
 			? (int)(flag.width - ft_strlen(arr)  - flag.precision + ft_strlen(arr))
 			: (int)(flag.width - ft_strlen(arr));
-		nb += (flag.p_given && !flag.precision && !*(unsigned long long*)arg) ? ft_strlen(arr) : 0;
+		nb += (flag.p_given && !flag.precision && !ull) ? ft_strlen(arr) : 0;
 	}
-	(flag.flag[' '] && !flag.flag['+'] && !flag.flag['-'] && *(unsigned long long*)arg > 0 && !flag.width && !flag.precision && ++*r) ? ft_putchar(' ') : 0;
-	(flag.flag['+'] == 1 && *(unsigned long long*)arg > 0) ? --nb : 0;
+	(flag.flag[' '] && !flag.flag['+'] && !flag.flag['-'] && ull > 0 && !flag.width && !flag.precision && ++*r) ? ft_putchar(' ') : 0;
+	(flag.flag['+'] == 1 && ull > 0) ? --nb : 0;
 	(flag.flag['-'] == 0 && (!flag.flag['0'] || flag.precision) && flag.width - negative > flag.precision) ? print_width(nb, r) : 0;
 	(flag.flag['+'] == 1 && ++*r) ? ft_putchar('+') : 0;
 	if (flag.precision >= (int)ft_strlen(arr))
@@ -59,8 +73,8 @@ void	print_zu(void *arg, t_flag flag, int *r)
 		negative = (arr[0] == '-') ? 1 : 0;
 		(negative == 1 && ++*r) ? ft_putchar('-') : 0;
 		(flag.flag['-'] == 0 && flag.flag['0'] && !flag.precision) ? print_width_z(nb, r) : 0;
-		(flag.p_given && !flag.precision && !*(unsigned long long*)arg) ? 0 : ft_putstr(arr + negative);
-		*r += (flag.p_given && !flag.precision && !*(unsigned long long*)arg) ? 0 : ft_strlen(arr + negative);
+		(flag.p_given && !flag.precision && !ull) ? 0 : ft_putstr(arr + negative);
+		*r += (flag.p_given && !flag.precision && !ull) ? 0 : ft_strlen(arr + negative);
 	}
 	(flag.flag['-'] == 1) ? print_width(nb, r) : 0;
 	(void)arg;

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_d.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/10/13 12:28:02 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/10/13 12:29:54 by mdos-san         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
-static	char *ft_ltoa(long l)
+static char	*ft_ltoa(long l)
 {
 	char	buf[21];
 	int		i;
@@ -22,7 +34,7 @@ static	char *ft_ltoa(long l)
 	return (ft_strdup(buf + 19 - i));
 }
 
-void	print_d(void *arg, t_flag flag, int *r)
+void		print_d(void *arg, t_flag flag, int *r)
 {
 	char	*arr;
 	int		i;
@@ -43,7 +55,8 @@ void	print_d(void *arg, t_flag flag, int *r)
 		(in < 0 && flag.precision > (int)ft_strlen(arr)) ? --nb : 0;
 		nb += (flag.p_given && !flag.precision && !in) ? ft_strlen(arr) : 0;
 	}
-	(flag.flag[' '] && !flag.flag['+'] && !flag.flag['-'] && in > 0 && !flag.width && !flag.precision && ++*r) ? ft_putchar(' ') : 0;
+	(flag.flag[' '] && !flag.flag['+'] && !flag.flag['-'] && in > 0
+	 && !flag.width && !flag.precision && ++*r) ? ft_putchar(' ') : 0;
 	if (flag.flag[' '] && in == 0)
 	{
 		ft_putchar(' ');
@@ -52,7 +65,8 @@ void	print_d(void *arg, t_flag flag, int *r)
 	}
 			
 	(flag.flag['+'] == 1) ? --nb : 0;
-	(flag.flag['-'] == 0 && (!flag.flag['0'] || flag.precision) && flag.width - negative > flag.precision) ? print_width(nb, r) : 0;
+	(flag.flag['-'] == 0 && (!flag.flag['0'] || flag.precision)
+		&& flag.width - negative > flag.precision) ? print_width(nb, r) : 0;
 	(flag.flag['+'] == 1 && in >= 0 && ++*r) ? ft_putchar('+') : 0;
 	if (flag.precision >= (int)ft_strlen(arr))
 	{

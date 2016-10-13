@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_lx.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/10/13 12:40:52 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/10/13 12:41:13 by mdos-san         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
 static char	*convert_hexa(unsigned long n, char up)
 {
-	int	i;
-	unsigned long mod;
-	char buf[65];
+	int				i;
+	unsigned long	mod;
+	char			buf[65];
 
 	i = 0;
 	ft_bzero(buf, 65);
@@ -28,7 +40,7 @@ static char	*convert_hexa(unsigned long n, char up)
 	return (ft_strdup(buf + 63 - i + 1));
 }
 
-void	print_lx(void *arg, t_flag flag, int *r)
+void		print_lx(void *arg, t_flag flag, int *r)
 {
 	char	*arr;
 	int		w;
@@ -53,6 +65,5 @@ void	print_lx(void *arg, t_flag flag, int *r)
 	*r += ft_strlen(arr);
 	(flag.flag['-'] == 1) ? print_width(w, r): 0;
 	ft_strdel(&arr);
-	(void)flag;
 	(void)arg;
 }

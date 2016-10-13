@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_hu.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/10/13 12:34:54 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/10/13 12:35:22 by mdos-san         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
-static	char *convert_ui(unsigned short ui)
+static char	*convert_ui(unsigned short ui)
 {
-	char	buf[257];
-	int		i;
-	unsigned short mod;
+	char			buf[257];
+	int				i;
+	unsigned short	mod;
 
 	i = 0;
 	ft_bzero(buf, 257);
@@ -20,7 +32,7 @@ static	char *convert_ui(unsigned short ui)
 	return (ft_strdup(buf + 255 - i));
 }
 
-void	print_hu(void *ui, t_flag flag, int *r)
+void		print_hu(void *ui, t_flag flag, int *r)
 {
 	char	*arr;
 	int		w;
@@ -45,6 +57,5 @@ void	print_hu(void *ui, t_flag flag, int *r)
 	ft_putstr(arr);
 	*r += ft_strlen(arr);
 	(flag.flag['-'] == 1) ? print_width(w, r): 0;
-	(void)flag;
 	(void)ui;
 }

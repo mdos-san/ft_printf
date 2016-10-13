@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 12:59:08 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/13 12:13:45 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/13 12:19:46 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	get_width(char *s)
 	return (ret);
 }
 
-static	void	get_flag(t_ftpf *ftpf, char *str)
+static void	get_flag(t_ftpf *ftpf, char *str)
 {
 	char	*c;
 	int		i;
@@ -48,7 +48,7 @@ static	void	get_flag(t_ftpf *ftpf, char *str)
 	ftpf->flag.flag['0'] = (str[i] == '0') ? 1 : 0;
 }
 
-int	ft_printf(char *str, ...)
+int			ft_printf(char *str, ...)
 {
 	t_ftpf *ftpf;
 	va_list ap;	
@@ -79,37 +79,22 @@ int	ft_printf(char *str, ...)
 			get_flag(ftpf, ftpf->params[nb]);
 			(ftpf->tmp) ? ftpf->flag.precision = ft_atoi(ftpf->tmp + 1) : 0;
 			if (ft_strstr(ftpf->params[nb], "hh"))
-			{
 				(*ftpf->hh[(int)ftpf->c])(ret, ftpf->flag, &ftpf->r);
-			}
 			else if (ft_strstr(ftpf->params[nb], "h"))
-			{
 				(*ftpf->h[(int)ftpf->c])(ret, ftpf->flag, &ftpf->r);
-			}
 			else if (ft_strstr(ftpf->params[nb], "l"))
-			{
 				(*ftpf->l[(int)ftpf->c])(ret, ftpf->flag, &ftpf->r);
-			}
 			else if (ft_strstr(ftpf->params[nb], "j"))
-			{	
 				(*ftpf->j[(int)ftpf->c])(ret, ftpf->flag, &ftpf->r);
-			}
 			else if (ft_strstr(ftpf->params[nb], "z"))
-			{	
 				(*ftpf->z[(int)ftpf->c])(ret, ftpf->flag, &ftpf->r);
-			}
 			else if (ft_strcmp(ftpf->params[nb], "%") == 0)
 			{
 			}
 			else
-			{
 				(*ftpf->fct[(int)ftpf->c])(ret, ftpf->flag, &ftpf->r);
-			}
 			i += ft_strlen(ftpf->params[nb]) - 1;
-			if (ftpf->c != '%')
-			{
-				va_arg(ap, void*);
-			}
+			(ftpf->c != '%') ? va_arg(ap, void*) : 0;
 			++nb;
 		}
 		else

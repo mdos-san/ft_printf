@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 18:21:58 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/09/22 17:33:43 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/13 12:25:16 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #define MASK_4 "11110xxx10xxxxxx10xxxxxx10xxxxxx"
 
 
-static	char *print_bit(int c)
+static char			*print_bit(int c)
 {
 	int		i;
 	char	buf[33];
@@ -34,7 +34,7 @@ static	char *print_bit(int c)
 	return (ft_strdup(buf));
 }
 
-static char	*mask_init(char nbr)
+static char			*mask_init(char nbr)
 {
 	if (nbr == 1)
 		return (ft_strdup(MASK_1));
@@ -47,7 +47,7 @@ static char	*mask_init(char nbr)
 	return (NULL);
 }
 
-static void	mask_fill(char *m, char *n)
+static void			mask_fill(char *m, char *n)
 {
 	int	i;
 	int	j;
@@ -65,11 +65,11 @@ static void	mask_fill(char *m, char *n)
 	}
 }
 
-static unsigned int bin_to_int(char *bin)
+static unsigned int	bin_to_int(char *bin)
 {
-	int	i;
-	unsigned int ret;
-	double pow;
+	int				i;
+	unsigned int	ret;
+	double			pow;
 
 	i = 0;
 	ret = 0;
@@ -84,7 +84,7 @@ static unsigned int bin_to_int(char *bin)
 	return (ret);
 }
 
-int	ft_putwchar(int c)
+int					ft_putwchar(int c)
 {
 	char			*mask;
 	char			*nbr;

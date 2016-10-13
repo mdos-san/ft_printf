@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_lo.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/10/13 12:38:44 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/10/13 12:39:01 by mdos-san         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
-static char *convert_octal(unsigned long n)
+static char	*convert_octal(unsigned long n)
 {
-	int	i;
-	unsigned int mod;
-	char buf[65];
+	int				i;
+	unsigned int	mod;
+	char			buf[65];
 
 	i = 0;
 	ft_bzero(buf, 65);
@@ -26,7 +38,7 @@ static char *convert_octal(unsigned long n)
 	return (ft_strdup(buf + 63 - i + 1));
 }
 
-void	print_lo(void *o, t_flag flag, int *r)
+void		print_lo(void *o, t_flag flag, int *r)
 {
 	char	*array;
 	int		w;

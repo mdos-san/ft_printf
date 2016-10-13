@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_p.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/10/13 12:41:28 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/10/13 12:41:48 by mdos-san         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
 static char	*convert(unsigned long int n)
 {
-	char	buf[257];
-	int		i;
+	char				buf[257];
+	int					i;
 	unsigned long int	mod;
 
 	mod = 0;
@@ -24,7 +36,7 @@ static char	*convert(unsigned long int n)
 	return (ft_strdup(buf + 255 - i + 1));
 }
 
-void	print_p(void *p, t_flag flag, int *r)
+void		print_p(void *p, t_flag flag, int *r)
 {
 	char	*arr;
 	int		pre;

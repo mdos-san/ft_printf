@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putptn.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/10/13 12:20:17 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/10/13 12:20:46 by mdos-san         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
-static void convert(unsigned long int n)
+static void	convert(unsigned long int n)
 {
 	int	i;
 	int mod;
@@ -24,7 +36,7 @@ static void convert(unsigned long int n)
 	ft_putstr(buf + 31 - i + 1);
 }
 
-void	ft_putptn(unsigned long int pnt)
+void		ft_putptn(unsigned long int pnt)
 {
 	convert(pnt);	
 }

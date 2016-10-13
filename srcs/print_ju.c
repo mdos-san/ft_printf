@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_ju.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/10/13 12:37:27 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/10/13 12:37:39 by mdos-san         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
-static	char *convert_ui(uintmax_t ui)
+static char	*convert_ui(uintmax_t ui)
 {
 	char	buf[257];
 	int		i;
@@ -20,7 +32,7 @@ static	char *convert_ui(uintmax_t ui)
 	return (ft_strdup(buf + 255 - i));
 }
 
-void	print_ju(void *ui, t_flag flag, int *r)
+void		print_ju(void *ui, t_flag flag, int *r)
 {
 	char	*arr;
 	int		w;

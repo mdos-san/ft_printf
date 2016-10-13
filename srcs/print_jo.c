@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_jo.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/10/13 12:37:04 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/10/13 12:37:22 by mdos-san         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
-static char *convert_octal(uintmax_t n)
+static char	*convert_octal(uintmax_t n)
 {
-	int	i;
-	uintmax_t mod;
-	char buf[65];
+	int			i;
+	uintmax_t	mod;
+	char		buf[65];
 
 	i = 0;
 	ft_bzero(buf, 65);
@@ -20,7 +32,7 @@ static char *convert_octal(uintmax_t n)
 	return (ft_strdup(buf + 63 - i + 1));
 }
 
-void	print_jo(void *o, t_flag flag, int *r)
+void		print_jo(void *o, t_flag flag, int *r)
 {
 	char	*array;
 	int		w;

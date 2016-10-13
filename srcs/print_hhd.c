@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_hhd.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/10/13 12:30:12 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/10/13 12:30:30 by mdos-san         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
-static	char *ft_ltoa(char l)
+static char		*ft_ltoa(char l)
 {
 	char	buf[21];
 	int		i;
@@ -24,7 +36,7 @@ static	char *ft_ltoa(char l)
 	return (ft_strdup(buf + 19 - i));
 }
 
-void	print_hhd(void *arg, t_flag flag, int *r)
+void			print_hhd(void *arg, t_flag flag, int *r)
 {
 	char	*arr;
 	int		i;

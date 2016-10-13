@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_u.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/10/13 12:42:13 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/10/13 12:42:28 by mdos-san         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
-static	char *convert_ui(unsigned int ui)
+static char	*convert_ui(unsigned int ui)
 {
 	char	buf[257];
 	int		i;
@@ -20,13 +32,13 @@ static	char *convert_ui(unsigned int ui)
 	return (ft_strdup(buf + 255 - i));
 }
 
-void	print_u(void *arg, t_flag flag, int *r)
+void		print_u(void *arg, t_flag flag, int *r)
 {
-	char	*arr;
-	int		i;
-	int		nb;
-	int		negative;
-	unsigned int ui;
+	char			*arr;
+	int				i;
+	int				nb;
+	int				negative;
+	unsigned int	ui;
 
 	i = 0;
 	nb = 0;

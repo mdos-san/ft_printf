@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_hho.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/10/13 12:32:03 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/10/13 12:32:39 by mdos-san         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
-static char *convert_octal(unsigned char n)
+static char	*convert_octal(unsigned char n)
 {
-	int	i;
-	unsigned char mod;
-	char buf[65];
+	int				i;
+	unsigned char	mod;
+	char			buf[65];
 
 	i = 0;
 	ft_bzero(buf, 65);
@@ -20,7 +32,7 @@ static char *convert_octal(unsigned char n)
 	return (ft_strdup(buf + 63 - i + 1));
 }
 
-void	print_hho(void *o, t_flag flag, int *r)
+void		print_hho(void *o, t_flag flag, int *r)
 {
 	char	*array;
 	int		w;
@@ -47,6 +59,4 @@ void	print_hho(void *o, t_flag flag, int *r)
 	(flag.flag['-'] == 1) ? print_width(w, r): 0;
 	ft_strdel(&array);
 	(void)o;
-	(void)flag;
-	(void)print_width;
 }

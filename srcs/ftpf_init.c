@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ftpf_init.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/10/13 12:26:34 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/10/13 12:27:47 by mdos-san         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
-static int count_params(char *s)
+static int	count_params(char *s)
 {
 	int	i;
 	int	nbr;
@@ -34,10 +46,10 @@ static int	is_flag(char c)
 	return (0);
 }
 
-static void init_params(char *s, char ***arr)
+static void	init_params(char *s, char ***arr)
 {
-	int	i1;
-	int	i2;
+	int		i1;
+	int		i2;
 	char	tmp;
 
 	i1 = 0;
@@ -62,7 +74,7 @@ static void init_params(char *s, char ***arr)
 	str_array_add(arr, s + i2 + 1);
 }
 
-static void get_mod(t_ftpf *ftpf)
+static void	get_mod(t_ftpf *ftpf)
 {
 	if (ft_strchr(ftpf->input, 'l'))
 		ftpf->flag.mod = ft_strdup("l");
@@ -74,7 +86,7 @@ static void get_mod(t_ftpf *ftpf)
 		ftpf->flag.mod = ft_strdup("hh");
 }
 
-t_ftpf	*ftpf_init(char *input)
+t_ftpf		*ftpf_init(char *input)
 {
 	t_ftpf	*new;
 	char	*str;
@@ -181,6 +193,5 @@ t_ftpf	*ftpf_init(char *input)
 	new->z['X'] = print_zx;
 
 	new->fct['%'] = print_percent;
-
 	return (new);
 }

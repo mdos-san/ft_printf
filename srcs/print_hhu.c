@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_hhu.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/10/13 12:32:54 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/10/13 12:33:15 by mdos-san         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
-static	char *ft_ltoa(unsigned char l)
+static char	*ft_ltoa(unsigned char l)
 {
 	char	buf[21];
 	int		i;
@@ -21,13 +33,13 @@ static	char *ft_ltoa(unsigned char l)
 	return (ft_strdup(buf + 19 - i));
 }
 
-void	print_hhu(void *arg, t_flag flag, int *r)
+void		print_hhu(void *arg, t_flag flag, int *r)
 {
-	char	*arr;
-	int		i;
-	int		nb;
-	int		negative;
-	unsigned char uc;
+	char			*arr;
+	int				i;
+	int				nb;
+	int				negative;
+	unsigned char	uc;
 
 	i = 0;
 	nb = 0;

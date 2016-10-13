@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_x.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/10/13 12:42:49 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/10/13 12:43:12 by mdos-san         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
 static char	*convert_hexa(unsigned int n, char up)
 {
-	int	i;
-	unsigned int mod;
-	char buf[65];
+	int				i;
+	unsigned int	mod;
+	char			buf[65];
 
 	i = 0;
 	ft_bzero(buf, 65);
@@ -29,13 +41,13 @@ static char	*convert_hexa(unsigned int n, char up)
 	return (ft_strdup(buf + 63 - i + 1));
 }
 
-void	print_x(void *arg, t_flag flag, int *r)
+void		print_x(void *arg, t_flag flag, int *r)
 {
-	char	*arr;
-	int		w;
-	int		p;
-	int		i;
-	unsigned int ui;
+	char			*arr;
+	int				w;
+	int				p;
+	int				i;
+	unsigned int	ui;
 
 	i = -1;
 	ui = va_arg(flag.arg, unsigned int);

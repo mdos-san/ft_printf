@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_lu.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/10/13 12:39:42 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/10/13 12:40:33 by mdos-san         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
-static	char *convert_ui(unsigned long ui)
+static char	*convert_ui(unsigned long ui)
 {
 	char	buf[257];
 	int		i;
@@ -20,13 +32,13 @@ static	char *convert_ui(unsigned long ui)
 	return (ft_strdup(buf + 255 - i));
 }
 
-void	print_lu(void *ui, t_flag flag, int *r)
+void		print_lu(void *ui, t_flag flag, int *r)
 {
-	char	*arr;
-	int		w;
-	int		p;
-	int		i;
-	unsigned long ul;
+	char			*arr;
+	int				w;
+	int				p;
+	int				i;
+	unsigned long	ul;
 
 	i = -1;
 	ul = va_arg(flag.arg, unsigned long);
@@ -47,6 +59,5 @@ void	print_lu(void *ui, t_flag flag, int *r)
 	ft_putstr(arr);
 	*r += ft_strlen(arr);
 	(flag.flag['-'] == 1) ? print_width(w, r): 0;
-	(void)flag;
 	(void)ui;
 }

@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_jx.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/10/13 12:37:48 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/10/13 12:38:03 by mdos-san         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
 static char	*convert_hexa(uintmax_t n, char up)
 {
-	int	i;
-	int mod;
-	char buf[65];
+	int		i;
+	int		mod;
+	char	buf[65];
 
 	i = 0;
 	ft_bzero(buf, 65);
@@ -29,7 +41,7 @@ static char	*convert_hexa(uintmax_t n, char up)
 	return (ft_strdup(buf + 63 - i + 1));
 }
 
-void	print_jx(void *arg, t_flag flag, int *r)
+void		print_jx(void *arg, t_flag flag, int *r)
 {
 	char	*arr;
 	int		w;

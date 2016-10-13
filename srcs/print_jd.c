@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_jd.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/10/13 12:36:35 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/10/13 12:36:55 by mdos-san         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
-static	char *ft_ltoa(intmax_t l)
+static char	*ft_ltoa(intmax_t l)
 {
-	char	buf[21];
-	int		i;
+	char		buf[21];
+	int			i;
 	intmax_t	mod;
-	char	negative;
+	char		negative;
 	
 	i = 0;
 	ft_bzero(buf, 21);
@@ -24,7 +36,7 @@ static	char *ft_ltoa(intmax_t l)
 	return (ft_strdup(buf + 19 - i));
 }
 
-void	print_jd(void *arg, t_flag flag, int *r)
+void		print_jd(void *arg, t_flag flag, int *r)
 {
 	char	*arr;
 	int		i;
