@@ -5,15 +5,17 @@ void	print_s(void *s, t_flag flag, int *r)
 	char	tmp;
 	char	*str;
 	int		nb;
+	char	*ss;
 
-	if ((char*)s == NULL)
+	ss = va_arg(flag.arg, char *);
+	if (ss == NULL && flag.width == 0)
 	{
 		ft_putstr("(null)");
 		*r += 6;
 	}
 	else
 	{
-		str = ft_strdup(va_arg(flag.arg, char *));
+		str = ft_strdup(ss);
 		nb = 0;
 		if (flag.precision > 0)
 		{

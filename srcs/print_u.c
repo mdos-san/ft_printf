@@ -26,17 +26,19 @@ void	print_u(void *arg, t_flag flag, int *r)
 	int		i;
 	int		nb;
 	int		negative;
+	unsigned int ui;
 
 	i = 0;
 	nb = 0;
-	arr = convert_ui(*(unsigned int*)arg);
+	ui = va_arg(flag.arg, unsigned int);
+	arr = convert_ui(ui);
 	negative = (arr[0] == '-') ? 1 : 0;
 	if (flag.width > flag.precision)
 	{
 		nb = (flag.precision > (int)ft_strlen(arr))
 			? (int)(flag.width - ft_strlen(arr)  - flag.precision + ft_strlen(arr))
 			: (int)(flag.width - ft_strlen(arr));
-		nb += (flag.p_given && !flag.precision && !*(unsigned int*)arg) ? ft_strlen(arr) : 0;
+		nb += (flag.p_given && !flag.precision && !ui) ? ft_strlen(arr) : 0;
 	}
 	(flag.flag['-'] == 0 && (!flag.flag['0'] || flag.precision) && flag.width - negative > flag.precision) ? print_width(nb, r) : 0;
 	if (flag.precision >= (int)ft_strlen(arr))
@@ -57,8 +59,9 @@ void	print_u(void *arg, t_flag flag, int *r)
 		negative = (arr[0] == '-') ? 1 : 0;
 		(negative == 1 && ++*r) ? ft_putchar('-') : 0;
 		(flag.flag['-'] == 0 && flag.flag['0'] && !flag.precision) ? print_width_z(nb, r) : 0;
-		(flag.p_given && !flag.precision && !*(unsigned int*)arg) ? 0 : ft_putstr(arr + negative);
-		*r += (flag.p_given && !flag.precision && !*(unsigned int*)arg) ? 0 : ft_strlen(arr + negative);
+		(flag.p_given && !flag.precision && !ui) ? 0 : ft_putstr(arr + negative);
+		*r += (flag.p_given && !flag.precision && !ui) ? 0 : ft_strlen(arr + negative);
 	}
 	(flag.flag['-'] == 1) ? print_width(nb, r) : 0;
+	(void)arg;
 }

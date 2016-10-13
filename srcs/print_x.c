@@ -3,7 +3,7 @@
 static char	*convert_hexa(unsigned int n, char up)
 {
 	int	i;
-	int mod;
+	unsigned int mod;
 	char buf[65];
 
 	i = 0;
@@ -35,9 +35,11 @@ void	print_x(void *arg, t_flag flag, int *r)
 	int		w;
 	int		p;
 	int		i;
+	unsigned int ui;
 
 	i = -1;
-	arr = convert_hexa(*(unsigned int*)arg, flag.uppercase);
+	ui = va_arg(flag.arg, unsigned int);
+	arr = convert_hexa(ui, flag.uppercase);
 	p = flag.precision - ft_strlen(arr);
 	p = (p < 0) ? 0 : p;
 	w = flag.width - ft_strlen(arr) - p;
@@ -45,8 +47,8 @@ void	print_x(void *arg, t_flag flag, int *r)
 	w = (w < 0) ? 0 : w;
 	w = (flag.p_given && flag.precision == 0) ? flag.width : w;
 	(flag.flag['-'] == 0 && flag.flag['0'] == 0) ? print_width(w, r) : 0;
-	(flag.flag['#'] && !flag.uppercase && *(unsigned int*)arg > 0 && (*r += 2)) ? ft_putstr("0x") : 0;
-	(flag.flag['#'] && flag.uppercase && *(unsigned int*)arg > 0 && (*r += 2)) ? ft_putstr("0X") : 0;
+	(flag.flag['#'] && !flag.uppercase && ui > 0 && (*r += 2)) ? ft_putstr("0x") : 0;
+	(flag.flag['#'] && flag.uppercase && ui > 0 && (*r += 2)) ? ft_putstr("0X") : 0;
 	(flag.flag['-'] == 0 && flag.flag['0'] == 1) ? print_width_z(w, r) : 0;
 	while (++i < p)
 	{
@@ -57,4 +59,5 @@ void	print_x(void *arg, t_flag flag, int *r)
 	*r += (flag.p_given && flag.precision == 0) ? 0 : ft_strlen(arr);
 	(flag.flag['-'] == 1) ? print_width(w, r): 0;
 	ft_strdel(&arr);
+	(void)arg;
 }
