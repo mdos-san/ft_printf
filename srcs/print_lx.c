@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:40:52 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/13 12:41:13 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/21 20:42:29 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static char	*convert_hexa(unsigned long n, char up)
 	while (n != 0)
 	{
 		mod = n % 16;
-		if (mod <= 9 )
+		if (mod <= 9)
 		{
 			buf[63 - i] = mod + 48;
 		}
@@ -63,7 +63,7 @@ void		print_lx(void *arg, t_flag flag, int *r)
 	}
 	ft_putstr(arr);
 	*r += ft_strlen(arr);
-	(flag.flag['-'] == 1) ? print_width(w, r): 0;
+	(flag.flag['-'] == 1) ? print_width(w, r) : 0;
 	ft_strdel(&arr);
 	(void)arg;
 }

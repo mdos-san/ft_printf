@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:42:49 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/13 12:43:12 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/21 20:36:08 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,10 @@ void		print_x(void *arg, t_flag flag, int *r)
 	w = (w < 0) ? 0 : w;
 	w = (flag.p_given && flag.precision == 0) ? flag.width : w;
 	(flag.flag['-'] == 0 && flag.flag['0'] == 0) ? print_width(w, r) : 0;
-	(flag.flag['#'] && !flag.uppercase && ui > 0 && (*r += 2)) ? ft_putstr("0x") : 0;
-	(flag.flag['#'] && flag.uppercase && ui > 0 && (*r += 2)) ? ft_putstr("0X") : 0;
+	(flag.flag['#'] && !flag.uppercase && ui > 0 && (*r += 2))
+		? ft_putstr("0x") : 0;
+	(flag.flag['#'] && flag.uppercase && ui > 0 && (*r += 2))
+		? ft_putstr("0X") : 0;
 	(flag.flag['-'] == 0 && flag.flag['0'] == 1) ? print_width_z(w, r) : 0;
 	while (++i < p)
 	{
@@ -69,7 +71,7 @@ void		print_x(void *arg, t_flag flag, int *r)
 	}
 	(flag.p_given && flag.precision == 0) ? 0 : ft_putstr(arr);
 	*r += (flag.p_given && flag.precision == 0) ? 0 : ft_strlen(arr);
-	(flag.flag['-'] == 1) ? print_width(w, r): 0;
+	(flag.flag['-'] == 1) ? print_width(w, r) : 0;
 	ft_strdel(&arr);
 	(void)arg;
 }

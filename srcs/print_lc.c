@@ -6,12 +6,11 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:38:10 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/13 12:38:14 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/21 20:49:36 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-
 
 void	print_lc(void *c, t_flag flag, int *r)
 {

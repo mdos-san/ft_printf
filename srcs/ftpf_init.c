@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:26:34 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/21 20:21:33 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/21 20:54:21 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	count_params(char *s)
 {
 	int	i;
 	int	nbr;
-	
+
 	i = 0;
 	nbr = 0;
 	while (s[i])
@@ -186,7 +186,6 @@ t_ftpf		*ftpf_init(char *input)
 	new->z['O'] = print_zo;
 	new->z['x'] = print_zx;
 	new->z['X'] = print_zx;
-
 	new->fct['%'] = print_percent;
 	return (new);
 }

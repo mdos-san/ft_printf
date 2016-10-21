@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:50:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/13 14:33:57 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/21 20:29:16 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	find_alpha(char *s)
 	return (i);
 }
 
-void	useless(void *param, t_flag flag, int *r)
+void		useless(void *param, t_flag flag, int *r)
 {
 	int	start;
 	int	nb;

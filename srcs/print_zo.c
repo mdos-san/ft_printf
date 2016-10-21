@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:46:41 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/13 12:47:02 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/21 20:33:35 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,21 +48,23 @@ void		print_zo(void *o, t_flag flag, int *r)
 	i = -1;
 	array = convert_octal(va_arg(flag.arg, unsigned long long));
 	p = flag.precision - ft_strlen(array);
-	p = (p < 0) ?  0 : p;
+	p = (p < 0) ? 0 : p;
 	p = (p == 0 && flag.flag['#'] == 1 && ft_strcmp("0", array) != 0) ? 1 : p;
 	w = flag.width - ft_strlen(array) - p;
 	w = (w < 0) ? 0 : w;
 	w = (flag.p_given && flag.precision == 0) ? flag.width : w;
-	(!flag.flag['-'] && !flag.flag['0']) ? print_width(w, r): 0;
-	(!flag.flag['-'] && flag.flag['0']) ? print_width_z(w, r): 0;
+	(!flag.flag['-'] && !flag.flag['0']) ? print_width(w, r) : 0;
+	(!flag.flag['-'] && flag.flag['0']) ? print_width_z(w, r) : 0;
 	while (++i < p)
 	{
 		ft_putchar('0');
 		++*r;
 	}
-	(flag.p_given && flag.precision == 0 && flag.flag['#'] == 0) ? 0 : ft_putstr(array);
-	*r += (flag.p_given && flag.precision == 0 && flag.flag['#'] == 0) ? 0 : ft_strlen(array);
-	(flag.flag['-'] == 1) ? print_width(w, r): 0;
+	(flag.p_given && flag.precision == 0 && flag.flag['#'] == 0)
+		? 0 : ft_putstr(array);
+	*r += (flag.p_given && flag.precision == 0 && flag.flag['#'] == 0)
+		? 0 : ft_strlen(array);
+	(flag.flag['-'] == 1) ? print_width(w, r) : 0;
 	ft_strdel(&array);
 	(void)o;
 }

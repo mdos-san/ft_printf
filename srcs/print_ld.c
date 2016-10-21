@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:38:23 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/13 12:38:34 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/21 20:44:56 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char	*ft_ltoa(long l)
 	int		i;
 	char	negative;
 	char	mod;
-	
+
 	i = 0;
 	ft_bzero(buf, 21);
 	negative = (l < 0) ? 1 : 0;
@@ -51,8 +51,8 @@ void		print_ld(void *arg, t_flag flag, int *r)
 	if (flag.width > flag.precision)
 	{
 		nb = (flag.precision > (int)ft_strlen(arr))
-			? (int)(flag.width - ft_strlen(arr)  - flag.precision + ft_strlen(arr))
-			: (int)(flag.width - ft_strlen(arr));
+		? (int)(flag.width - ft_strlen(arr) - flag.precision + ft_strlen(arr))
+		: (int)(flag.width - ft_strlen(arr));
 		(l < 0 && flag.precision > (int)ft_strlen(arr)) ? --nb : 0;
 	}
 	(flag.flag['+'] == 1 && l > 0) ? --nb : 0;

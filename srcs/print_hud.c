@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:35:31 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/13 12:35:48 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/21 20:51:21 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static char	*ft_ltoa(unsigned short l)
 	char	buf[21];
 	int		i;
 	short	mod;
-	
+
 	i = 0;
 	ft_bzero(buf, 21);
 	if (l == 0)
@@ -48,18 +48,21 @@ void		print_hud(void *arg, t_flag flag, int *r)
 	if (flag.width > flag.precision)
 	{
 		nb = (flag.precision > (int)ft_strlen(arr))
-			? (int)(flag.width - ft_strlen(arr)  - flag.precision + ft_strlen(arr))
-			: (int)(flag.width - ft_strlen(arr));
+		? (int)(flag.width - ft_strlen(arr) - flag.precision + ft_strlen(arr))
+		: (int)(flag.width - ft_strlen(arr));
 	}
-	(flag.flag[' '] && !flag.flag['+'] && !flag.flag['-'] && bla > 0 && !flag.width && !flag.precision && ++*r) ? ft_putchar(' ') : 0;
+	(flag.flag[' '] && !flag.flag['+'] && !flag.flag['-'] && bla > 0
+		&& !flag.width && !flag.precision && ++*r) ? ft_putchar(' ') : 0;
 	(flag.flag['+'] == 1 && bla > 0) ? --nb : 0;
-	(flag.flag['-'] == 0 && (!flag.flag['0'] || flag.precision)) ? print_width(nb, r) : 0;
+	(flag.flag['-'] == 0 && (!flag.flag['0'] || flag.precision))
+		? print_width(nb, r) : 0;
 	(flag.flag['+'] == 1 && ++*r) ? ft_putchar('+') : 0;
 	if (flag.precision > (int)ft_strlen(arr))
 	{
 		negative = (arr[0] == '-') ? 1 : 0;
 		(negative == 1 && ++*r) ? ft_putchar('-') : 0;
-		(flag.flag['-'] == 0 && flag.flag['0'] && !flag.precision) ? print_width_z(nb, r) : 0;
+		(flag.flag['-'] == 0 && flag.flag['0'] && !flag.precision)
+			? print_width_z(nb, r) : 0;
 		while (i < flag.precision - (int)ft_strlen(arr) + negative)
 		{
 			ft_putchar('0');
@@ -73,7 +76,8 @@ void		print_hud(void *arg, t_flag flag, int *r)
 	{
 		negative = (arr[0] == '-') ? 1 : 0;
 		(negative == 1 && ++*r) ? ft_putchar('-') : 0;
-		(flag.flag['-'] == 0 && flag.flag['0'] && !flag.precision) ? print_width_z(nb, r) : 0;
+		(flag.flag['-'] == 0 && flag.flag['0'] && !flag.precision)
+			? print_width_z(nb, r) : 0;
 		ft_putstr(arr + negative);
 		*r += ft_strlen(arr + negative);
 	}

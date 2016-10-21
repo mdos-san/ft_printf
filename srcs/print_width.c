@@ -6,13 +6,13 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:42:40 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/13 14:36:50 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/21 20:39:47 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void	print_width(int	nb, int *r)
+void	print_width(int nb, int *r)
 {
 	int	i;
 

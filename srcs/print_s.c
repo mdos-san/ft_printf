@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:42:05 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/13 12:42:08 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/21 20:37:18 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ void	print_s(void *s, t_flag flag, int *r)
 		}
 		if (flag.width > 0)
 		{
-		nb = flag.width - ft_strlen(str);
-		nb = (flag.p_given && !flag.precision) ? flag.width : nb;
-		(flag.flag['-'] == 0 && !flag.flag['0']) ? print_width(nb, r) : 0;
-		(flag.flag['-'] == 0 && flag.flag['0']) ? print_width_z(nb, r) : 0;
+			nb = flag.width - ft_strlen(str);
+			nb = (flag.p_given && !flag.precision) ? flag.width : nb;
+			(flag.flag['-'] == 0 && !flag.flag['0']) ? print_width(nb, r) : 0;
+			(flag.flag['-'] == 0 && flag.flag['0']) ? print_width_z(nb, r) : 0;
 		}
 		if ((flag.p_given && flag.precision) || !flag.p_given)
 		{
