@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:26:34 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/13 13:06:59 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/21 20:54:21 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	count_params(char *s)
 {
 	int	i;
 	int	nbr;
-	
+
 	i = 0;
 	nbr = 0;
 	while (s[i])
@@ -126,7 +126,6 @@ t_ftpf		*ftpf_init(char *input)
 	new->hh['X'] = print_hhx;
 	new->hh['u'] = print_hhu;
 	new->hh['U'] = print_hu;
-
 	new->h['d'] = print_hd;
 	new->h['D'] = print_hud;
 	new->h['i'] = print_hd;
@@ -137,7 +136,6 @@ t_ftpf		*ftpf_init(char *input)
 	new->h['X'] = print_hx;
 	new->h['u'] = print_hu;
 	new->h['U'] = print_huu;
-
 	new->j['d'] = print_jd;
 	new->j['D'] = print_jd;
 	new->j['i'] = print_jd;
@@ -147,7 +145,6 @@ t_ftpf		*ftpf_init(char *input)
 	new->j['U'] = print_ju;
 	new->j['o'] = print_jo;
 	new->j['O'] = print_jo;
-
 	new->l['d'] = print_ld;
 	new->l['D'] = print_ld;
 	new->l['i'] = print_ld;
@@ -164,7 +161,6 @@ t_ftpf		*ftpf_init(char *input)
 	new->l['U'] = print_lu;
 	new->l['p'] = print_p;
 	new->l['P'] = print_p;
-
 	new->fct['D'] = print_ld;
 	new->fct['I'] = print_ld;
 	new->fct['C'] = print_lc;
@@ -181,7 +177,6 @@ t_ftpf		*ftpf_init(char *input)
 	new->fct['x'] = print_x;
 	new->fct['X'] = print_x;
 	new->fct['u'] = print_u;
-
 	new->z['d'] = print_zi;
 	new->z['D'] = print_zi;
 	new->z['i'] = print_zi;
@@ -191,7 +186,6 @@ t_ftpf		*ftpf_init(char *input)
 	new->z['O'] = print_zo;
 	new->z['x'] = print_zx;
 	new->z['X'] = print_zx;
-
 	new->fct['%'] = print_percent;
 	return (new);
 }

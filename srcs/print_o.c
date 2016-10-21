@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_o.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/10/21 20:37:35 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/10/21 23:01:42 by mdos-san         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
-static char *convert_octal(unsigned int n)
+static char	*convert_octal(unsigned int n)
 {
-	int	i;
-	unsigned int mod;
-	char buf[65];
+	int				i;
+	unsigned int	mod;
+	char			buf[65];
 
 	i = 0;
 	ft_bzero(buf, 65);
@@ -26,7 +38,7 @@ static char *convert_octal(unsigned int n)
 	return (ft_strdup(buf + 63 - i + 1));
 }
 
-void	print_o(void *o, t_flag flag, int *r)
+void		print_o(t_flag *flag, int *r)
 {
 	char	*array;
 	int		w;
@@ -34,23 +46,24 @@ void	print_o(void *o, t_flag flag, int *r)
 	int		i;
 
 	i = -1;
-	array = convert_octal(va_arg(flag.arg, unsigned int));
-	p = flag.precision - ft_strlen(array);
-	p = (p < 0) ?  0 : p;
-	p = (p == 0 && flag.flag['#'] == 1 && ft_strcmp("0", array) != 0) ? 1 : p;
-	w = flag.width - ft_strlen(array) - p;
+	array = convert_octal(va_arg(flag->arg, unsigned int));
+	p = flag->precision - ft_strlen(array);
+	p = (p < 0) ? 0 : p;
+	p = (p == 0 && flag->flag['#'] == 1 && ft_strcmp("0", array) != 0) ? 1 : p;
+	w = flag->width - ft_strlen(array) - p;
 	w = (w < 0) ? 0 : w;
-	w = (flag.p_given && flag.precision == 0) ? flag.width : w;
-	(!flag.flag['-'] && !flag.flag['0']) ? print_width(w, r): 0;
-	(!flag.flag['-'] && flag.flag['0']) ? print_width_z(w, r): 0;
+	w = (flag->p_given && flag->precision == 0) ? flag->width : w;
+	(!flag->flag['-'] && !flag->flag['0']) ? print_width(w, r) : 0;
+	(!flag->flag['-'] && flag->flag['0']) ? print_width_z(w, r) : 0;
 	while (++i < p)
 	{
 		ft_putchar('0');
 		++*r;
 	}
-	(flag.p_given && flag.precision == 0 && flag.flag['#'] == 0) ? 0 : ft_putstr(array);
-	*r += (flag.p_given && flag.precision == 0 && flag.flag['#'] == 0) ? 0 : ft_strlen(array);
-	(flag.flag['-'] == 1) ? print_width(w, r): 0;
+	(flag->p_given && flag->precision == 0 && flag->flag['#'] == 0)
+		? 0 : ft_putstr(array);
+	*r += (flag->p_given && flag->precision == 0 && flag->flag['#'] == 0)
+		? 0 : ft_strlen(array);
+	(flag->flag['-'] == 1) ? print_width(w, r) : 0;
 	ft_strdel(&array);
-	(void)o;
 }

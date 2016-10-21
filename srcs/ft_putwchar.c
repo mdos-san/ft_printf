@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 18:21:58 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/13 12:25:16 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/21 20:17:29 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #define MASK_2 "0000000000000000110xxxxx10xxxxxx"
 #define MASK_3 "000000001110xxxx10xxxxxx10xxxxxx"
 #define MASK_4 "11110xxx10xxxxxx10xxxxxx10xxxxxx"
-
 
 static char			*print_bit(int c)
 {
@@ -92,7 +91,7 @@ int					ft_putwchar(int c)
 	int				r;
 
 	nbr = print_bit(c);
-	r = 0;
+	r = 4;
 	if (c <= 127 && (r = 1))
 		mask = mask_init(1);
 	else if (c <= 2047 && (r = 2))
@@ -100,10 +99,7 @@ int					ft_putwchar(int c)
 	else if (2047 < c && c <= 65535 && (r = 3))
 		mask = mask_init(3);
 	else
-	{
 		mask = mask_init(4);
-		r = 4;
-	}
 	mask_fill(mask, nbr);
 	result = bin_to_int(mask);
 	free(nbr);

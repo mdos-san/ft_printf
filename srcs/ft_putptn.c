@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:20:17 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/13 12:20:46 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/21 20:13:46 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static void	convert(unsigned long int n)
 {
-	int	i;
-	int mod;
-	char buf[33];
+	int		i;
+	int		mod;
+	char	buf[33];
 
 	i = 0;
 	ft_bzero(buf, 33);
@@ -38,5 +38,5 @@ static void	convert(unsigned long int n)
 
 void		ft_putptn(unsigned long int pnt)
 {
-	convert(pnt);	
+	convert(pnt);
 }

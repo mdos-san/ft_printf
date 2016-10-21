@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:38:44 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/13 12:39:01 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/21 23:00:36 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static char	*convert_octal(unsigned long n)
 	return (ft_strdup(buf + 63 - i + 1));
 }
 
-void		print_lo(void *o, t_flag flag, int *r)
+void		print_lo(t_flag *flag, int *r)
 {
 	char	*array;
 	int		w;
@@ -46,23 +46,24 @@ void		print_lo(void *o, t_flag flag, int *r)
 	int		i;
 
 	i = -1;
-	array = convert_octal(va_arg(flag.arg, unsigned long));
-	p = flag.precision - ft_strlen(array);
-	p = (p < 0) ?  0 : p;
-	p = (p == 0 && flag.flag['#'] == 1 && ft_strcmp("0", array) != 0) ? 1 : p;
-	w = flag.width - ft_strlen(array) - p;
+	array = convert_octal(va_arg(flag->arg, unsigned long));
+	p = flag->precision - ft_strlen(array);
+	p = (p < 0) ? 0 : p;
+	p = (p == 0 && flag->flag['#'] == 1 && ft_strcmp("0", array) != 0) ? 1 : p;
+	w = flag->width - ft_strlen(array) - p;
 	w = (w < 0) ? 0 : w;
-	w = (flag.p_given && flag.precision == 0) ? flag.width : w;
-	(!flag.flag['-'] && !flag.flag['0']) ? print_width(w, r): 0;
-	(!flag.flag['-'] && flag.flag['0']) ? print_width_z(w, r): 0;
+	w = (flag->p_given && flag->precision == 0) ? flag->width : w;
+	(!flag->flag['-'] && !flag->flag['0']) ? print_width(w, r) : 0;
+	(!flag->flag['-'] && flag->flag['0']) ? print_width_z(w, r) : 0;
 	while (++i < p)
 	{
 		ft_putchar('0');
 		++*r;
 	}
-	(flag.p_given && flag.precision == 0 && flag.flag['#'] == 0) ? 0 : ft_putstr(array);
-	*r += (flag.p_given && flag.precision == 0 && flag.flag['#'] == 0) ? 0 : ft_strlen(array);
-	(flag.flag['-'] == 1) ? print_width(w, r): 0;
+	(flag->p_given && flag->precision == 0 && flag->flag['#'] == 0)
+		? 0 : ft_putstr(array);
+	*r += (flag->p_given && flag->precision == 0 && flag->flag['#'] == 0)
+		? 0 : ft_strlen(array);
+	(flag->flag['-'] == 1) ? print_width(w, r) : 0;
 	ft_strdel(&array);
-	(void)o;
 }
