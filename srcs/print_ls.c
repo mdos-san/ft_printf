@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:39:09 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/21 20:36:43 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/21 23:38:44 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,39 +70,39 @@ static int	int_arr_len(int *arr)
 	return (ret);
 }
 
-void		print_ls(void *s, t_flag flag, int *r)
+void		print_ls(t_flag *flag, int *r)
 {
 	int		*arr;
 	int		nb;
 	int		*st;
 
 	nb = 0;
-	st = va_arg(flag.arg, int *);
-	if (st == NULL && flag.width == 0)
+	st = va_arg(flag->arg, int *);
+	if (st == NULL && flag->width == 0)
 	{
 		ft_putstr("(null)");
 		*r += 6;
 	}
 	else
 	{
-		arr = int_arr_dup(st, flag.precision);
-		nb = (flag.width > flag.precision) ? flag.width - int_arr_len(arr) : 0;
-		(flag.flag['-'] == 0 && !flag.flag['0']) ? print_width(nb, r) : 0;
-		(flag.flag['-'] == 0 && flag.flag['0']) ? print_width_z(nb, r) : 0;
-		if (!(flag.p_given && !flag.precision))
+		arr = int_arr_dup(st, flag->precision);
+		nb = (flag->width > flag->precision)
+			? flag->width - int_arr_len(arr) : 0;
+		(flag->flag['-'] == 0 && !flag->flag['0']) ? print_width(nb, r) : 0;
+		(flag->flag['-'] == 0 && flag->flag['0']) ? print_width_z(nb, r) : 0;
+		if (!(flag->p_given && !flag->precision))
 		{
 			*r += ft_putwstr(arr);
-			(flag.flag['-'] == 1) ? print_width(nb, r) : 0;
+			(flag->flag['-'] == 1) ? print_width(nb, r) : 0;
 		}
 		else
 		{
-			(flag.flag['-'] == 0 && flag.flag['0'])
-				? print_width_z(flag.width, r) : 0;
-			(flag.flag['-'] == 0 && !flag.flag['0'])
-				? print_width(flag.width, r) : 0;
+			(flag->flag['-'] == 0 && flag->flag['0'])
+				? print_width_z(flag->width, r) : 0;
+			(flag->flag['-'] == 0 && !flag->flag['0'])
+				? print_width(flag->width, r) : 0;
 		}
-		(flag.flag['-'] && flag.flag['0']) ? print_width_z(nb, r) : 0;
+		(flag->flag['-'] && flag->flag['0']) ? print_width_z(nb, r) : 0;
 		(arr) ? free(arr) : 0;
 	}
-	(void)s;
 }
