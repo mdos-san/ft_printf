@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:26:34 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/21 20:54:21 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/22 01:05:12 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ static void	init_params(char *s, char ***arr)
 		}
 		++i1;
 	}
-	str_array_add(arr, s + i2 + 1);
 }
 
 static void	get_mod(t_ftpf *ftpf)
