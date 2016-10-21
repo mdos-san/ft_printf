@@ -6,11 +6,26 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 12:59:08 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/13 12:19:46 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/21 21:36:24 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+
+static int	is_flag(char c)
+{
+	if (c == 'c' || c == 'C' ||
+		c == 's' || c == 'S' ||
+		c == 'd' || c == 'D' ||
+		c == 'i' || c == 'I' ||
+		c == 'o' || c == 'O' ||
+		c == 'x' || c == 'X' ||
+		c == 'u' || c == 'U' ||
+		c == '%' ||
+		c == 'p')
+		return (1);
+	return (0);
+}
 
 static int	get_width(char *s)
 {
@@ -39,10 +54,14 @@ static void	get_flag(t_ftpf *ftpf, char *str)
 	int		i;
 
 	i = 0;
-	ftpf->flag.flag[' '] = ((c = ft_strchr(str, ' ')) != NULL) ? 1 : 0;
-	ftpf->flag.flag['#'] = ((c = ft_strchr(str, '#')) != NULL) ? 1 : 0;
-	ftpf->flag.flag['+'] = ((c = ft_strchr(str, '+')) != NULL) ? 1 : 0;
-	ftpf->flag.flag['-'] = ((c = ft_strchr(str, '-')) != NULL) ? 1 : 0;
+	ftpf->flag.flag[' '] =
+		((c = ft_strchr(str, ' ')) != NULL) ? 1 : 0;
+	ftpf->flag.flag['#'] =
+		((c = ft_strchr(str, '#')) != NULL) ? 1 : 0;
+	ftpf->flag.flag['+'] =
+		((c = ft_strchr(str, '+')) != NULL) ? 1 : 0;
+	ftpf->flag.flag['-'] =
+		((c = ft_strchr(str, '-')) != NULL) ? 1 : 0;
 	while (!ft_isdigit(str[i]) && str[i] != 0)
 		++i;
 	ftpf->flag.flag['0'] = (str[i] == '0') ? 1 : 0;
@@ -50,9 +69,9 @@ static void	get_flag(t_ftpf *ftpf, char *str)
 
 int			ft_printf(char *str, ...)
 {
-	t_ftpf *ftpf;
-	va_list ap;	
-	va_list cp;	
+	t_ftpf	*ftpf;
+	va_list	ap;
+	va_list	cp;
 	int		i;
 	int		nb;
 	int		value;
@@ -69,7 +88,7 @@ int			ft_printf(char *str, ...)
 		{
 			va_copy(cp, ap);
 			va_copy(ftpf->flag.arg, ap);
-			ftpf->c = ft_str_last_char(ftpf->params[nb]);	
+			ftpf->c = ft_str_last_char(ftpf->params[nb]);
 			ftpf->flag.uppercase = (ftpf->c == 'X') ? 1 : 0;
 			ftpf->tmp = ft_strchr(ftpf->params[nb], '.');
 			ftpf->flag.p_given = (ft_strchr(ftpf->params[nb], '.')) ? 1 : 0;
@@ -94,7 +113,7 @@ int			ft_printf(char *str, ...)
 			else
 				(*ftpf->fct[(int)ftpf->c])(ret, ftpf->flag, &ftpf->r);
 			i += ft_strlen(ftpf->params[nb]) - 1;
-			(ftpf->c != '%') ? va_arg(ap, void*) : 0;
+			(is_flag(ftpf->c) && ftpf->c != '%') ? va_arg(ap, void*) : 0;
 			++nb;
 		}
 		else
