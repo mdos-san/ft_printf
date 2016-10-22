@@ -6,78 +6,80 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:43:31 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/21 23:39:50 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/22 04:45:37 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static char	*ft_ltoa(size_t l)
+static char	*ft_ltoa(long long l)
 {
-	char	buf[21];
+	char	buf[257];
 	int		i;
+	char	n;
 
 	i = 0;
-	ft_bzero(buf, 21);
+	n = (l < 0) ? -1 : 1;
+	ft_bzero(buf, 257);
 	if (l == 0)
 		return (ft_strdup("0"));
 	while (l != 0)
 	{
-		buf[19 - i] = l % 10 + 48;
+		buf[255 - i] = (l % 10) * n + 48;
 		l /= 10;
 		++i;
 	}
-	return (ft_strdup(buf + 19 - i));
+	(n == -1) ? (buf[255 - i] = '-') : --i;
+	return (ft_strdup(buf + 255 - i));
+}
+
+static void	get_width(t_flag *flag, char *arr, int *nb, long long in)
+{
+	*nb = 0;
+	if (flag->width > flag->precision)
+	{
+		*nb = (flag->precision > (int)ft_strlen(arr))
+		? (int)(flag->width - ft_strlen(arr) - flag->precision + ft_strlen(arr))
+		: (int)(flag->width - ft_strlen(arr));
+		*nb += (flag->p_given && !flag->precision && !in) ? ft_strlen(arr) : 0;
+	}
+}
+
+static void	flag_space(t_flag *flag, long long in, int *nb, int *r)
+{
+	if (flag->flag[' '] && in == 0)
+	{
+		ft_putchar(' ');
+		++*r;
+		--*nb;
+	}
 }
 
 void		print_zd(t_flag *flag, int *r)
 {
-	char	*arr;
-	int		i;
-	int		nb;
-	int		negative;
-	size_t	st;
+	char		*arr;
+	int			i;
+	int			nb;
+	int			n;
+	long long	in;
 
 	i = 0;
-	nb = 0;
-	st = va_arg(flag->arg, size_t);
-	arr = ft_ltoa(st);
-	if (flag->width > flag->precision)
-	{
-		nb = (flag->precision > (int)ft_strlen(arr))
-		? (int)(flag->width - ft_strlen(arr) - flag->precision + ft_strlen(arr))
-		: (int)(flag->width - ft_strlen(arr));
-		(flag->precision > (int)ft_strlen(arr)) ? --nb : 0;
-	}
-	(flag->flag[' '] && !flag->flag['+'] && !flag->flag['-'] && st > 0
-		&& !flag->width && !flag->precision && ++*r) ? ft_putchar(' ') : 0;
-	(flag->flag['+'] == 1 && st > 0) ? --nb : 0;
-	(flag->flag['-'] == 0 && (!flag->flag['0'] || flag->precision))
-		? print_width(nb, r) : 0;
-	(flag->flag['+'] == 1 && ++*r) ? ft_putchar('+') : 0;
-	if (flag->precision > (int)ft_strlen(arr))
-	{
-		negative = (arr[0] == '-') ? 1 : 0;
-		(negative == 1 && ++*r) ? ft_putchar('-') : 0;
-		(flag->flag['-'] == 0 && flag->flag['0'] && !flag->precision)
-			? print_width_z(nb, r) : 0;
-		while (i < flag->precision - (int)ft_strlen(arr) + negative)
-		{
-			ft_putchar('0');
-			++*r;
-			++i;
-		}
-		ft_putstr(arr + negative);
-		*r += ft_strlen(arr + negative);
-	}
-	else
-	{
-		negative = (arr[0] == '-') ? 1 : 0;
-		(negative == 1 && ++*r) ? ft_putchar('-') : 0;
-		(flag->flag['-'] == 0 && flag->flag['0'] && !flag->precision)
-			? print_width_z(nb, r) : 0;
-		ft_putstr(arr + negative);
-		*r += ft_strlen(arr + negative);
-	}
+	in = va_arg(flag->arg, long long);
+	arr = ft_ltoa(in);
+	n = (arr[0] == '-') ? 1 : 0;
+	get_width(flag, arr, &nb, in);
+	(flag->flag[' '] && !flag->flag['+'] && !flag->flag['-'] && in > 0
+	&& !flag->width && !flag->precision && ++*r) ? ft_putchar(' ') : 0;
+	flag_space(flag, in, &nb, r);
+	(flag->flag['+'] == 1 && in >= 0) ? --nb : 0;
+	(flag->flag['-'] == 0 && (!flag->flag['0'] || flag->precision)
+	&& flag->width - n > flag->precision) ? print_width(nb, r) : 0;
+	(flag->flag['+'] == 1 && in >= 0 && ++*r) ? ft_putchar('+') : 0;
+	(n == 1 && ++*r) ? ft_putchar('-') : 0;
+	(flag->flag['-'] == 0 && flag->flag['0'] && !flag->precision)
+		? print_width_z(nb, r) : 0;
+	precision(flag->precision - (int)ft_strlen(arr) + n, r);
+	(flag->p_given && !flag->precision && !in) ? 0 : ft_putstr(arr + n);
+	*r += (flag->p_given && !flag->precision && !in) ? 0 : ft_strlen(arr + n);
 	(flag->flag['-'] == 1) ? print_width(nb, r) : 0;
 }

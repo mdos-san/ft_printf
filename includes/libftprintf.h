@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/21 20:27:18 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 03:26:46 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/22 04:49:37 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ char				ft_str_last_char(char *s);
 
 void				useless(t_flag *flag, int *ret);
 
-void				print_zi(t_flag *flag, int *ret);
 void				print_zo(t_flag *flag, int *ret);
 void				print_zx(t_flag *flag, int *ret);
 void				print_zu(t_flag *flag, int *ret);

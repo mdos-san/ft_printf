@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:26:34 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 01:05:12 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/22 04:37:45 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,9 +176,9 @@ t_ftpf		*ftpf_init(char *input)
 	new->fct['x'] = print_x;
 	new->fct['X'] = print_x;
 	new->fct['u'] = print_u;
-	new->z['d'] = print_zi;
-	new->z['D'] = print_zi;
-	new->z['i'] = print_zi;
+	new->z['d'] = print_zd;
+	new->z['D'] = print_zd;
+	new->z['i'] = print_zd;
 	new->z['u'] = print_zu;
 	new->z['U'] = print_zu;
 	new->z['o'] = print_zo;

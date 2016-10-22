@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 12:59:08 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 03:57:56 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/22 04:14:36 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ static void	exec_ftpf(t_ftpf *ftpf, va_list *ap, int *nb, int *i)
 	}
 	else
 		(*ftpf->fct[(int)ftpf->c])(&ftpf->flag, &ftpf->r);
-	*i += ft_strlen(ftpf->params[nb]) - 1;
+	*i += ft_strlen(ftpf->params[*nb]) - 1;
 	va_copy(*ap, ftpf->flag.arg);
-	++nb;
+	++*nb;
 }
 
 int			ft_printf(char *str, ...)
@@ -104,7 +104,7 @@ int			ft_printf(char *str, ...)
 	while (str[i])
 	{
 		if (str[i] == '%')
-			exec_ftpf(ftpf, nb, &i);
+			exec_ftpf(ftpf, &ap, &nb, &i);
 		else
 		{
 			ft_putchar(str[i]);
