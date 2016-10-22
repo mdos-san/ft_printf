@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:38:23 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 04:51:52 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/22 06:12:06 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ static void	get_width(t_flag *flag, char *arr, int *nb, long in)
 
 static void	flag_space(t_flag *flag, long in, int *nb, int *r)
 {
+	(flag->flag[' '] && !flag->flag['+'] && !flag->flag['-'] && in > 0
+	&& !flag->width && !flag->precision && ++*r) ? ft_putchar(' ') : 0;
 	if (flag->flag[' '] && in == 0)
 	{
 		ft_putchar(' ');
@@ -68,8 +70,6 @@ void		print_ld(t_flag *flag, int *r)
 	arr = ft_ltoa(in);
 	n = (arr[0] == '-') ? 1 : 0;
 	get_width(flag, arr, &nb, in);
-	(flag->flag[' '] && !flag->flag['+'] && !flag->flag['-'] && in > 0
-	&& !flag->width && !flag->precision && ++*r) ? ft_putchar(' ') : 0;
 	flag_space(flag, in, &nb, r);
 	(flag->flag['+'] == 1 && in >= 0) ? --nb : 0;
 	(flag->flag['-'] == 0 && (!flag->flag['0'] || flag->precision)
@@ -82,4 +82,5 @@ void		print_ld(t_flag *flag, int *r)
 	(flag->p_given && !flag->precision && !in) ? 0 : ft_putstr(arr + n);
 	*r += (flag->p_given && !flag->precision && !in) ? 0 : ft_strlen(arr + n);
 	(flag->flag['-'] == 1) ? print_width(nb, r) : 0;
+	ft_strdel(&arr);
 }

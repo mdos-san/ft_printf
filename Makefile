@@ -6,7 +6,7 @@
 #    By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 12:59:09 by mdos-san          #+#    #+#              #
-#    Updated: 2016/10/22 05:58:45 by mdos-san         ###   ########.fr        #
+#    Updated: 2016/10/22 06:00:05 by mdos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -127,4 +127,3 @@ re: fclean all
 
 norm	:
 	@norminette srcs includes
-

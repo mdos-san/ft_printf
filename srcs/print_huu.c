@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 13:08:29 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/21 22:55:05 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/22 06:13:18 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,5 @@ void		print_huu(t_flag *flag, int *r)
 	ft_putstr(arr);
 	*r += ft_strlen(arr);
 	(flag->flag['-'] == 1) ? print_width(w, r) : 0;
+	ft_strdel(&arr);
 }

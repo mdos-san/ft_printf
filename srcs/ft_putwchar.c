@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 18:21:58 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/21 20:17:29 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/22 06:04:28 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,12 +102,12 @@ int					ft_putwchar(int c)
 		mask = mask_init(4);
 	mask_fill(mask, nbr);
 	result = bin_to_int(mask);
-	free(nbr);
+	ft_strdel(&nbr);
 	nbr = (char*)&result;
 	(c > 65535) ? write(1, nbr + 3, 1) : 0;
 	(c > 2047) ? write(1, nbr + 2, 1) : 0;
 	(c > 127) ? write(1, nbr + 1, 1) : 0;
 	write(1, nbr + 0, 1);
-	free(mask);
+	ft_strdel(&mask);
 	return (r);
 }
