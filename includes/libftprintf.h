@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/21 20:27:18 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 04:49:37 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/22 05:22:44 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,10 @@ void				print_width_z(int nb, int *r);
 void				init_xpw(t_flag *flag, char *arr, int *p, int *w);
 void				precision(int p, int *r);
 void				width(t_flag *flag, int w, int *r);
+void				init_useless(t_ftpf *new);
+void				init_hhhl(t_ftpf *new);
+void				init_lj(t_ftpf *new);
+void				init_fct(t_ftpf *new);
+void				init_pz(t_ftpf *new);
 
 #endif
