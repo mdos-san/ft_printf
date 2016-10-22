@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:26:34 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 05:22:20 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/22 06:16:34 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,11 @@ static void	get_mod(t_ftpf *ftpf)
 {
 	if (ft_strchr(ftpf->input, 'l'))
 		ftpf->flag.mod = ft_strdup("l");
-	if (ft_strstr(ftpf->input, "ll"))
+	else if (ft_strstr(ftpf->input, "ll"))
 		ftpf->flag.mod = ft_strdup("ll");
-	if (ft_strchr(ftpf->input, 'h'))
+	else if (ft_strchr(ftpf->input, 'h'))
 		ftpf->flag.mod = ft_strdup("h");
-	if (ft_strstr(ftpf->input, "hh"))
+	else if (ft_strstr(ftpf->input, "hh"))
 		ftpf->flag.mod = ft_strdup("hh");
 }
 

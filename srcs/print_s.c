@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:42:05 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 03:44:40 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/22 05:47:23 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,20 @@ static int	check_null(t_flag *flag, char *st, int *r)
 static void	s_width(t_flag *flag, char *str, int *r)
 {
 	int	nb;
+	int	i;
 
 	nb = 0;
+	i = 0;
 	if (flag->width > 0)
 	{
 		nb = flag->width - ft_strlen(str);
 		nb = (flag->p_given && !flag->precision) ? flag->width : nb;
-		width(flag, nb, r);
+		while (i < nb)
+		{
+			(flag->flag['0']) ? ft_putchar('0') : ft_putchar(' ');
+			++*r;
+			++i;
+		}
 	}
 }
 
@@ -53,14 +60,14 @@ void		print_s(t_flag *flag, int *r)
 			tmp = str[flag->precision];
 			str[flag->precision] = '\0';
 		}
-		s_width(flag, str, r);
+		(!flag->flag['-']) ? s_width(flag, str, r) : 0;
 		if ((flag->p_given && flag->precision) || !flag->p_given)
 		{
 			(ss != NULL) ? ft_putstr(str) : ft_putstr("(null)");
 			*r += ft_strlen(str);
 		}
+		(flag->flag['-']) ? s_width(flag, str, r) : 0;
 		(flag->precision > 0) ? (str[flag->precision] = tmp) : 0;
-		(flag->flag['-'] == 1) ? print_width(nb, r) : 0;
 		ft_strdel(&str);
 	}
 }
