@@ -6,13 +6,13 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:28:02 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 04:39:29 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/22 04:57:11 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static char	*ft_ltoa(long l)
+static char	*ft_ltoa(int l)
 {
 	char	buf[21];
 	int		i;

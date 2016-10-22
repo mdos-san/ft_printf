@@ -6,55 +6,63 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:34:54 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/21 22:54:41 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/22 05:06:35 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static char	*convert_ui(unsigned short ui)
+static char	*ft_ltoa(unsigned short l)
 {
-	char			buf[257];
-	int				i;
-	unsigned short	mod;
+	char	buf[21];
+	int		i;
 
 	i = 0;
-	ft_bzero(buf, 257);
-	if (ui == 0)
+	ft_bzero(buf, 21);
+	if (l == 0)
 		return (ft_strdup("0"));
-	while (ui != 0)
+	while (l != 0)
 	{
-		mod = ui % 10;
-		buf[255 - i] = mod + 48;
-		ui /= 10;
-		i += (ui != 0) ? 1 : 0;
+		buf[19 - i] = (l % 10) + 48;
+		l /= 10;
+		++i;
 	}
-	return (ft_strdup(buf + 255 - i));
+	--i;
+	return (ft_strdup(buf + 19 - i));
+}
+
+static void	get_width(t_flag *flag, char *arr, int *nb, unsigned short in)
+{
+	*nb = 0;
+	if (flag->width > flag->precision)
+	{
+		*nb = (flag->precision > (int)ft_strlen(arr))
+		? (int)(flag->width - ft_strlen(arr) - flag->precision + ft_strlen(arr))
+		: (int)(flag->width - ft_strlen(arr));
+		*nb += (flag->p_given && !flag->precision && !in) ? ft_strlen(arr) : 0;
+	}
 }
 
 void		print_hu(t_flag *flag, int *r)
 {
-	char	*arr;
-	int		w;
-	int		p;
-	int		i;
+	char			*arr;
+	int				i;
+	int				nb;
+	int				n;
+	unsigned short	in;
 
-	i = -1;
-	arr = convert_ui((unsigned short)va_arg(flag->arg, int));
-	p = flag->precision - ft_strlen(arr);
-	p = (p < 0) ? 0 : p;
-	p = (p == 0 && flag->flag['#'] == 1) ? 1 : p;
-	w = flag->width - ft_strlen(arr) - p;
-	w = (w < 0) ? 0 : w;
-	w = (flag->p_given && flag->precision == 0) ? flag->width : w;
-	(!flag->flag['-'] && !flag->flag['0']) ? print_width(w, r) : 0;
-	(!flag->flag['-'] && flag->flag['0']) ? print_width_z(w, r) : 0;
-	while (++i < p)
-	{
-		ft_putchar('0');
-		++*r;
-	}
-	ft_putstr(arr);
-	*r += ft_strlen(arr);
-	(flag->flag['-'] == 1) ? print_width(w, r) : 0;
+	i = 0;
+	in = (unsigned short)va_arg(flag->arg, int);
+	arr = ft_ltoa(in);
+	n = (arr[0] == '-') ? 1 : 0;
+	get_width(flag, arr, &nb, in);
+	(flag->flag['-'] == 0 && (!flag->flag['0'] || flag->precision)
+	&& flag->width - n > flag->precision) ? print_width(nb, r) : 0;
+	(n == 1 && ++*r) ? ft_putchar('-') : 0;
+	(flag->flag['-'] == 0 && flag->flag['0'] && !flag->precision)
+		? print_width_z(nb, r) : 0;
+	precision(flag->precision - (int)ft_strlen(arr) + n, r);
+	(flag->p_given && !flag->precision && !in) ? 0 : ft_putstr(arr + n);
+	*r += (flag->p_given && !flag->precision && !in) ? 0 : ft_strlen(arr + n);
+	(flag->flag['-'] == 1) ? print_width(nb, r) : 0;
 }
