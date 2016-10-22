@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 12:59:08 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 04:14:36 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/22 05:40:59 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,5 +114,6 @@ int			ft_printf(char *str, ...)
 	}
 	value = ftpf->r;
 	va_end(ap);
+	ftpf_del(&ftpf);
 	return (value);
 }
