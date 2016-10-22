@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:46:41 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/21 23:03:01 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/22 02:54:00 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,7 @@ void		print_zo(t_flag *flag, int *r)
 	char	*array;
 	int		w;
 	int		p;
-	int		i;
 
-	i = -1;
 	array = convert_octal(va_arg(flag->arg, unsigned long long));
 	p = flag->precision - ft_strlen(array);
 	p = (p < 0) ? 0 : p;
@@ -55,11 +53,7 @@ void		print_zo(t_flag *flag, int *r)
 	w = (flag->p_given && flag->precision == 0) ? flag->width : w;
 	(!flag->flag['-'] && !flag->flag['0']) ? print_width(w, r) : 0;
 	(!flag->flag['-'] && flag->flag['0']) ? print_width_z(w, r) : 0;
-	while (++i < p)
-	{
-		ft_putchar('0');
-		++*r;
-	}
+	precision(p, r);
 	(flag->p_given && flag->precision == 0 && flag->flag['#'] == 0)
 		? 0 : ft_putstr(array);
 	*r += (flag->p_given && flag->precision == 0 && flag->flag['#'] == 0)
