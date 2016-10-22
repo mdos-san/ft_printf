@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 12:59:08 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/21 23:25:10 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/22 03:57:56 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,43 @@ static void	get_flag(t_ftpf *ftpf, char *str)
 	ftpf->flag.flag['0'] = (str[i] == '0') ? 1 : 0;
 }
 
+static void	get_info_ftpf(t_ftpf *ftpf, int nb)
+{
+	ftpf->c = ft_str_last_char(ftpf->params[nb]);
+	ftpf->flag.uppercase = (ftpf->c == 'X') ? 1 : 0;
+	ftpf->tmp = ft_strchr(ftpf->params[nb], '.');
+	ftpf->flag.p_given = (ft_strchr(ftpf->params[nb], '.')) ? 1 : 0;
+	ftpf->flag.precision = 0;
+	ftpf->flag.width = get_width(ftpf->params[nb]);
+	ftpf->flag.param = ftpf->params[nb];
+	get_flag(ftpf, ftpf->params[nb]);
+	(ftpf->tmp) ? ftpf->flag.precision = ft_atoi(ftpf->tmp + 1) : 0;
+}
+
+static void	exec_ftpf(t_ftpf *ftpf, va_list *ap, int *nb, int *i)
+{
+	va_copy(ftpf->flag.arg, *ap);
+	get_info_ftpf(ftpf, *nb);
+	if (ft_strstr(ftpf->params[*nb], "hh"))
+		(*ftpf->hh[(int)ftpf->c])(&ftpf->flag, &ftpf->r);
+	else if (ft_strstr(ftpf->params[*nb], "h"))
+		(*ftpf->h[(int)ftpf->c])(&ftpf->flag, &ftpf->r);
+	else if (ft_strstr(ftpf->params[*nb], "l"))
+		(*ftpf->l[(int)ftpf->c])(&ftpf->flag, &ftpf->r);
+	else if (ft_strstr(ftpf->params[*nb], "j"))
+		(*ftpf->j[(int)ftpf->c])(&ftpf->flag, &ftpf->r);
+	else if (ft_strstr(ftpf->params[*nb], "z"))
+		(*ftpf->z[(int)ftpf->c])(&ftpf->flag, &ftpf->r);
+	else if (ft_strcmp(ftpf->params[*nb], "%") == 0)
+	{
+	}
+	else
+		(*ftpf->fct[(int)ftpf->c])(&ftpf->flag, &ftpf->r);
+	*i += ft_strlen(ftpf->params[nb]) - 1;
+	va_copy(*ap, ftpf->flag.arg);
+	++nb;
+}
+
 int			ft_printf(char *str, ...)
 {
 	t_ftpf	*ftpf;
@@ -67,36 +104,7 @@ int			ft_printf(char *str, ...)
 	while (str[i])
 	{
 		if (str[i] == '%')
-		{
-			va_copy(ftpf->flag.arg, ap);
-			ftpf->c = ft_str_last_char(ftpf->params[nb]);
-			ftpf->flag.uppercase = (ftpf->c == 'X') ? 1 : 0;
-			ftpf->tmp = ft_strchr(ftpf->params[nb], '.');
-			ftpf->flag.p_given = (ft_strchr(ftpf->params[nb], '.')) ? 1 : 0;
-			ftpf->flag.precision = 0;
-			ftpf->flag.width = get_width(ftpf->params[nb]);
-			ftpf->flag.param = ftpf->params[nb];
-			get_flag(ftpf, ftpf->params[nb]);
-			(ftpf->tmp) ? ftpf->flag.precision = ft_atoi(ftpf->tmp + 1) : 0;
-			if (ft_strstr(ftpf->params[nb], "hh"))
-				(*ftpf->hh[(int)ftpf->c])(&ftpf->flag, &ftpf->r);
-			else if (ft_strstr(ftpf->params[nb], "h"))
-				(*ftpf->h[(int)ftpf->c])(&ftpf->flag, &ftpf->r);
-			else if (ft_strstr(ftpf->params[nb], "l"))
-				(*ftpf->l[(int)ftpf->c])(&ftpf->flag, &ftpf->r);
-			else if (ft_strstr(ftpf->params[nb], "j"))
-				(*ftpf->j[(int)ftpf->c])(&ftpf->flag, &ftpf->r);
-			else if (ft_strstr(ftpf->params[nb], "z"))
-				(*ftpf->z[(int)ftpf->c])(&ftpf->flag, &ftpf->r);
-			else if (ft_strcmp(ftpf->params[nb], "%") == 0)
-			{
-			}
-			else
-				(*ftpf->fct[(int)ftpf->c])(&ftpf->flag, &ftpf->r);
-			i += ft_strlen(ftpf->params[nb]) - 1;
-			va_copy(ap, ftpf->flag.arg);
-			++nb;
-		}
+			exec_ftpf(ftpf, nb, &i);
 		else
 		{
 			ft_putchar(str[i]);

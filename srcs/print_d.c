@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:28:02 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/21 22:51:24 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/22 04:04:57 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,7 @@ void		print_d(t_flag *flag, int *r)
 		(negative == 1 && ++*r) ? ft_putchar('-') : 0;
 		(flag->flag['-'] == 0 && flag->flag['0'] && !flag->precision)
 			? print_width_z(nb, r) : 0;
-		while (i < flag->precision - (int)ft_strlen(arr) + negative)
-		{
-			ft_putchar('0');
-			++*r;
-			++i;
-		}
+		precision(flag->precision - (int)ft_strlen(arr) + negative, r);
 		ft_putstr(arr + negative);
 		*r += ft_strlen(arr + negative);
 	}
