@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/21 20:27:18 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 02:53:40 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/22 03:26:46 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ void				print_percent(t_flag *flag, int *ret);
 void				print_width(int nbr, int *ret);
 void				print_width_z(int nb, int *r);
 
+void				init_xpw(t_flag *flag, char *arr, int *p, int *w);
 void				precision(int p, int *r);
+void				width(t_flag *flag, int w, int *r);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:37:04 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/21 22:56:44 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/22 02:57:43 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,7 @@ void		print_jo(t_flag *flag, int *r)
 	w = (flag->p_given && flag->precision == 0) ? flag->width : w;
 	(!flag->flag['-'] && !flag->flag['0']) ? print_width(w, r) : 0;
 	(!flag->flag['-'] && flag->flag['0']) ? print_width_z(w, r) : 0;
-	while (++i < p)
-	{
-		ft_putchar('0');
-		++*r;
-	}
+	precision(p, r);
 	(flag->p_given && flag->precision == 0 && flag->flag['#'] == 0)
 		? 0 : ft_putstr(array);
 	*r += (flag->p_given && flag->precision == 0 && flag->flag['#'] == 0)

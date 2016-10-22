@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:39:42 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/21 23:01:12 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/22 03:04:27 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,7 @@ void		print_lu(t_flag *flag, int *r)
 	w = (flag->p_given && flag->precision == 0) ? flag->width : w;
 	(!flag->flag['-'] && !flag->flag['0']) ? print_width(w, r) : 0;
 	(!flag->flag['-'] && flag->flag['0']) ? print_width_z(w, r) : 0;
-	while (++i < p)
-	{
-		ft_putchar('0');
-		++*r;
-	}
+	precision(p, r);
 	ft_putstr(arr);
 	*r += ft_strlen(arr);
 	(flag->flag['-'] == 1) ? print_width(w, r) : 0;
