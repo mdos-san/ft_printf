@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 12:59:08 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 05:40:59 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/25 07:37:43 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,17 +99,16 @@ int			ft_printf(char *str, ...)
 
 	i = 0;
 	nb = 0;
+	if (str == NULL)
+		return (-1);
 	va_start(ap, str);
 	ftpf = ftpf_init(str);
+	if (ftpf == NULL)
+		return (-1);
 	while (str[i])
 	{
-		if (str[i] == '%')
-			exec_ftpf(ftpf, &ap, &nb, &i);
-		else
-		{
-			ft_putchar(str[i]);
-			++ftpf->r;
-		}
+		(str[i] != '%') ? ++ftpf->r : 0;
+		(str[i] == '%') ? exec_ftpf(ftpf, &ap, &nb, &i) : ft_putchar(str[i]);
 		++i;
 	}
 	value = ftpf->r;
