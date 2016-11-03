@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 12:59:08 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/25 07:37:43 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/11/03 14:14:15 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,10 @@ static void	exec_ftpf(t_ftpf *ftpf, va_list *ap, int *nb, int *i)
 {
 	va_copy(ftpf->flag.arg, *ap);
 	get_info_ftpf(ftpf, *nb);
-	if (ft_strstr(ftpf->params[*nb], "hh"))
+	if (ft_strchr(ftpf->params[*nb], '*'))
+	{
+	}
+	else if (ft_strstr(ftpf->params[*nb], "hh"))
 		(*ftpf->hh[(int)ftpf->c])(&ftpf->flag, &ftpf->r);
 	else if (ft_strstr(ftpf->params[*nb], "h"))
 		(*ftpf->h[(int)ftpf->c])(&ftpf->flag, &ftpf->r);
