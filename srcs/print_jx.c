@@ -46,10 +46,8 @@ void		print_jx(t_flag *flag, int *r)
 	char		*arr;
 	int			w;
 	int			p;
-	int			i;
 	uintmax_t	x;
 
-	i = -1;
 	x = va_arg(flag->arg, uintmax_t);
 	arr = convert_hexa(x, flag->uppercase);
 	init_xpw(flag, arr, &p, &w);

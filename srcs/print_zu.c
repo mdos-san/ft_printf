@@ -46,12 +46,10 @@ static void	get_width(t_flag *flag, char *arr, int *nb, unsigned long long in)
 void		print_zu(t_flag *flag, int *r)
 {
 	char				*arr;
-	int					i;
 	int					nb;
 	int					n;
 	unsigned long long	in;
 
-	i = 0;
 	in = va_arg(flag->arg, unsigned long long);
 	arr = ft_ltoa(in);
 	n = (arr[0] == '-') ? 1 : 0;

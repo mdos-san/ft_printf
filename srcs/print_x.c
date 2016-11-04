@@ -46,10 +46,8 @@ void		print_x(t_flag *flag, int *r)
 	char			*arr;
 	int				w;
 	int				p;
-	int				i;
 	unsigned int	ui;
 
-	i = -1;
 	ui = va_arg(flag->arg, unsigned int);
 	arr = convert_hexa(ui, flag->uppercase);
 	init_xpw(flag, arr, &p, &w);

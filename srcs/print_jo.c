@@ -37,9 +37,7 @@ void		print_jo(t_flag *flag, int *r)
 	char	*array;
 	int		w;
 	int		p;
-	int		i;
 
-	i = -1;
 	array = convert_octal(va_arg(flag->arg, uintmax_t));
 	p = flag->precision - ft_strlen(array);
 	p = (p < 0) ? 0 : p;

@@ -37,10 +37,8 @@ void		print_lu(t_flag *flag, int *r)
 	char			*arr;
 	int				w;
 	int				p;
-	int				i;
 	unsigned long	ul;
 
-	i = -1;
 	ul = va_arg(flag->arg, unsigned long);
 	arr = convert_ui(ul);
 	p = flag->precision - ft_strlen(arr);

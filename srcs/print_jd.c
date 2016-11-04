@@ -60,12 +60,10 @@ static void	flag_space(t_flag *flag, intmax_t in, int *nb, int *r)
 void		print_jd(t_flag *flag, int *r)
 {
 	char		*arr;
-	int			i;
 	int			nb;
 	int			n;
 	intmax_t	in;
 
-	i = 0;
 	in = va_arg(flag->arg, intmax_t);
 	arr = ft_ltoa(in);
 	n = (arr[0] == '-') ? 1 : 0;

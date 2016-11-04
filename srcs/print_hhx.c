@@ -43,10 +43,8 @@ void		print_hhx(t_flag *flag, int *r)
 	char			*arr;
 	int				w;
 	int				p;
-	int				i;
 	unsigned char	x;
 
-	i = -1;
 	x = (unsigned char)va_arg(flag->arg, int);
 	arr = convert_hexa(x, flag->uppercase);
 	init_xpw(flag, arr, &p, &w);

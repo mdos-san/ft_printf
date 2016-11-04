@@ -40,9 +40,7 @@ void		print_p(t_flag *flag, int *r)
 {
 	char	*arr;
 	int		pre;
-	int		i;
 
-	i = 0;
 	arr = convert(va_arg(flag->arg, unsigned long long));
 	pre = flag->precision - ft_strlen(arr);
 	pre = (pre < 0) ? 0 : pre;

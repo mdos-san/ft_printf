@@ -43,9 +43,7 @@ void		print_o(t_flag *flag, int *r)
 	char	*array;
 	int		w;
 	int		p;
-	int		i;
 
-	i = -1;
 	array = convert_octal(va_arg(flag->arg, unsigned int));
 	p = flag->precision - ft_strlen(array);
 	p = (p < 0) ? 0 : p;
