@@ -93,6 +93,12 @@ t_ftpf		*ftpf_init(char *input)
 		return (NULL);
 	new->input = input;
 	new->nbr_param = count_params(input);
+	if (new->nbr_param == 0)
+	{
+		ft_putstr(input);
+		free(new);
+		return (NULL);
+	}
 	new->params = str_array_new();
 	new->r = 0;
 	init_params(input, &new->params);
