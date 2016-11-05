@@ -24,40 +24,43 @@ void	init_xpw(t_flag *flag, char *arr, int *p, int *w)
 
 void	print_width(int nb, int *r)
 {
-	int	i;
+	char	*str;
 
-	i = 0;
-	while (i < nb)
+	if (nb > 0)
 	{
-		ft_putchar(' ');
-		++*r;
-		++i;
+		str = ft_strnew(nb);
+		ft_memset(str, ' ', nb);
+		write(1, str, nb);
+		*r += nb;
+		ft_strdel(&str);
 	}
 }
 
 void	print_width_z(int nb, int *r)
 {
-	int	i;
+	char	*str;
 
-	i = 0;
-	while (i < nb)
+	if (nb > 0)
 	{
-		ft_putchar('0');
-		++*r;
-		++i;
+		str = ft_strnew(nb);
+		ft_memset(str, '0', nb);
+		write(1, str, nb);
+		*r += nb;
+		ft_strdel(&str);
 	}
 }
 
-void	precision(int p, int *r)
+void	precision(int nb, int *r)
 {
-	int	i;
+	char	*str;
 
-	i = 0;
-	while (i < p)
+	if (nb > 0)
 	{
-		ft_putchar('0');
-		++*r;
-		++i;
+		str = ft_strnew(nb);
+		ft_memset(str, '0', nb);
+		write(1, str, nb);
+		*r += nb;
+		ft_strdel(&str);
 	}
 }
 

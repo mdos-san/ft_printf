@@ -16,7 +16,6 @@ void	ftpf_del(t_ftpf **addr)
 {
 	if (*addr)
 	{
-		ft_strdel(&(*addr)->input);
 		ft_strdel(&(*addr)->flag.mod);
 		str_array_del(&(*addr)->params);
 		free(*addr);
