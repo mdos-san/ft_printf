@@ -101,6 +101,7 @@ t_ftpf		*ftpf_init(char *input)
 	}
 	new->params = str_array_new();
 	new->r = 0;
+	new->buf_i = 0;
 	init_params(input, &new->params);
 	get_mod(new);
 	init_useless(new);

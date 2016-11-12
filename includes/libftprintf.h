@@ -18,6 +18,7 @@
 # include <stdint.h>
 # include <unistd.h>
 # include "libft.h"
+# define BUFFER_SIZE 1024
 
 typedef struct		s_flag
 {
@@ -46,6 +47,8 @@ typedef struct		s_ftpf
 	char			*tmp;
 	t_flag			flag;
 	int				r;
+	char			buffer[BUFFER_SIZE];
+	int				buf_i;
 }					t_ftpf;
 
 int					ft_printf(char *str, ...);

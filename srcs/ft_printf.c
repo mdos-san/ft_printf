@@ -110,9 +110,33 @@ int			ft_printf(char *str, ...)
 		return (-1);
 	while (str[i])
 	{
-		(str[i] != '%') ? ++ftpf->r : 0;
-		(str[i] == '%') ? exec_ftpf(ftpf, &ap, &nb, &i) : ft_putchar(str[i]);
+		if (str[i] != '%')
+		{
+			ftpf->buffer[ftpf->buf_i] = str[i];
+			++ftpf->buf_i;
+			if (ftpf->buf_i == BUFFER_SIZE - 1)
+			{
+				write(1, ftpf->buffer, BUFFER_SIZE - 1);
+				ftpf->buf_i = 0;
+			}
+			++ftpf->r;
+		}
+		else
+		{
+			if (ftpf->buf_i > 0)
+			{
+				ftpf->buffer[ftpf->buf_i] = '\0';
+				write(1, ftpf->buffer, ftpf->buf_i);
+				ftpf->buf_i = 0;
+			}
+			exec_ftpf(ftpf, &ap, &nb, &i);
+		}
 		++i;
+	}
+	if (ftpf->buf_i > 0)
+	{
+		ftpf->buffer[ftpf->buf_i] = '\0';
+		write(1, ftpf->buffer, ftpf->buf_i);
 	}
 	value = ftpf->r;
 	va_end(ap);
