@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/21 20:27:18 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 05:22:44 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/11/17 08:19:14 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,7 @@ void				init_hhhl(t_ftpf *new);
 void				init_lj(t_ftpf *new);
 void				init_fct(t_ftpf *new);
 void				init_pz(t_ftpf *new);
+void				norm(t_ftpf *ftpf, int *i, int *nb, va_list *ap);
+void				exec_ftpf(t_ftpf *ftpf, va_list *ap, int *nb, int *i);
 
 #endif

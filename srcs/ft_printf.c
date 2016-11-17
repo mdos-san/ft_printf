@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 12:59:08 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/11/17 06:49:21 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/11/17 08:22:31 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	get_info_ftpf(t_ftpf *ftpf, int nb)
 	(ftpf->tmp) ? ftpf->flag.precision = ft_atoi(ftpf->tmp + 1) : 0;
 }
 
-static void	exec_ftpf(t_ftpf *ftpf, va_list *ap, int *nb, int *i)
+void		exec_ftpf(t_ftpf *ftpf, va_list *ap, int *nb, int *i)
 {
 	va_copy(ftpf->flag.arg, *ap);
 	get_info_ftpf(ftpf, *nb);
@@ -109,30 +109,7 @@ int			ft_printf(char *str, ...)
 	if (ftpf == NULL)
 		return (ft_strlen(str));
 	while (str[i])
-	{
-		if (str[i] != '%')
-		{
-			ftpf->buffer[ftpf->buf_i] = str[i];
-			++ftpf->buf_i;
-			if (ftpf->buf_i == BUFFER_SIZE - 1)
-			{
-				write(1, ftpf->buffer, BUFFER_SIZE - 1);
-				ftpf->buf_i = 0;
-			}
-			++ftpf->r;
-		}
-		else
-		{
-			if (ftpf->buf_i > 0)
-			{
-				ftpf->buffer[ftpf->buf_i] = '\0';
-				write(1, ftpf->buffer, ftpf->buf_i);
-				ftpf->buf_i = 0;
-			}
-			exec_ftpf(ftpf, &ap, &nb, &i);
-		}
-		++i;
-	}
+		norm(ftpf, &i, &nb, &ap);
 	if (ftpf->buf_i > 0)
 	{
 		ftpf->buffer[ftpf->buf_i] = '\0';
