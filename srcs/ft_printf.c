@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 12:59:08 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/11/03 14:14:15 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/11/17 06:49:21 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int			ft_printf(char *str, ...)
 	va_start(ap, str);
 	ftpf = ftpf_init(str);
 	if (ftpf == NULL)
-		return (-1);
+		return (ft_strlen(str));
 	while (str[i])
 	{
 		if (str[i] != '%')
